@@ -1,15 +1,8 @@
 ﻿  Archer.cpp
   Board.cpp
-  Boat.cpp
-  Giant.cpp
-  Level.cpp
-  main.cpp
-  Object.cpp
-  Scout.cpp
-  Shield.cpp
-  Soldier.cpp
-  Terrain.cpp
   Troop.cpp
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Troop.cpp(17,31): warning C4018: '<': signed/unsigned mismatch
+  main.cpp
   Generating Code...
 sfml-graphics-s-d.lib(BlendMode.obj) : warning LNK4099: PDB '' was not found with 'sfml-graphics-s-d.lib(BlendMode.obj)' or at ''; linking object as if no debug info
 sfml-graphics-s-d.lib(Color.obj) : warning LNK4099: PDB '' was not found with 'sfml-graphics-s-d.lib(Color.obj)' or at ''; linking object as if no debug info
@@ -64,4 +57,4 @@ sfml-system-s-d.lib(ClockImpl.obj) : warning LNK4099: PDB '' was not found with 
 sfml-system-s-d.lib(MutexImpl.obj) : warning LNK4099: PDB '' was not found with 'sfml-system-s-d.lib(MutexImpl.obj)' or at ''; linking object as if no debug info
 sfml-system-s-d.lib(SleepImpl.obj) : warning LNK4099: PDB '' was not found with 'sfml-system-s-d.lib(SleepImpl.obj)' or at ''; linking object as if no debug info
 sfml-system-s-d.lib(ThreadLocalImpl.obj) : warning LNK4099: PDB '' was not found with 'sfml-system-s-d.lib(ThreadLocalImpl.obj)' or at ''; linking object as if no debug info
-  SFMLExampleProject.vcxproj -> C:\Users\Timta\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\Debug\SFMLExampleProject.exe
+  SFMLExampleProject.vcxproj -> C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\Debug\SFMLExampleProject.exe

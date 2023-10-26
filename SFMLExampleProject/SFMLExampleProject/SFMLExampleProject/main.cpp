@@ -1,4 +1,5 @@
 #include "Object.h"
+#include "Troop.h"
 
 // ALWAYS BUILD IN RELEASE, AT LEAST ONCE A DAY. 
 
@@ -10,6 +11,9 @@ int main()
     Object Trap(ObjectType::Type_Trap, sf::Vector2f(500, 300));
 
     window.setFramerateLimit(60);
+
+    Troop* Test = new Troop();
+    Test->LoadTroop("Troops/Soldier.txt");
 
     while (window.isOpen())
     {

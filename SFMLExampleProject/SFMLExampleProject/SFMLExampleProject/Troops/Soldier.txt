@@ -1,0 +1,4 @@
+Soldier Name
+4 HP
+1 Attack Range
+2 Travel Range
