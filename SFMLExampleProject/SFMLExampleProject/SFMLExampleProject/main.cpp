@@ -12,8 +12,7 @@ int main()
 
     window.setFramerateLimit(60);
 
-    Troop* Test = new Troop();
-    Test->LoadTroop("Troops/Soldier.txt");
+    Troop* Test = new Troop("Troops/Soldier.txt");
 
     while (window.isOpen())
     {

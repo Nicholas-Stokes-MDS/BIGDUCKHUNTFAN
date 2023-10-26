@@ -13,7 +13,7 @@ protected:
 	int m_iAttackRange;
 	std::string m_sName;
 
-	char m_cCharArray[4][15];
+	char m_cCharArray[5][15];
 
 public:
 	Troop(std::string _sFilePath);
