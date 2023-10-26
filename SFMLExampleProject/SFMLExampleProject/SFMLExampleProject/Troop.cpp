@@ -82,9 +82,14 @@ Troop::Troop(std::string _sFilePath)
         }
         loadFileStream.close();
     }
-    std::cout << m_sName;
-    std::cout << m_iHealth;
-    std::cout << m_iDamage;
-    std::cout << m_iRange;
-    std::cout << m_iAttackRange;
+}
+
+void Troop::PrintStats()
+{
+    std::cout << std::endl;
+    std::cout << m_sName << std::endl;
+    std::cout << m_iHealth << std::endl;
+    std::cout << m_iDamage << std::endl;
+    std::cout << m_iRange << std::endl;
+    std::cout << m_iAttackRange << std::endl;
 }

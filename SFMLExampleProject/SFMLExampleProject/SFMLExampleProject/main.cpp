@@ -12,7 +12,11 @@ int main()
 
     window.setFramerateLimit(60);
 
-    Troop* Test = new Troop("Troops/Soldier.txt");
+    Troop* Soldier = new Troop("Troops/Soldier.txt");
+    Troop* Giant = new Troop("Troops/Giant.txt");
+
+    Soldier->PrintStats();
+    Giant->PrintStats();
 
     while (window.isOpen())
     {
