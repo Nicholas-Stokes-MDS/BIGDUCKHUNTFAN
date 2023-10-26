@@ -147,12 +147,30 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Archer.cpp" />
+    <ClCompile Include="Board.cpp" />
+    <ClCompile Include="Boat.cpp" />
+    <ClCompile Include="Giant.cpp" />
+    <ClCompile Include="Level.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Object.cpp" />
+    <ClCompile Include="Scout.cpp" />
+    <ClCompile Include="Shield.cpp" />
+    <ClCompile Include="Soldier.cpp" />
+    <ClCompile Include="Terrain.cpp" />
     <ClCompile Include="Troop.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Archer.h" />
+    <ClInclude Include="Board.h" />
+    <ClInclude Include="Boat.h" />
+    <ClInclude Include="Giant.h" />
+    <ClInclude Include="Level.h" />
     <ClInclude Include="Object.h" />
+    <ClInclude Include="Scout.h" />
+    <ClInclude Include="Shield.h" />
+    <ClInclude Include="Soldier.h" />
+    <ClInclude Include="Terrain.h" />
     <ClInclude Include="Troop.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
