@@ -3,22 +3,44 @@
 #include <string>
 #include <fstream>
 #include <iostream>
-// abstract class that all troops inherit from
+
+enum TroopType {
+
+	None,
+	Solider,
+	Giant,
+	Archer,
+	Shield,
+	Boat,
+	Scout
+};
+
+// abstract class that all troops inherit from??
 class Troop
 {
 protected:
+	// stat members
 	int m_iHealth = 0;
 	int m_iDamage = 0;
 	int m_iRange = 0;
 	int m_iAttackRange = 0;
 	std::string m_sName = "";
 
+	// array for searching the text file
 	char m_cCharArray[5][15];
+
+	// visual elements
+	sf::Sprite m_TroopSprite;
+	sf::Texture m_TroopTexture;
 
 public:
 	Troop(std::string _sFilePath);
 
+	TroopType Type = None;
+
 	void PrintStats();
+	void SetType();
+	void SetSprite(sf::String _Path);
 	
 	// getters
 	int GetHealth() { return m_iHealth; };

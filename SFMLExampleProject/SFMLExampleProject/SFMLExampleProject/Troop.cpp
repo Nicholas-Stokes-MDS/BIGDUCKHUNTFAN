@@ -93,3 +93,40 @@ void Troop::PrintStats()
     std::cout << m_iRange << std::endl;
     std::cout << m_iAttackRange << std::endl;
 }
+
+void Troop::SetType()
+{
+    if (m_sName == "Solider")
+    {
+        Type = Solider;
+        SetSprite();
+    }
+    if (m_sName == "Giant")
+    {
+        Type = Giant;
+    }
+    if (m_sName == "Archer")
+    {
+        Type = Archer;
+    }
+    if (m_sName == "Shield")
+    {
+        Type = Shield;
+    }
+    if (m_sName == "Boat")
+    {
+        Type = Boat;
+    }
+    if (m_sName == "Scout")
+    {
+        Type = Scout;
+    }
+}
+
+void Troop::SetSprite(sf::String _Path)
+{
+    m_TroopTexture.loadFromFile(_Path);
+    m_TroopSprite.setTexture(m_TroopTexture);
+}
+
+
