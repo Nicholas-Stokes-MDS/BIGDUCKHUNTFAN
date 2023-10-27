@@ -1,7 +1,53 @@
-﻿  Troop.cpp
+﻿  Archer.cpp
+  Board.cpp
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\iostream(19,1): error C2059: syntax error: 'namespace'
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\iostream(19,1): error C2334: unexpected token(s) preceding '{'; skipping apparent function body
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Board.cpp(3,13): error C3254: 'Terrain': class contains explicit override 'MoveTroop' but does not derive from an interface that contains the function declaration
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Board.cpp(3,13): error C2838: 'MoveTroop': illegal qualified name in member declaration
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Board.cpp(14,13): error C3254: 'Terrain': class contains explicit override 'InAttackRange' but does not derive from an interface that contains the function declaration
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Board.cpp(14,13): error C2838: 'InAttackRange': illegal qualified name in member declaration
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Terrain.h(25): fatal  error C1075: '{': no matching token found
+  Level.cpp
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Level.cpp(14,8): error C3254: 'Terrain': class contains explicit override '{ctor}' but does not derive from an interface that contains the function declaration
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Level.cpp(14,8): error C2838: '{ctor}': illegal qualified name in member declaration
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Level.cpp(14,8): error C2535: 'Terrain::Terrain(void)': member function already defined or declared
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Terrain.h(55,2): message : see declaration of 'Terrain::Terrain'
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Level.cpp(18,9): error C3254: 'Terrain': class contains explicit override '{dtor}' but does not derive from an interface that contains the function declaration
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Level.cpp(18,9): error C2838: '{dtor}': illegal qualified name in member declaration
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Level.cpp(18,9): error C2535: 'Terrain::~Terrain(void)': member function already defined or declared
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Terrain.h(56,3): message : see declaration of 'Terrain::~Terrain'
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Level.cpp(23,13): error C3254: 'Terrain': class contains explicit override 'LoadLevel' but does not derive from an interface that contains the function declaration
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Level.cpp(23,13): error C2838: 'LoadLevel': illegal qualified name in member declaration
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Level.cpp(50,13): error C3254: 'Terrain': class contains explicit override 'CreateLevel' but does not derive from an interface that contains the function declaration
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Level.cpp(50,13): error C2838: 'CreateLevel': illegal qualified name in member declaration
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Level.cpp(116,13): error C3254: 'Terrain': class contains explicit override 'Draw' but does not derive from an interface that contains the function declaration
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Level.cpp(116,13): error C2838: 'Draw': illegal qualified name in member declaration
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Level.cpp(128,13): error C3254: 'Terrain': class contains explicit override 'UnloadLevel' but does not derive from an interface that contains the function declaration
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Level.cpp(128,13): error C2838: 'UnloadLevel': illegal qualified name in member declaration
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Terrain.h(25): fatal  error C1075: '{': no matching token found
+  LevelManager.cpp
+  main.cpp
+  Terrain.cpp
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Terrain.cpp(14,10): error C4596: '{ctor}': illegal qualified name in member declaration
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Terrain.cpp(14,10): error C2535: 'Terrain::Terrain(void)': member function already defined or declared
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Terrain.h(55,2): message : see declaration of 'Terrain::Terrain'
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Terrain.cpp(22,11): error C4596: '{dtor}': illegal qualified name in member declaration
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Terrain.cpp(22,11): error C2535: 'Terrain::~Terrain(void)': member function already defined or declared
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Terrain.h(56,3): message : see declaration of 'Terrain::~Terrain'
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Terrain.cpp(28,15): error C4596: 'SetTerrainType': illegal qualified name in member declaration
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Terrain.cpp(28,15): error C2535: 'void Terrain::SetTerrainType(TerrainType)': member function already defined or declared
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Terrain.h(58,7): message : see declaration of 'Terrain::SetTerrainType'
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Terrain.cpp(44,15): error C4596: 'SetSprite': illegal qualified name in member declaration
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Terrain.cpp(44,15): error C2535: 'void Terrain::SetSprite(sf::String)': member function already defined or declared
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Terrain.h(61,7): message : see declaration of 'Terrain::SetSprite'
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Terrain.cpp(50,21): error C4596: 'Draw': illegal qualified name in member declaration
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Terrain.cpp(50,21): error C2535: 'sf::Sprite Terrain::Draw(void)': member function already defined or declared
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Terrain.h(62,13): message : see declaration of 'Terrain::Draw'
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Terrain.h(25): fatal  error C1075: '{': no matching token found
+  Troop.cpp
 C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Troop.cpp(20,31): warning C4018: '<': signed/unsigned mismatch
 C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Troop.cpp(46,42): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
 C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Troop.cpp(56,42): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
 C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Troop.cpp(66,41): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
 C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Troop.cpp(76,47): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  SFMLExampleProject.vcxproj -> C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\Debug\SFMLExampleProject.exe
+  Generating Code...
