@@ -99,7 +99,7 @@ void Troop::SetType()
     if (m_sName == "Solider")
     {
         Type = Solider;
-        SetSprite();
+        SetSprite("Sprites/BlowBlock.bmp");
     }
     if (m_sName == "Giant")
     {
