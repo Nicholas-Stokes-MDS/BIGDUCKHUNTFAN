@@ -138,4 +138,9 @@ void Troop::PlaceTroop(sf::Event _event, sf::RenderWindow* _WindowRef)
     }
 }
 
+sf::Sprite Troop::GetSprite()
+{
+    return m_TroopSprite;
+}
+
 

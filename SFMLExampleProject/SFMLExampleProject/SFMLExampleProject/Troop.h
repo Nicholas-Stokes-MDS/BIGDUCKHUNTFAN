@@ -50,6 +50,8 @@ public:
 	void PlaceTroop(sf::Event _event, sf::RenderWindow* _WindowRef);
 	// reposition
 	void SetPosition(sf::Vector2f _Pos) { m_TroopSprite.setPosition(_Pos); m_TroopPosition = _Pos; }
+	// draw
+	sf::Sprite GetSprite();
 	
 	// getters
 	int GetHealth() { return m_iHealth; };

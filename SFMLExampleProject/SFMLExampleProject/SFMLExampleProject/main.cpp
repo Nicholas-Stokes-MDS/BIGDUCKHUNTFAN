@@ -40,6 +40,8 @@ int main()
 
         window.clear();
 
+        // drawings
+        window.draw(pSoldier->GetSprite());
         window.draw(Player.m_ObjShape);
         window.draw(Trap.m_ObjShape);
 
