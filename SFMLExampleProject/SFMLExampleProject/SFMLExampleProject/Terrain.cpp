@@ -31,8 +31,6 @@ void Terrain::SetTerrainType(TerrainType _Type)
 	{
 	case Wall:
 		SetSprite("Images/Sprites/DefaultBlock.bmp");
-	case Ground:
-		SetSprite("Images/Sprites/DefaultBlock.bmp");
 		break;
 	default:
 		break;

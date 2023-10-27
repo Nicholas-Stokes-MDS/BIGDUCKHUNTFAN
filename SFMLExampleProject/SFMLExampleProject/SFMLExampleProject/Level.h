@@ -23,7 +23,6 @@ public:
 	// functional
 	std::vector<Terrain*> m_LevelTiles; // level
 
-	/* - Add Blow/fan pickup here - */
 
 	// load file
 	char cLevelArray[levelWidth][levelHeight];
