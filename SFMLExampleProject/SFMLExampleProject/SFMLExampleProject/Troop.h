@@ -33,14 +33,23 @@ protected:
 	sf::Sprite m_TroopSprite;
 	sf::Texture m_TroopTexture;
 
+	// for moving 
+	sf::Vector2f m_TroopPosition;
+
 public:
 	Troop(std::string _sFilePath);
 
 	TroopType Type = None;
 
+	// show troop health damage etc in debug
 	void PrintStats();
+	// sets sprite and enum based on file loaded
 	void SetType();
 	void SetSprite(sf::String _Path);
+	// place troop
+	void PlaceTroop(sf::Event _event, sf::RenderWindow* _WindowRef);
+	// reposition
+	void SetPosition(sf::Vector2f _Pos) { m_TroopSprite.setPosition(_Pos); m_TroopPosition = _Pos; }
 	
 	// getters
 	int GetHealth() { return m_iHealth; };
