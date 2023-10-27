@@ -29,6 +29,9 @@ int main()
 
         window.clear();
 
+        //drawing
+        window.draw(pSoldier->GetSprite());
+
         window.display();
     }
 

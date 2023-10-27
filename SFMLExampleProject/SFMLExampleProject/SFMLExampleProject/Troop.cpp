@@ -134,8 +134,20 @@ void Troop::PlaceTroop(sf::Event _event, sf::RenderWindow* _WindowRef)
 {
     if (_event.type == sf::Event::MouseButtonPressed && _event.mouseButton.button == sf::Mouse::Left)
     {
-        SetPosition(_WindowRef->mapPixelToCoords(sf::Mouse::getPosition(*_WindowRef)));
+        // divide mouse pos by 16 to find current square then snap to that position
+        float fXPos = sf::Mouse::getPosition(*_WindowRef).x;
+        float fYPos = sf::Mouse::getPosition(*_WindowRef).y;
+
+        fXPos = std::floor(fXPos/32);
+        fYPos = std::floor(fYPos/32);
+
+        SetPosition(sf::Vector2f(fXPos * 32, fYPos * 32));
     }
+}
+
+sf::Sprite Troop::GetSprite()
+{
+    return m_TroopSprite;
 }
 
 
