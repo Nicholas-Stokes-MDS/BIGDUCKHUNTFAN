@@ -22,7 +22,7 @@ public:
 
 	// functional
 	std::vector<Terrain*> m_LevelTiles; // level
-
+	
 
 	// load file
 	char cLevelArray[levelWidth][levelHeight];
