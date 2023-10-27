@@ -3,7 +3,7 @@
 Troop::Troop(std::string _sFilePath)
 {
     bool bSpaceReached = false;
-    std::string sLoadString;
+    std::string sLoadString = "";
 
     std::fstream loadFileStream;
 

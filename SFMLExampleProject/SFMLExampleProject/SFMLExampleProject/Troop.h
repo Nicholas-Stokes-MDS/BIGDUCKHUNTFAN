@@ -7,11 +7,11 @@
 class Troop
 {
 protected:
-	int m_iHealth;
-	int m_iDamage;
-	int m_iRange;
-	int m_iAttackRange;
-	std::string m_sName;
+	int m_iHealth = 0;
+	int m_iDamage = 0;
+	int m_iRange = 0;
+	int m_iAttackRange = 0;
+	std::string m_sName = "";
 
 	char m_cCharArray[5][15];
 
