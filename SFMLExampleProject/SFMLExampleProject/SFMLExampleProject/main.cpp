@@ -12,11 +12,11 @@ int main()
 
     window.setFramerateLimit(60);
 
-    Troop* Soldier = new Troop("Troops/Soldier.txt");
-    Troop* Giant = new Troop("Troops/Giant.txt");
+    Troop* pSoldier = new Troop("Troops/Soldier.txt");
+    Troop* pGiant = new Troop("Troops/Giant.txt");
 
-    Soldier->PrintStats();
-    Giant->PrintStats();
+    pSoldier->PrintStats();
+    pGiant->PrintStats();
 
     while (window.isOpen())
     {
@@ -27,6 +27,8 @@ int main()
             {
                 window.close();
             }
+
+            pSoldier->PlaceTroop(event, &window);
         }
 
         Player.Input();

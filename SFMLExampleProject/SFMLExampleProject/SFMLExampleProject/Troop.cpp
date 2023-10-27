@@ -82,6 +82,7 @@ Troop::Troop(std::string _sFilePath)
         }
         loadFileStream.close();
     }
+    SetType();
 }
 
 void Troop::PrintStats()
@@ -96,7 +97,7 @@ void Troop::PrintStats()
 
 void Troop::SetType()
 {
-    if (m_sName == "Solider")
+    if (m_sName == "Soldier")
     {
         Type = Solider;
         SetSprite("Sprites/BlowBlock.bmp");
@@ -127,6 +128,14 @@ void Troop::SetSprite(sf::String _Path)
 {
     m_TroopTexture.loadFromFile(_Path);
     m_TroopSprite.setTexture(m_TroopTexture);
+}
+
+void Troop::PlaceTroop(sf::Event _event, sf::RenderWindow* _WindowRef)
+{
+    if (_event.type == sf::Event::MouseButtonPressed && _event.mouseButton.button == sf::Mouse::Left)
+    {
+        SetPosition(_WindowRef->mapPixelToCoords(sf::Mouse::getPosition(*_WindowRef)));
+    }
 }
 
 
