@@ -56,55 +56,7 @@ void Level::CreateLevel()
 			if (cLevelArray[y][x] == 'x')
 			{
 				Terrain* newTile = new Terrain();
-				newTile->SetTerrainType(CharacterType::Wall);
-				newTile->SetPosition(sf::Vector2f(x * 32, y * 32)); // sprite size
-				m_LevelTiles.push_back(newTile);
-			}
-
-			if (cLevelArray[y][x] == 'o')
-			{
-				Character* newTile = new Character();
-				newTile->SetTerrainType(CharacterType::Trap);
-				newTile->SetPosition(sf::Vector2f(x * 32, y * 32)); // sprite size
-				m_LevelTiles.push_back(newTile);
-			}
-
-			if (cLevelArray[y][x] == 'w')
-			{
-				Character* newTile = new Character();
-				newTile->SetCharType(CharacterType::Win);
-				newTile->SetPosition(sf::Vector2f(x * 32, y * 32)); // sprite size
-				m_LevelTiles.push_back(newTile);
-			}
-
-			if (cLevelArray[y][x] == 'p')
-			{
-				Character* newTile = new Character();
-				newTile->SetCharType(CharacterType::Platform);
-				newTile->SetPosition(sf::Vector2f(x * 32, y * 32)); // sprite size
-				m_LevelTiles.push_back(newTile);
-			}
-
-			if (cLevelArray[y][x] == 'c')
-			{
-				Character* newTile = new Character();
-				newTile->SetCharType(CharacterType::Timer);
-				newTile->SetPosition(sf::Vector2f(x * 32, y * 32)); // sprite size
-				m_LevelTiles.push_back(newTile);
-			}
-
-			if (cLevelArray[y][x] == 'd')
-			{
-				Character* newTile = new Character();
-				newTile->SetCharType(CharacterType::Door);
-				newTile->SetPosition(sf::Vector2f(x * 32, y * 32)); // sprite size
-				m_LevelTiles.push_back(newTile);
-			}
-
-			if (cLevelArray[y][x] == 'b')
-			{
-				Character* newTile = new Character();
-				newTile->SetCharType(CharacterType::Button);
+				newTile->SetTerrainType(TerrainType::Wall);
 				newTile->SetPosition(sf::Vector2f(x * 32, y * 32)); // sprite size
 				m_LevelTiles.push_back(newTile);
 			}
