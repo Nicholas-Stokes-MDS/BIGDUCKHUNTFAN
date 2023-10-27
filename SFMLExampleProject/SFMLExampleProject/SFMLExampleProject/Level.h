@@ -10,8 +10,8 @@
 // Author : Nick Stokes
 // Mail : Nicholas.Stokes@mds.ac.nz
 #pragma once
-#include "SFML/Graphics.hpp"
 #include <fstream>
+#include "Terrain.h"
 class Level
 {
 public:
@@ -21,7 +21,7 @@ public:
 	static const int levelHeight = 30;
 
 	// functional
-	//std::vector<Character*> m_LevelTiles; // level
+	std::vector<Terrain*> m_LevelTiles; // level
 
 	/* - Add Blow/fan pickup here - */
 

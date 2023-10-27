@@ -152,6 +152,7 @@
     <ClCompile Include="Boat.cpp" />
     <ClCompile Include="Giant.cpp" />
     <ClCompile Include="Level.cpp" />
+    <ClCompile Include="LevelManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="Scout.cpp" />
@@ -166,6 +167,7 @@
     <ClInclude Include="Boat.h" />
     <ClInclude Include="Giant.h" />
     <ClInclude Include="Level.h" />
+    <ClInclude Include="LevelManager.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="Scout.h" />
     <ClInclude Include="Shield.h" />
