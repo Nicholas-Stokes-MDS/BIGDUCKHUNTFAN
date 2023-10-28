@@ -57,15 +57,16 @@ int main()
                     //g_Level   ->LoadLevel(3, &level);
                 }
             }
-            pSoldier->PlaceTroop(event, &window);
+            pBoard->MoveTroop(*pSoldier, event, &window);
         }
         pBoard->ShowMouseSquare(&window);
 
         window.clear();
 
-        //drawing
+        //drawing **order matters**
         window.draw(terrain->Draw());
         level.Draw(&window);
+        window.draw(pBoard->GetRangeRect());
         window.draw(pSoldier->GetSprite());
         window.draw(pBoard->GetSelectRect());
 

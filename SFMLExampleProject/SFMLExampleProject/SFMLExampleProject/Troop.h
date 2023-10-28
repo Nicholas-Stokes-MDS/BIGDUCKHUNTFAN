@@ -59,6 +59,7 @@ public:
 	int GetRange() { return m_iRange; };
 	int GetAttackRange() { return m_iAttackRange; };
 	std::string GetName() { return m_sName; };
+	sf::Vector2f GetPosition() { return m_TroopPosition; };
 
 	// setters
 	void SetHealth(int _iNewHealth) { m_iHealth = _iNewHealth; };
