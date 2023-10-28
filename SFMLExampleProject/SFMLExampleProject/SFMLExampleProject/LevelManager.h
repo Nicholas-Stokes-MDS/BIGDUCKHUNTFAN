@@ -37,6 +37,7 @@ public:
 
 	void LoadLevel(int _LevelNum, Level* _LevelRef);
 	void SetCurrentLevel(int _Level);
-	void GetCurrentLevel();
+	void PrintCurrentLevel();
+	int GetCurrentLevel();
 };
 
