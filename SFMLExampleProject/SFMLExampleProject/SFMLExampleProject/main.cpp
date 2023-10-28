@@ -91,6 +91,10 @@ int main()
             if (g_bPlacingSoldier)
             {
                 pSoldier->PlaceTroop(event, &window);
+                if (pSoldier->GetPosition() != sf::Vector2f(0,0))
+                {
+                    g_bPlacingSoldier = false;
+                }
             }
             else
             {
