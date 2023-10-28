@@ -26,6 +26,9 @@ int main()
     sf::RenderWindow OptionsWindow(sf::VideoMode(400, 400), "Place troops");
     OptionsWindow.setVerticalSyncEnabled(true);
 
+    sf::RenderWindow Settings(sf::VideoMode(400, 400), "Settings");
+    Settings.setVerticalSyncEnabled(true);
+
     Board* pBoard = new Board();
 
     Troop* pSoldier = new Troop("Troops/Soldier.txt");
@@ -75,6 +78,23 @@ int main()
     UIElement loadElement(sf::Vector2f(250, 100), sf::Vector2f(100, 50), std::string("idk"), UIElementFont);
     UIElements.push_back(loadElement);
 
+    std::vector<UIElement> UIElements2;
+    // creation of buttons
+    UIElement volume1Element(sf::Vector2f(20, 30), sf::Vector2f(150, 50), std::string("Volume+"), UIElementFont);
+    UIElements2.push_back(volume1Element);
+    UIElement volume2Element(sf::Vector2f(20, 100), sf::Vector2f(150, 50), std::string("Volume-"), UIElementFont);
+    UIElements2.push_back(volume2Element);
+    UIElement vsync1Element(sf::Vector2f(20, 170), sf::Vector2f(150, 50), std::string("Vsync Enable"), UIElementFont);
+    UIElements2.push_back(vsync1Element);
+    UIElement vsync2Element(sf::Vector2f(20, 240), sf::Vector2f(150, 50), std::string("Vsync Disable"), UIElementFont);
+    UIElements2.push_back(vsync2Element);
+    UIElement resolution1Element(sf::Vector2f(20, 310), sf::Vector2f(150, 50), std::string("640 by 480"), UIElementFont);
+    UIElements2.push_back(resolution1Element);
+    UIElement resolution2Element(sf::Vector2f(220, 30), sf::Vector2f(150, 50), std::string("800 by 600"), UIElementFont);
+    UIElements2.push_back(resolution2Element);
+    UIElement resolution3Element(sf::Vector2f(220, 100), sf::Vector2f(150, 50), std::string("1920 by 1080"), UIElementFont);
+    UIElements2.push_back(resolution3Element);
+
     while (window.isOpen())
     {
         sf::Event event;
@@ -103,17 +123,17 @@ int main()
 
                 else if (event.key.code == sf::Keyboard::Num7)
                 {
-                    window.create(sf::VideoMode(640, 480), "Game!");
+                    
                 }
 
                 else if (event.key.code == sf::Keyboard::Num8)
                 {
-                    window.create(sf::VideoMode(800, 600), "Game!");
+                    
                 }
 
                 else if (event.key.code == sf::Keyboard::Num9)
                 {
-                    window.create(sf::VideoMode(1920, 1080), "Game!");
+                    
                 }
 
 
@@ -125,6 +145,7 @@ int main()
             }
 
             switch (TroopPlaced)
+            if (g_bPlacingSoldier)
             {
             case None:
                 pBoard->MoveTroop(*pSoldier, event, &window);
@@ -196,39 +217,93 @@ int main()
                 {
                     //clicking buttons in Options window and calling the appropriate class method
                     // Soldier
-                    if (UIElements[0].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(OptionsWindow))))
+                    if (UIElements2[0].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(OptionsWindow))))
                     {
                         TroopPlaced = PlacingSoldier;
                     }
                     // Archer
-                    if (UIElements[1].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(OptionsWindow))))
+                    if (UIElements2[1].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(OptionsWindow))))
                     {
                         TroopPlaced = PlacingArcher;
                     }
                     // Shield
-                    if (UIElements[2].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(OptionsWindow))))
+                    if (UIElements2[2].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(OptionsWindow))))
                     {
                         TroopPlaced = PlacingShield;
                     }
                     // Scout
-                    if (UIElements[3].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(OptionsWindow))))
+                    if (UIElements2[3].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(OptionsWindow))))
                     {
                         TroopPlaced = PlacingScout;
                     }
                     // Boat
-                    if (UIElements[4].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(OptionsWindow))))
+                    if (UIElements2[4].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(OptionsWindow))))
                     {
                         TroopPlaced = PlacingBoat;
                     }
                     // Giant
-                    if (UIElements[5].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(OptionsWindow))))
+                    if (UIElements2[5].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(OptionsWindow))))
                     {
                         TroopPlaced = PlacingGiant;
                     }
                     // idk
-                    if (UIElements[6].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(OptionsWindow))))
+                    if (UIElements2[6].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(OptionsWindow))))
                     {
                         TroopPlaced = PlacingNone;
+                    }
+
+                }
+            }
+        }
+
+        sf::Event SettingsEvent;
+        while (Settings.pollEvent(SettingsEvent))
+        {
+            // lets user close the window
+            if (SettingsEvent.type == sf::Event::Closed)
+            {
+                Settings.close();
+            }
+
+            if (SettingsEvent.type == sf::Event::MouseButtonPressed)
+            {
+                if (SettingsEvent.mouseButton.button == sf::Mouse::Left)
+                {
+                    //clicking buttons in Options window and calling the appropriate class method
+                    // Soldier
+                    if (UIElements2[0].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(Settings))))
+                    {
+
+                    }
+                    // Archer
+                    if (UIElements[1].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(Settings))))
+                    {
+
+                    }
+                    // Shield
+                    if (UIElements[2].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(Settings))))
+                    {
+                        Settings.setVerticalSyncEnabled(true);
+                    }
+                    // Scout
+                    if (UIElements[3].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(Settings))))
+                    {
+                        Settings.setVerticalSyncEnabled(false);
+                    }
+                    // Boat
+                    if (UIElements[4].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(Settings))))
+                    {
+                        window.create(sf::VideoMode(640, 480), "Game!");
+                    }
+                    // Giant
+                    if (UIElements[5].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(Settings))))
+                    {
+                        window.create(sf::VideoMode(800, 600), "Game!");
+                    }
+                    // idk
+                    if (UIElements[6].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(Settings))))
+                    {
+                        window.create(sf::VideoMode(1920, 1080), "Game!");
                     }
 
                 }
@@ -265,7 +340,15 @@ int main()
         OptionsWindow.display();
         // Options window render loop
 
-        
+        // Settings window render loop
+        Settings.clear();
+        // draw UI elements of options window
+        for (int i = 0; i < UIElements2.size(); i++)
+        {
+            UIElements2[i].Draw(&Settings);
+        }
+        Settings.display();
+        // Settings window render loop
     }
 
     return 0;
