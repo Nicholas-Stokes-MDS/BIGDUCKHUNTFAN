@@ -7,6 +7,7 @@
 
 int main()
 {
+    bool g_bPlacingSoldier = false;
     sf::RenderWindow window(sf::VideoMode(800, 600), "Game!");
     window.setFramerateLimit(60);
 
@@ -87,7 +88,14 @@ int main()
                     //g_Level   ->LoadLevel(3, &level);
                 }
             }
-            pBoard->MoveTroop(*pSoldier, event, &window);
+            if (g_bPlacingSoldier)
+            {
+                pSoldier->PlaceTroop(event, &window);
+            }
+            else
+            {
+                pBoard->MoveTroop(*pSoldier, event, &window);
+            }
         }
         sf::Event OptionsEvent;
         while (OptionsWindow.pollEvent(OptionsEvent))
@@ -106,7 +114,7 @@ int main()
                     // Soldier
                     if (UIElements[0].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(OptionsWindow))))
                     {
-                        //pSoldier->PlaceTroop(event, &window);
+                        g_bPlacingSoldier = true;
                     }
                     // Archer
                     if (UIElements[1].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(OptionsWindow))))
