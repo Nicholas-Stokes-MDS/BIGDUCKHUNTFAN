@@ -47,7 +47,7 @@ int main()
     
     // creates level instance and loads level based on supplied text file
     Level level;
-    level.LoadLevel("Levels/level1.txt");
+    //level.LoadLevel("Levels/level1.txt");
 
     // creates instance of terrain tiles
     Terrain* terrain = new Terrain();
@@ -114,6 +114,19 @@ int main()
     UIElements2.push_back(resolution2Element);
     UIElement resolution3Element(sf::Vector2f(220, 100), sf::Vector2f(150, 50), std::string("1920 by 1080"), UIElementFont);
     UIElements2.push_back(resolution3Element);
+
+    if (LevelManager::GetInstance()->GetCurrentLevel() == 1)
+    {
+        level.LoadLevel("Levels/level1.txt");
+    }
+    else if (LevelManager::GetInstance()->GetCurrentLevel() == 2)
+    {
+        level.LoadLevel("Levels/level2.txt");
+    }
+    else if (LevelManager::GetInstance()->GetCurrentLevel() == 3)
+    {
+        level.LoadLevel("Levels/level3.txt");
+    }
 
     while (window.isOpen())
     {
