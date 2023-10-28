@@ -134,7 +134,7 @@ void Troop::PlaceTroop(sf::Event _event, sf::RenderWindow* _WindowRef)
 {
     if (_event.type == sf::Event::MouseButtonPressed && _event.mouseButton.button == sf::Mouse::Left)
     {
-        // divide mouse pos by 16 to find current square then snap to that position
+        // divide mouse pos by 16 and round down to find current square then snap to that position
         float fXPos = sf::Mouse::getPosition(*_WindowRef).x;
         float fYPos = sf::Mouse::getPosition(*_WindowRef).y;
 
