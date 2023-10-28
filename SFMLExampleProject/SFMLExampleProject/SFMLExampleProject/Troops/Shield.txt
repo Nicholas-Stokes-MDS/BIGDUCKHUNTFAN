@@ -1,0 +1,5 @@
+Shield Name
+11 HP
+1 Damage
+1 Attack Range
+1 Travel Range

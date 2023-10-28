@@ -106,22 +106,27 @@ void Troop::SetType()
     if (m_sName == "Giant")
     {
         Type = Giant;
+        SetSprite("Sprites/Giant.bmp");
     }
     if (m_sName == "Archer")
     {
         Type = Archer;
+        SetSprite("Sprites/Archer.bmp");
     }
     if (m_sName == "Shield")
     {
         Type = Shield;
+        SetSprite("Sprites/Shield.bmp");
     }
     if (m_sName == "Boat")
     {
         Type = Boat;
+        SetSprite("Sprites/Boat.bmp");
     }
     if (m_sName == "Scout")
     {
         Type = Scout;
+        SetSprite("Sprites/Scout.bmp");
     }
 
     if (Type == None)

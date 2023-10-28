@@ -4,9 +4,20 @@
 #include "Board.h"
 #include "UIElement.h"
 // ALWAYS BUILD IN RELEASE, AT LEAST ONCE A DAY. 
+enum PlacingTroop
+{
+    PlacingNone,
+    PlacingSoldier,
+    PlacingArcher,
+    PlacingScout,
+    PlacingGiant,
+    PlacingBoat,
+    PlacingShield,
+};
 
 int main()
 {
+    PlacingTroop TroopPlaced = PlacingNone;
     bool g_bPlacingSoldier = true;
     sf::RenderWindow window(sf::VideoMode(800, 600), "Game!");
     window.setFramerateLimit(60);
@@ -19,6 +30,10 @@ int main()
 
     Troop* pSoldier = new Troop("Troops/Soldier.txt");
     Troop* pGiant = new Troop("Troops/Giant.txt");
+    Troop* pArcher = new Troop("Troops/Archer.txt");
+    Troop* pScout = new Troop("Troops/Scout.txt");
+    Troop* pShield = new Troop("Troops/Shield.txt");
+    Troop* pBoat = new Troop("Troops/Boat.txt");
 
     pSoldier->PrintStats();
     pGiant->PrintStats();
@@ -103,24 +118,67 @@ int main()
 
 
 
-
                 break;
             default:
                 break;
 
             }
-            if (g_bPlacingSoldier)
+
+            switch (TroopPlaced)
             {
+            case None:
+                pBoard->MoveTroop(*pSoldier, event, &window);
+                break;
+            case PlacingSoldier:
                 pBoard->GetSelectRect().setFillColor(sf::Color(255, 255, 255, 128));
                 pSoldier->PlaceTroop(event, &window);
-                if (pSoldier->GetPosition() != sf::Vector2f(-100,-100))
+                if (pSoldier->GetPosition() != sf::Vector2f(-100, -100))
                 {
                     g_bPlacingSoldier = false;
                 }
-            }
-            else
-            {
-                pBoard->MoveTroop(*pSoldier, event, &window);
+                break;
+            case PlacingArcher:
+                pBoard->GetSelectRect().setFillColor(sf::Color(255, 255, 255, 128));
+                pArcher->PlaceTroop(event, &window);
+                if (pArcher->GetPosition() != sf::Vector2f(-100, -100))
+                {
+                    TroopPlaced = PlacingNone;
+                }
+                break;
+            case PlacingScout:
+                pBoard->GetSelectRect().setFillColor(sf::Color(255, 255, 255, 128));
+                pScout->PlaceTroop(event, &window);
+                if (pScout->GetPosition() != sf::Vector2f(-100, -100))
+                {
+                    TroopPlaced = PlacingNone;
+                }
+                break;
+            case PlacingGiant:
+                pBoard->GetSelectRect().setFillColor(sf::Color(255, 255, 255, 128));
+                pGiant->PlaceTroop(event, &window);
+                if (pGiant->GetPosition() != sf::Vector2f(-100, -100))
+                {
+                    TroopPlaced = PlacingNone;
+                }
+                break;
+            case PlacingBoat:
+                pBoard->GetSelectRect().setFillColor(sf::Color(255, 255, 255, 128));
+                pBoat->PlaceTroop(event, &window);
+                if (pBoat->GetPosition() != sf::Vector2f(-100, -100))
+                {
+                    TroopPlaced = PlacingNone;
+                }
+                break;
+            case PlacingShield:
+                pBoard->GetSelectRect().setFillColor(sf::Color(255, 255, 255, 128));
+                pShield->PlaceTroop(event, &window);
+                if (pShield->GetPosition() != sf::Vector2f(-100, -100))
+                {
+                    TroopPlaced = PlacingNone;
+                }
+                break;
+            default:
+                break;
             }
         }
         sf::Event OptionsEvent;
@@ -140,37 +198,37 @@ int main()
                     // Soldier
                     if (UIElements[0].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(OptionsWindow))))
                     {
-                        g_bPlacingSoldier = true;
+                        TroopPlaced = PlacingSoldier;
                     }
                     // Archer
                     if (UIElements[1].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(OptionsWindow))))
                     {
-
+                        TroopPlaced = PlacingArcher;
                     }
                     // Shield
                     if (UIElements[2].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(OptionsWindow))))
                     {
-
+                        TroopPlaced = PlacingShield;
                     }
                     // Scout
                     if (UIElements[3].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(OptionsWindow))))
                     {
-
+                        TroopPlaced = PlacingScout;
                     }
                     // Boat
                     if (UIElements[4].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(OptionsWindow))))
                     {
-
+                        TroopPlaced = PlacingBoat;
                     }
                     // Giant
                     if (UIElements[5].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(OptionsWindow))))
                     {
-
+                        TroopPlaced = PlacingGiant;
                     }
                     // idk
                     if (UIElements[6].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(OptionsWindow))))
                     {
-
+                        TroopPlaced = PlacingNone;
                     }
 
                 }
@@ -187,6 +245,11 @@ int main()
         level.Draw(&window);
         window.draw(pBoard->GetRangeRect());
         window.draw(pSoldier->GetSprite());
+        window.draw(pGiant->GetSprite());
+        window.draw(pArcher->GetSprite());
+        window.draw(pBoat->GetSprite());
+        window.draw(pScout->GetSprite());
+        window.draw(pShield->GetSprite());
         window.draw(pBoard->GetSelectRect());
 
         window.display();

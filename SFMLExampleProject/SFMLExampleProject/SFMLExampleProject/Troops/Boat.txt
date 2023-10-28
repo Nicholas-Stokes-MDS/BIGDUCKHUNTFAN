@@ -1,0 +1,5 @@
+Boat Name
+6 HP
+1 Damage
+2 Attack Range
+2 Travel Range

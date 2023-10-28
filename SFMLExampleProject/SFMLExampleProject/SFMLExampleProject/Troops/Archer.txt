@@ -1,0 +1,5 @@
+Archer Name
+2 HP
+2 Damage
+2 Attack Range
+1 Travel Range
