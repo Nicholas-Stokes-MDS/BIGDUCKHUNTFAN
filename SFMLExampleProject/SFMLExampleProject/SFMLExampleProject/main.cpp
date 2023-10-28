@@ -3,6 +3,7 @@
 #include "LevelManager.h"
 #include "Board.h"
 #include "UIElement.h"
+#include <SFML/Audio.hpp>
 // ALWAYS BUILD IN RELEASE, AT LEAST ONCE A DAY. 
 enum PlacingTroop
 {
@@ -17,6 +18,12 @@ enum PlacingTroop
 
 int main()
 {
+    //sf::SoundBuffer laugh;
+    //laugh.loadFromFile("laugh.wav");
+    //sf::Sound sound;
+    //sound.setBuffer(laugh);
+    //sound.play();
+    
     PlacingTroop TroopPlaced = PlacingNone;
     bool g_bPlacingSoldier = true;
     sf::RenderWindow window(sf::VideoMode(800, 600), "Game!");
