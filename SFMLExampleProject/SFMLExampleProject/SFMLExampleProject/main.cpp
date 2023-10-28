@@ -103,36 +103,37 @@ int main()
                 if (OptionsEvent.mouseButton.button == sf::Mouse::Left)
                 {
                     //clicking buttons in Options window and calling the appropriate class method
+                    // Soldier
                     if (UIElements[0].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(OptionsWindow))))
                     {
-
+                        //pSoldier->PlaceTroop(event, &window);
                     }
-
+                    // Archer
                     if (UIElements[1].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(OptionsWindow))))
                     {
 
                     }
-
+                    // Shield
                     if (UIElements[2].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(OptionsWindow))))
                     {
 
                     }
-
+                    // Scout
                     if (UIElements[3].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(OptionsWindow))))
                     {
 
                     }
-
+                    // Boat
                     if (UIElements[4].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(OptionsWindow))))
                     {
 
                     }
-
+                    // Giant
                     if (UIElements[5].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(OptionsWindow))))
                     {
 
                     }
-
+                    // idk
                     if (UIElements[6].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(OptionsWindow))))
                     {
 
@@ -141,8 +142,6 @@ int main()
                 }
             }
         }
-        
-        
         
         pBoard->ShowMouseSquare(&window);
 
