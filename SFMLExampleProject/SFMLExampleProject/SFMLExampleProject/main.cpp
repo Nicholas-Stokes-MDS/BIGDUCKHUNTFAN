@@ -7,7 +7,7 @@
 
 int main()
 {
-    bool g_bPlacingSoldier = false;
+    bool g_bPlacingSoldier = true;
     sf::RenderWindow window(sf::VideoMode(800, 600), "Game!");
     window.setFramerateLimit(60);
 
@@ -90,8 +90,9 @@ int main()
             }
             if (g_bPlacingSoldier)
             {
+                pBoard->GetSelectRect().setFillColor(sf::Color(255, 255, 255, 128));
                 pSoldier->PlaceTroop(event, &window);
-                if (pSoldier->GetPosition() != sf::Vector2f(0,0))
+                if (pSoldier->GetPosition() != sf::Vector2f(-100,-100))
                 {
                     g_bPlacingSoldier = false;
                 }

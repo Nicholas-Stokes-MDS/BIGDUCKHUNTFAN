@@ -83,6 +83,7 @@ Troop::Troop(std::string _sFilePath)
         loadFileStream.close();
     }
     SetType();
+    SetPosition(sf::Vector2f(-100, -100));
 }
 
 void Troop::PrintStats()
@@ -100,7 +101,7 @@ void Troop::SetType()
     if (m_sName == "Soldier")
     {
         Type = Solider;
-        SetSprite("Sprites/BlowBlock.bmp");
+        SetSprite("Sprites/Soldier.bmp");
     }
     if (m_sName == "Giant")
     {
