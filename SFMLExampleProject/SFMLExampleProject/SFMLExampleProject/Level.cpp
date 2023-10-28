@@ -70,10 +70,7 @@ void Level::Draw(sf::RenderWindow* _Window)
 
 	for (int j = 0; j < m_LevelTiles.size(); j++)
 	{
-		if (m_LevelTiles[j]->m_bEnabled)
-		{
-			_Window->draw(m_LevelTiles[j]->Draw());
-		}
+		_Window->draw(m_LevelTiles[j]->Draw());
 	}
 }
 

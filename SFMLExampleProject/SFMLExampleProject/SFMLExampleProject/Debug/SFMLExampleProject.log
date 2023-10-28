@@ -1,17 +1,2 @@
-﻿  Troop.cpp
-C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Troop.cpp(20,31): warning C4018: '<': signed/unsigned mismatch
-C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Troop.cpp(46,42): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Troop.cpp(56,42): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Troop.cpp(66,41): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Troop.cpp(76,47): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Troop.cpp(138,21): warning C4244: 'initializing': conversion from 'T' to 'float', possible loss of data
-          with
-          [
-              T=int
-          ]
-C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Troop.cpp(139,21): warning C4244: 'initializing': conversion from 'T' to 'float', possible loss of data
-          with
-          [
-              T=int
-          ]
-  SFMLExampleProject.vcxproj -> C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\Debug\SFMLExampleProject.exe
+﻿  main.cpp
+  SFMLExampleProject.vcxproj -> C:\Users\Timta\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\Debug\SFMLExampleProject.exe

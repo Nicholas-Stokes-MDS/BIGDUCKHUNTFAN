@@ -10,15 +10,15 @@
 // Author : Nick Stokes
 // Mail : Nicholas.Stokes@mds.ac.nz
 #pragma once
-#include <fstream>
 #include "Terrain.h"
+#include <fstream>
 class Level
 {
 public:
 	int iCurrentLevel = 1;
 
-	static const int levelWidth = 30;
-	static const int levelHeight = 30;
+	static const int levelWidth = 15;
+	static const int levelHeight = 20;
 
 	// functional
 	std::vector<Terrain*> m_LevelTiles; // level

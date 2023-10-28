@@ -13,10 +13,10 @@
 // default constuctor setting sprite and position
 Terrain::Terrain()
 {
-	SetSprite("Images/Sprites/PlayerBlock.bmp");
-	m_CharacterSprite.setOrigin(m_CharacterTexture.getSize().x / 2, m_CharacterTexture.getSize().y / 2);
-	m_CharacterPosition = sf::Vector2f(40, 400);
-	m_CharacterSprite.setPosition(m_CharacterPosition);
+	//SetSprite("Sprites/DefaultBlock.bmp");
+	//m_CharacterSprite.setOrigin(m_CharacterTexture.getSize().x / 2, m_CharacterTexture.getSize().y / 2);
+	//m_CharacterPosition = sf::Vector2f(40, 400);
+	//m_CharacterSprite.setPosition(m_CharacterPosition);
 }
 
 Terrain::~Terrain()
@@ -30,7 +30,7 @@ void Terrain::SetTerrainType(TerrainType _Type)
 	switch (_Type)
 	{
 	case Wall:
-		SetSprite("Images/Sprites/DefaultBlock.bmp");
+		SetSprite("Sprites/DefaultBlock.bmp");
 		break;
 	default:
 		break;

@@ -1,6 +1,6 @@
 #include "Object.h"
 #include "Troop.h"
-
+#include "LevelManager.h"
 // ALWAYS BUILD IN RELEASE, AT LEAST ONCE A DAY. 
 
 int main()
@@ -14,6 +14,17 @@ int main()
     pSoldier->PrintStats();
     pGiant->PrintStats();
 
+    LevelManager* g_LevelManager = LevelManager::GetInstance();
+    LevelManager::GetInstance()->GetCurrentLevel();
+    
+    // creates level instance and loads level based on supplied text file
+    Level level;
+    level.LoadLevel("Levels/level1.txt");
+
+    // creates instance of terrain tiles
+    Terrain* terrain = new Terrain();
+    terrain->SetWindowRef(&window);
+
     while (window.isOpen())
     {
         sf::Event event;
@@ -23,13 +34,35 @@ int main()
             {
                 window.close();
             }
+            if (event.type == sf::Event::KeyPressed)
+            {
+                if (event.key.code == sf::Keyboard::Num1)
+                {
+                    LevelManager::GetInstance()->LoadLevel(1, &level);
+                    //g_LevelManager->LoadLevel(1, &level);
+                }
 
+                if (event.key.code == sf::Keyboard::Num2)
+                {
+                    LevelManager::GetInstance()->LoadLevel(2, &level);
+                    //g_LevelManager->LoadLevel(2, &level);
+                }
+
+                if (event.key.code == sf::Keyboard::Num3)
+                {
+                    LevelManager::GetInstance()->LoadLevel(3, &level);
+                    //g_Level   ->LoadLevel(3, &level);
+                }
+            }
             pSoldier->PlaceTroop(event, &window);
         }
 
         window.clear();
 
         //drawing
+        
+        window.draw(terrain->Draw());
+        level.Draw(&window);
         window.draw(pSoldier->GetSprite());
 
         window.display();

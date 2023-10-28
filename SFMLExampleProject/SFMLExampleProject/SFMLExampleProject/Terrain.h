@@ -15,8 +15,7 @@
 
 enum TerrainType {
 	// static characters
-	Wall, // block movement
-	Ground, // damage player
+	Wall // block movement
 };
 
 
