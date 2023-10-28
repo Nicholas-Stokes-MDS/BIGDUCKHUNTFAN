@@ -1,12 +1,15 @@
 #include "Object.h"
 #include "Troop.h"
 #include "LevelManager.h"
+#include "Board.h"
 // ALWAYS BUILD IN RELEASE, AT LEAST ONCE A DAY. 
 
 int main()
 {
     sf::RenderWindow window(sf::VideoMode(800, 600), "Game!");
     window.setFramerateLimit(60);
+
+    Board* pBoard = new Board();
 
     Troop* pSoldier = new Troop("Troops/Soldier.txt");
     Troop* pGiant = new Troop("Troops/Giant.txt");
@@ -56,11 +59,12 @@ int main()
             }
             pSoldier->PlaceTroop(event, &window);
         }
+        pBoard->ShowMouseSquare(&window);
 
         window.clear();
 
         //drawing
-        
+        window.draw(pBoard->GetSelectRect());
         window.draw(terrain->Draw());
         level.Draw(&window);
         window.draw(pSoldier->GetSprite());

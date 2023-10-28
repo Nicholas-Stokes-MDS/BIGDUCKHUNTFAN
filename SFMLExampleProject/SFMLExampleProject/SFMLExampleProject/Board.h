@@ -8,15 +8,24 @@
 class Board
 {
 protected:
-	
+	sf::RectangleShape SelectRect;
 public:
+	Board();
+	~Board();
+
 	void MoveTroop(Troop& _Troop);
 
 	// creates a square with low opacity that snaps to whichever tile the mouse is inside
-	void ShowMouseSquare();
+	void ShowMouseSquare(sf::RenderWindow* _WindowRef);
+
+
 
 	void DrawBoard(sf::RenderWindow* _Window);
 
+
 	bool InAttackRange(Troop& _TroopA, Troop& _TroopB);
+
+	// getters
+	sf::RectangleShape GetSelectRect() { return SelectRect; };
 };
 

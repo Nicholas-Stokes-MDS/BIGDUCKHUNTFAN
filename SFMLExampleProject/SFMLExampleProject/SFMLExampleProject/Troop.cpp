@@ -122,6 +122,11 @@ void Troop::SetType()
     {
         Type = Scout;
     }
+
+    if (Type == None)
+    {
+        SetSprite("Sprites/Select.bmp");
+    }
 }
 
 void Troop::SetSprite(sf::String _Path)
