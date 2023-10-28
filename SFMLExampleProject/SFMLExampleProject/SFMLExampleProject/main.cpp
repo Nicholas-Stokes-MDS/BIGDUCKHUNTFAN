@@ -7,6 +7,7 @@
 
 int main()
 {
+    bool g_bPlacingSoldier = true;
     sf::RenderWindow window(sf::VideoMode(800, 600), "Game!");
     window.setFramerateLimit(60);
     window.setVerticalSyncEnabled(true);
@@ -108,7 +109,19 @@ int main()
                 break;
 
             }
-            pBoard->MoveTroop(*pSoldier, event, &window);
+            if (g_bPlacingSoldier)
+            {
+                pBoard->GetSelectRect().setFillColor(sf::Color(255, 255, 255, 128));
+                pSoldier->PlaceTroop(event, &window);
+                if (pSoldier->GetPosition() != sf::Vector2f(-100,-100))
+                {
+                    g_bPlacingSoldier = false;
+                }
+            }
+            else
+            {
+                pBoard->MoveTroop(*pSoldier, event, &window);
+            }
         }
         sf::Event OptionsEvent;
         while (OptionsWindow.pollEvent(OptionsEvent))
@@ -127,7 +140,7 @@ int main()
                     // Soldier
                     if (UIElements[0].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(OptionsWindow))))
                     {
-                        //pSoldier->PlaceTroop(event, &window);
+                        g_bPlacingSoldier = true;
                     }
                     // Archer
                     if (UIElements[1].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(OptionsWindow))))
