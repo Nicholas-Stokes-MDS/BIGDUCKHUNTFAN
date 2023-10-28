@@ -42,10 +42,18 @@ void Board::MoveTroop(Troop& _Troop, sf::Event _event, sf::RenderWindow* _Window
 		SelectRect.setFillColor(sf::Color(255, 0, 0, 128));
 	}
 
-	// only move if nothing in the way
+	// only move if no tile in the way
 	for (int i = 0; i < m_Level.m_LevelTiles.size(); i++)
 	{
 		if (SelectRect.getGlobalBounds().intersects(m_Level.m_LevelTiles[i]->m_CharacterSprite.getGlobalBounds()))
+		{
+			bAvailableSpace = false;
+		}
+	}
+	
+	for (int j = 0; j < m_Troops.size(); j++)
+	{
+		if (SelectRect.getGlobalBounds().intersects(m_Troops[j].GetSprite().getGlobalBounds()))
 		{
 			bAvailableSpace = false;
 		}
@@ -58,6 +66,11 @@ void Board::MoveTroop(Troop& _Troop, sf::Event _event, sf::RenderWindow* _Window
 			_Troop.PlaceTroop(_event, _WindowRef);
 		}
 	}
+}
+
+void Board::AddTroop(Troop& _Troop)
+{
+	m_Troops.push_back(_Troop);
 }
 
 void Board::ShowMouseSquare(sf::RenderWindow* _WindowRef)

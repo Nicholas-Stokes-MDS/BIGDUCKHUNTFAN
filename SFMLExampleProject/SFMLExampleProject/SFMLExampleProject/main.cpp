@@ -56,12 +56,19 @@ int main()
     // creates board and troops
     Board* pBoard = new Board(level);
 
+    // add troops to Board vector
     Troop* pSoldier = new Troop("Troops/Soldier.txt");
+    pBoard->AddTroop(*pSoldier);
     Troop* pGiant = new Troop("Troops/Giant.txt");
+    pBoard->AddTroop(*pGiant);
     Troop* pArcher = new Troop("Troops/Archer.txt");
+    pBoard->AddTroop(*pArcher);
     Troop* pScout = new Troop("Troops/Scout.txt");
+    pBoard->AddTroop(*pScout);
     Troop* pShield = new Troop("Troops/Shield.txt");
+    pBoard->AddTroop(*pShield);
     Troop* pBoat = new Troop("Troops/Boat.txt");
+    pBoard->AddTroop(*pBoat);
 
     pSoldier->PrintStats();
     pGiant->PrintStats();
@@ -157,11 +164,11 @@ int main()
 
             }
 
+            // placing troops
             switch (TroopPlaced)
             if (g_bPlacingSoldier)
             {
             case None:
-                pBoard->MoveTroop(*pSoldier, event, &window);
                 break;
             case PlacingSoldier:
                 pBoard->GetSelectRect().setFillColor(sf::Color(255, 255, 255, 128));
