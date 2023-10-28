@@ -9,7 +9,9 @@ class Board
 {
 protected:
 	sf::RectangleShape RangeRect;
+	sf::IntRect RangeHitbox;
 	sf::RectangleShape SelectRect;
+	sf::IntRect SelectHitbox;
 	sf::Color SelectColour;
 	bool m_bPlacingTroops = true;
 

@@ -63,7 +63,7 @@ Troop::Troop(std::string _sFilePath)
                 }
                 else if (iLineCount == 3)
                 {
-                    m_iRange = std::stof(sLoadString);
+                    m_iAttackRange = std::stof(sLoadString);
                 }
 
                 // load Attack Range
@@ -73,7 +73,7 @@ Troop::Troop(std::string _sFilePath)
                 }
                 else if (iLineCount == 4)
                 {
-                    m_iAttackRange = std::stof(sLoadString);
+                     m_iRange = std::stof(sLoadString);
                 }
             }
             iLineCount++;

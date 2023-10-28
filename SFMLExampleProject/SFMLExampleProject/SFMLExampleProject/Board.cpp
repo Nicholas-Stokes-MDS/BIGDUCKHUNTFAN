@@ -20,12 +20,14 @@ void Board::MoveTroop(Troop& _Troop, sf::Event _event, sf::RenderWindow* _Window
 
 	// ?? maybe display multiple tiles and have squares you can't move to be red ??
 	_Troop.GetRange();
-	bool bInRange = false;
+	bool bInRange = true;
 	int iRange = 0;
-	iRange = 32 * _Troop.GetRange() * 3;
+	// how far the x and y of rectange around troop is
+	iRange = 64 * _Troop.GetRange() + 32;
 	RangeRect.setSize(sf::Vector2f(iRange, iRange));
 	// put rectangle around centre of troop
 	RangeRect.setPosition(sf::Vector2f(_Troop.GetPosition().x - iRange/2 + 16, _Troop.GetPosition().y - iRange/2 + 16));
+
 
 	if (m_bPlacingTroops)
 	{
@@ -50,6 +52,7 @@ void Board::ShowMouseSquare(sf::RenderWindow* _WindowRef)
 	fYPos = std::floor(fYPos / 32);
 
 	SelectRect.setPosition(sf::Vector2f(fXPos * 32, fYPos * 32));
+	SelectHitbox = (1, 1, 1, 1);
 }
 
 bool Board::InAttackRange(Troop& _TroopA, Troop& _TroopB)
