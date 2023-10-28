@@ -9,6 +9,7 @@ int main()
 {
     sf::RenderWindow window(sf::VideoMode(800, 600), "Game!");
     window.setFramerateLimit(60);
+    window.setVerticalSyncEnabled(true);
 
     sf::RenderWindow OptionsWindow(sf::VideoMode(400, 400), "Place troops");
     OptionsWindow.setVerticalSyncEnabled(true);
@@ -63,29 +64,49 @@ int main()
         sf::Event event;
         while (window.pollEvent(event))
         {
-            if (event.type == sf::Event::Closed)
+            switch (event.type)
             {
-                window.close();
-            }
-            if (event.type == sf::Event::KeyPressed)
-            {
+            case sf::Event::Closed:
+                    window.close();
+                    break;
+            case sf::Event::KeyPressed:
                 if (event.key.code == sf::Keyboard::Num1)
                 {
                     LevelManager::GetInstance()->LoadLevel(1, &level);
-                    //g_LevelManager->LoadLevel(1, &level);
                 }
 
-                if (event.key.code == sf::Keyboard::Num2)
+                else if (event.key.code == sf::Keyboard::Num2)
                 {
                     LevelManager::GetInstance()->LoadLevel(2, &level);
-                    //g_LevelManager->LoadLevel(2, &level);
                 }
 
-                if (event.key.code == sf::Keyboard::Num3)
+                else if (event.key.code == sf::Keyboard::Num3)
                 {
                     LevelManager::GetInstance()->LoadLevel(3, &level);
-                    //g_Level   ->LoadLevel(3, &level);
                 }
+
+                else if (event.key.code == sf::Keyboard::Num7)
+                {
+                    window.create(sf::VideoMode(640, 480), "Game!");
+                }
+
+                else if (event.key.code == sf::Keyboard::Num8)
+                {
+                    window.create(sf::VideoMode(800, 600), "Game!");
+                }
+
+                else if (event.key.code == sf::Keyboard::Num9)
+                {
+                    window.create(sf::VideoMode(1920, 1080), "Game!");
+                }
+
+
+
+
+                break;
+            default:
+                break;
+
             }
             pBoard->MoveTroop(*pSoldier, event, &window);
         }
