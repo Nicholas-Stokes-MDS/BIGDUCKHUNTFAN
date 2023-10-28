@@ -9,9 +9,7 @@ class Board
 {
 protected:
 	sf::RectangleShape RangeRect;
-	sf::IntRect RangeHitbox;
 	sf::RectangleShape SelectRect;
-	sf::IntRect SelectHitbox;
 	sf::Color SelectColour;
 	bool m_bPlacingTroops = true;
 
@@ -23,8 +21,6 @@ public:
 
 	// creates a square with low opacity that snaps to whichever tile the mouse is inside
 	void ShowMouseSquare(sf::RenderWindow* _WindowRef);
-
-
 
 	void DrawBoard(sf::RenderWindow* _Window);
 
