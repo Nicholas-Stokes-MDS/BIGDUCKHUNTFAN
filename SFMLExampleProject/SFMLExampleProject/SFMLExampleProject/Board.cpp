@@ -28,16 +28,22 @@ void Board::MoveTroop(Troop& _Troop, sf::Event _event, sf::RenderWindow* _Window
 	// put rectangle around centre of troop
 	RangeRect.setPosition(sf::Vector2f(_Troop.GetPosition().x - iRange/2 + 16, _Troop.GetPosition().y - iRange/2 + 16));
 
+	if (SelectRect.getGlobalBounds().intersects(RangeRect.getGlobalBounds()))
+	{
+		bInRange = true;
+		SelectRect.setFillColor(SelectColour);
+	}
+	else
+	{
+		bInRange = false;
+		SelectRect.setFillColor(sf::Color(255, 0, 0, 128));
+	}
 
 	if (m_bPlacingTroops)
 	{
 		if (bInRange)
 		{
 			_Troop.PlaceTroop(_event, _WindowRef);
-		}
-		else
-		{
-			SelectRect.setFillColor(sf::Color(255, 0, 0, 128));
 		}
 	}
 }
@@ -52,7 +58,6 @@ void Board::ShowMouseSquare(sf::RenderWindow* _WindowRef)
 	fYPos = std::floor(fYPos / 32);
 
 	SelectRect.setPosition(sf::Vector2f(fXPos * 32, fYPos * 32));
-	SelectHitbox = (1, 1, 1, 1);
 }
 
 bool Board::InAttackRange(Troop& _TroopA, Troop& _TroopB)
