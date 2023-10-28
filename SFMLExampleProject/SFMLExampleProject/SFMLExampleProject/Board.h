@@ -12,9 +12,10 @@ protected:
 	sf::RectangleShape SelectRect;
 	sf::Color SelectColour;
 	bool m_bPlacingTroops = true;
+	Level m_Level;
 
 public:
-	Board();
+	Board(Level _level);
 	~Board();
 
 	void MoveTroop(Troop& _Troop, sf::Event _event, sf::RenderWindow* _WindowRef);

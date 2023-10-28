@@ -40,17 +40,7 @@ int main()
     sf::RenderWindow Settings(sf::VideoMode(400, 400), "Settings");
     Settings.setVerticalSyncEnabled(true);
 
-    Board* pBoard = new Board();
 
-    Troop* pSoldier = new Troop("Troops/Soldier.txt");
-    Troop* pGiant = new Troop("Troops/Giant.txt");
-    Troop* pArcher = new Troop("Troops/Archer.txt");
-    Troop* pScout = new Troop("Troops/Scout.txt");
-    Troop* pShield = new Troop("Troops/Shield.txt");
-    Troop* pBoat = new Troop("Troops/Boat.txt");
-
-    pSoldier->PrintStats();
-    pGiant->PrintStats();
 
     LevelManager* g_LevelManager = LevelManager::GetInstance();
     LevelManager::GetInstance()->GetCurrentLevel();
@@ -63,6 +53,18 @@ int main()
     Terrain* terrain = new Terrain();
     terrain->SetWindowRef(&window);
 
+    // creates board and troops
+    Board* pBoard = new Board(level);
+
+    Troop* pSoldier = new Troop("Troops/Soldier.txt");
+    Troop* pGiant = new Troop("Troops/Giant.txt");
+    Troop* pArcher = new Troop("Troops/Archer.txt");
+    Troop* pScout = new Troop("Troops/Scout.txt");
+    Troop* pShield = new Troop("Troops/Shield.txt");
+    Troop* pBoat = new Troop("Troops/Boat.txt");
+
+    pSoldier->PrintStats();
+    pGiant->PrintStats();
 
     // UI stuff
     sf::Font* UIElementFont = new sf::Font();
