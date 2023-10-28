@@ -64,10 +64,10 @@ int main()
         window.clear();
 
         //drawing
-        window.draw(pBoard->GetSelectRect());
         window.draw(terrain->Draw());
         level.Draw(&window);
         window.draw(pSoldier->GetSprite());
+        window.draw(pBoard->GetSelectRect());
 
         window.display();
     }
