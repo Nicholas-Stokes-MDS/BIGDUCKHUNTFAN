@@ -30,6 +30,7 @@ int main()
     
     PlacingTroop TroopPlaced = PlacingNone;
     bool g_bPlacingSoldier = true;
+    bool bMovingTroop = false;
     sf::RenderWindow window(sf::VideoMode(800, 600), "Game!");
     window.setFramerateLimit(60);
     window.setVerticalSyncEnabled(true);
@@ -118,6 +119,8 @@ int main()
     while (window.isOpen())
     {
         sf::Event event;
+
+        // -- main event loop -- //
         while (window.pollEvent(event))
         {
             switch (event.type)
@@ -220,6 +223,20 @@ int main()
                 break;
             default:
                 break;
+            }
+
+            // click on troops to move them
+            for (int i = 0; i < pBoard->m_Troops.size(); i++)
+            {
+                if (pBoard->m_Troops[i].GetSprite().getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(window))))
+                {
+                    bMovingTroop = true;
+                }
+            }
+
+            if (bMovingTroop)
+            {
+
             }
         }
         sf::Event OptionsEvent;

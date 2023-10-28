@@ -14,9 +14,9 @@ protected:
 	bool m_bPlacingTroops = true;
 	Level m_Level;
 
+public:
 	std::vector<Troop> m_Troops;
 
-public:
 	Board(Level _level);
 	~Board();
 
