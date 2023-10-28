@@ -18,11 +18,15 @@ enum PlacingTroop
 
 int main()
 {
-    //sf::SoundBuffer laugh;
-    //laugh.loadFromFile("laugh.wav");
-    //sf::Sound sound;
-    //sound.setBuffer(laugh);
-    //sound.play();
+    sf::SoundBuffer laugh;
+    laugh.loadFromFile("laugh.wav");
+    //if (!laugh.loadFromFile("laugh.wav"))
+    //{
+    //    std::cout << "Error loading file" << std::endl;
+    //}
+    sf::Sound sound;
+    sound.setBuffer(laugh);
+    sound.play();
     
     PlacingTroop TroopPlaced = PlacingNone;
     bool g_bPlacingSoldier = true;
@@ -140,7 +144,7 @@ int main()
 
                 else if (event.key.code == sf::Keyboard::Num9)
                 {
-                    
+                    sound.play();
                 }
 
 
