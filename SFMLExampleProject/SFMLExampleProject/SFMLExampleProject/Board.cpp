@@ -52,7 +52,6 @@ void Board::ShowMouseSquare(sf::RenderWindow* _WindowRef)
 	fYPos = std::floor(fYPos / 32);
 
 	SelectRect.setPosition(sf::Vector2f(fXPos * 32, fYPos * 32));
-	SelectHitbox = (1, 1, 1, 1);
 }
 
 bool Board::InAttackRange(Troop& _TroopA, Troop& _TroopB)
