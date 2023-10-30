@@ -29,8 +29,13 @@ int main()
     sound.play();
     
     PlacingTroop TroopPlaced = PlacingNone;
+    Troop* pMovingTroop = new Troop("");
     bool g_bPlacingSoldier = true;
     bool bMovingTroop = false;
+
+    int g_bTurns = 0;
+    bool g_bTurnHappening = true;
+
     sf::RenderWindow window(sf::VideoMode(800, 600), "Game!");
     window.setFramerateLimit(60);
     window.setVerticalSyncEnabled(true);
@@ -59,17 +64,17 @@ int main()
 
     // add troops to Board vector
     Troop* pSoldier = new Troop("Troops/Soldier.txt");
-    pBoard->AddTroop(*pSoldier);
+    pBoard->AddTroop(pSoldier);
     Troop* pGiant = new Troop("Troops/Giant.txt");
-    pBoard->AddTroop(*pGiant);
+    pBoard->AddTroop(pGiant);
     Troop* pArcher = new Troop("Troops/Archer.txt");
-    pBoard->AddTroop(*pArcher);
+    pBoard->AddTroop(pArcher);
     Troop* pScout = new Troop("Troops/Scout.txt");
-    pBoard->AddTroop(*pScout);
+    pBoard->AddTroop(pScout);
     Troop* pShield = new Troop("Troops/Shield.txt");
-    pBoard->AddTroop(*pShield);
+    pBoard->AddTroop(pShield);
     Troop* pBoat = new Troop("Troops/Boat.txt");
-    pBoard->AddTroop(*pBoat);
+    pBoard->AddTroop(pBoat);
 
     pSoldier->PrintStats();
     pGiant->PrintStats();
@@ -180,10 +185,11 @@ int main()
 
             }
 
+            
             // placing troops
             switch (TroopPlaced)
-            if (g_bPlacingSoldier)
-            {
+                if (g_bPlacingSoldier)
+                {
             case None:
                 break;
             case PlacingSoldier:
@@ -236,34 +242,44 @@ int main()
                 break;
             default:
                 break;
-            }
+                }
 
             // click on troops to move them
             for (int i = 0; i < pBoard->m_Troops.size(); i++)
             {
-                if (pBoard->m_Troops[i].GetSprite().getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(window))))
+                if (pBoard->m_Troops[i]->GetSprite().getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(window))))
                 {
-                    bMovingTroop = true;
+                    if (event.type == sf::Event::MouseButtonPressed)
+                    {
+                        if (event.mouseButton.button == sf::Mouse::Left)
+                        {
+                            bMovingTroop = true;
+                            pMovingTroop = pBoard->m_Troops[i];
+                        }
+                    }
                 }
             }
 
             if (bMovingTroop)
             {
-
+                pBoard->MoveTroop(*pMovingTroop, event, &window);
             }
         }
-        sf::Event OptionsEvent;
-        while (OptionsWindow.pollEvent(OptionsEvent))
+            // -- main window event loop end --//
+
+            // -- select troop event loop -- //
+        sf::Event SelectTroopEvent;
+        while (OptionsWindow.pollEvent(SelectTroopEvent))
         {
             // lets user close the window
-            if (OptionsEvent.type == sf::Event::Closed)
+            if (SelectTroopEvent.type == sf::Event::Closed)
             {
                 OptionsWindow.close();
             }
 
-            if (OptionsEvent.type == sf::Event::MouseButtonPressed)
+            if (SelectTroopEvent.type == sf::Event::MouseButtonPressed)
             {
-                if (OptionsEvent.mouseButton.button == sf::Mouse::Left)
+                if (SelectTroopEvent.mouseButton.button == sf::Mouse::Left)
                 {
                     //clicking buttons in Options window and calling the appropriate class method
                     // Soldier
@@ -305,7 +321,9 @@ int main()
                 }
             }
         }
+            // -- troop select event loop end -- // 
 
+            // -- settings event loop -- //
         sf::Event SettingsEvent;
         while (Settings.pollEvent(SettingsEvent))
         {
@@ -359,6 +377,7 @@ int main()
                 }
             }
         }
+            // -- settings event loop end -- //
         
         pBoard->ShowMouseSquare(&window);
 
@@ -369,12 +388,11 @@ int main()
         window.draw(terrain->Draw());
         level.Draw(&window);
         window.draw(pBoard->GetRangeRect());
-        window.draw(pSoldier->GetSprite());
-        window.draw(pGiant->GetSprite());
-        window.draw(pArcher->GetSprite());
-        window.draw(pBoat->GetSprite());
-        window.draw(pScout->GetSprite());
-        window.draw(pShield->GetSprite());
+        // draw troops
+        for (int i = 0; i < pBoard->m_Troops.size(); i++)
+        {
+            window.draw(pBoard->m_Troops[i]->GetSprite());
+        }
         window.draw(pBoard->GetSelectRect());
 
         window.display();

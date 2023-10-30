@@ -15,13 +15,14 @@ protected:
 	Level m_Level;
 
 public:
-	std::vector<Troop> m_Troops;
+	// vector holding all the troop
+	std::vector<Troop*> m_Troops;
 
 	Board(Level _level);
 	~Board();
 
 	void MoveTroop(Troop& _Troop, sf::Event _event, sf::RenderWindow* _WindowRef);
-	void AddTroop(Troop& _Troop);
+	void AddTroop(Troop* _Troop);
 
 	// creates a square with low opacity that snaps to whichever tile the mouse is inside
 	void ShowMouseSquare(sf::RenderWindow* _WindowRef);

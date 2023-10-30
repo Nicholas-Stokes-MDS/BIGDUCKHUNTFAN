@@ -51,9 +51,10 @@ void Board::MoveTroop(Troop& _Troop, sf::Event _event, sf::RenderWindow* _Window
 		}
 	}
 	
+	// only move if no troop in the way
 	for (int j = 0; j < m_Troops.size(); j++)
 	{
-		if (SelectRect.getGlobalBounds().intersects(m_Troops[j].GetSprite().getGlobalBounds()))
+		if (SelectRect.getGlobalBounds().intersects(m_Troops[j]->GetSprite().getGlobalBounds()))
 		{
 			bAvailableSpace = false;
 		}
@@ -68,7 +69,7 @@ void Board::MoveTroop(Troop& _Troop, sf::Event _event, sf::RenderWindow* _Window
 	}
 }
 
-void Board::AddTroop(Troop& _Troop)
+void Board::AddTroop(Troop* _Troop)
 {
 	m_Troops.push_back(_Troop);
 }

@@ -156,6 +156,14 @@ void Troop::PlaceTroop(sf::Event _event, sf::RenderWindow* _WindowRef)
     }
 }
 
+void Troop::SetPosition(sf::Vector2f _Pos)
+{
+    m_TroopSprite.setPosition(_Pos);
+    m_TroopPosition = _Pos;
+
+    //m_TroopSprite
+}
+
 sf::Sprite Troop::GetSprite()
 {
     return m_TroopSprite;

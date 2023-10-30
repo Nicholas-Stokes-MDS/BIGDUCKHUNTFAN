@@ -38,8 +38,9 @@ protected:
 
 public:
 	Troop(std::string _sFilePath);
-
 	TroopType Type = None;
+
+	bool m_bTroopMoved = false;
 
 	// show troop health damage etc in debug
 	void PrintStats();
@@ -49,7 +50,7 @@ public:
 	// place troop
 	void PlaceTroop(sf::Event _event, sf::RenderWindow* _WindowRef);
 	// reposition
-	void SetPosition(sf::Vector2f _Pos) { m_TroopSprite.setPosition(_Pos); m_TroopPosition = _Pos; }
+	void SetPosition(sf::Vector2f _Pos);
 	// draw
 	sf::Sprite GetSprite();
 	
