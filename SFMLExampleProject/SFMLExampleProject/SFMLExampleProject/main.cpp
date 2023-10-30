@@ -33,8 +33,8 @@ int main()
     bool g_bPlacingSoldier = true;
     bool bMovingTroop = false;
 
-    int g_bTurns = 0;
-    bool g_bTurnHappening = true;
+    int g_iTurns = 0;
+    int g_iPlayer = 1;
 
     sf::RenderWindow window(sf::VideoMode(800, 600), "Game!");
     window.setFramerateLimit(60);
@@ -59,22 +59,37 @@ int main()
     Terrain* terrain = new Terrain();
     terrain->SetWindowRef(&window);
 
-    // creates board and troops
-    Board* pBoard = new Board(level);
+    // These objects handle player actions
+    Board* pPlayer1 = new Board(level);
+    Board* pPlayer2 = new Board(level);
 
-    // add troops to Board vector
+    // add troops to Player1 vector
     Troop* pSoldier = new Troop("Troops/Soldier.txt");
-    pBoard->AddTroop(pSoldier);
+    pPlayer1->AddTroop(pSoldier);
     Troop* pGiant = new Troop("Troops/Giant.txt");
-    pBoard->AddTroop(pGiant);
+    pPlayer1->AddTroop(pGiant);
     Troop* pArcher = new Troop("Troops/Archer.txt");
-    pBoard->AddTroop(pArcher);
+    pPlayer1->AddTroop(pArcher);
     Troop* pScout = new Troop("Troops/Scout.txt");
-    pBoard->AddTroop(pScout);
+    pPlayer1->AddTroop(pScout);
     Troop* pShield = new Troop("Troops/Shield.txt");
-    pBoard->AddTroop(pShield);
+    pPlayer1->AddTroop(pShield);
     Troop* pBoat = new Troop("Troops/Boat.txt");
-    pBoard->AddTroop(pBoat);
+    pPlayer1->AddTroop(pBoat);
+
+    // add troops to Player2 vector
+    Troop* pSoldier1 = new Troop("Troops/Soldier.txt");
+    pPlayer2->AddTroop(pSoldier1);
+    Troop* pGiant1 = new Troop("Troops/Giant.txt");
+    pPlayer2->AddTroop(pGiant1);
+    Troop* pArcher1 = new Troop("Troops/Archer.txt");
+    pPlayer2->AddTroop(pArcher1);
+    Troop* pScout1 = new Troop("Troops/Scout.txt");
+    pPlayer2->AddTroop(pScout1);
+    Troop* pShield1 = new Troop("Troops/Shield.txt");
+    pPlayer2->AddTroop(pShield1);
+    Troop* pBoat1 = new Troop("Troops/Boat.txt");
+    pPlayer2->AddTroop(pBoat1);
 
     pSoldier->PrintStats();
     pGiant->PrintStats();
@@ -193,76 +208,226 @@ int main()
             case None:
                 break;
             case PlacingSoldier:
-                pBoard->GetSelectRect().setFillColor(sf::Color(255, 255, 255, 128));
-                pSoldier->PlaceTroop(event, &window);
-                if (pSoldier->GetPosition() != sf::Vector2f(-100, -100))
+                if (g_iPlayer == 1)
                 {
-                    g_bPlacingSoldier = false;
+                    pPlayer1->GetSelectRect().setFillColor(sf::Color(255, 255, 255, 128));
+                    pSoldier->PlaceTroop(event, &window);
+                    if (pSoldier->GetPosition() != sf::Vector2f(-100, -100))
+                    {
+                        g_bPlacingSoldier = false;
+                    }
+                    break;
+                }
+                else if (g_iPlayer == 2)
+                {
+                    pPlayer2->GetSelectRect().setFillColor(sf::Color(255, 255, 255, 128));
+                    pSoldier1->PlaceTroop(event, &window);
+                    if (pSoldier1->GetPosition() != sf::Vector2f(-100, -100))
+                    {
+                        g_bPlacingSoldier = false;
+                    }
+                    break;
                 }
                 break;
             case PlacingArcher:
-                pBoard->GetSelectRect().setFillColor(sf::Color(255, 255, 255, 128));
-                pArcher->PlaceTroop(event, &window);
-                if (pArcher->GetPosition() != sf::Vector2f(-100, -100))
+                if (g_iPlayer == 1)
                 {
-                    TroopPlaced = PlacingNone;
+                    pPlayer1->GetSelectRect().setFillColor(sf::Color(255, 255, 255, 128));
+                    pArcher->PlaceTroop(event, &window);
+                    if (pArcher->GetPosition() != sf::Vector2f(-100, -100))
+                    {
+                        g_bPlacingSoldier = false;
+                    }
+                    break;
+                }
+                else if (g_iPlayer == 2)
+                {
+                    pPlayer2->GetSelectRect().setFillColor(sf::Color(255, 255, 255, 128));
+                    pArcher1->PlaceTroop(event, &window);
+                    if (pArcher1->GetPosition() != sf::Vector2f(-100, -100))
+                    {
+                        g_bPlacingSoldier = false;
+                    }
+                    break;
                 }
                 break;
             case PlacingScout:
-                pBoard->GetSelectRect().setFillColor(sf::Color(255, 255, 255, 128));
-                pScout->PlaceTroop(event, &window);
-                if (pScout->GetPosition() != sf::Vector2f(-100, -100))
+                if (g_iPlayer == 1)
                 {
-                    TroopPlaced = PlacingNone;
+                    pPlayer1->GetSelectRect().setFillColor(sf::Color(255, 255, 255, 128));
+                    pScout->PlaceTroop(event, &window);
+                    if (pScout->GetPosition() != sf::Vector2f(-100, -100))
+                    {
+                        g_bPlacingSoldier = false;
+                    }
+                    break;
+                }
+                else if (g_iPlayer == 2)
+                {
+                    pPlayer2->GetSelectRect().setFillColor(sf::Color(255, 255, 255, 128));
+                    pScout1->PlaceTroop(event, &window);
+                    if (pScout1->GetPosition() != sf::Vector2f(-100, -100))
+                    {
+                        g_bPlacingSoldier = false;
+                    }
+                    break;
                 }
                 break;
             case PlacingGiant:
-                pBoard->GetSelectRect().setFillColor(sf::Color(255, 255, 255, 128));
-                pGiant->PlaceTroop(event, &window);
-                if (pGiant->GetPosition() != sf::Vector2f(-100, -100))
+                if (g_iPlayer == 1)
                 {
-                    TroopPlaced = PlacingNone;
+                    pPlayer1->GetSelectRect().setFillColor(sf::Color(255, 255, 255, 128));
+                    pGiant->PlaceTroop(event, &window);
+                    if (pGiant->GetPosition() != sf::Vector2f(-100, -100))
+                    {
+                        g_bPlacingSoldier = false;
+                    }
+                    break;
+                }
+                else if (g_iPlayer == 2)
+                {
+                    pPlayer2->GetSelectRect().setFillColor(sf::Color(255, 255, 255, 128));
+                    pGiant1->PlaceTroop(event, &window);
+                    if (pGiant1->GetPosition() != sf::Vector2f(-100, -100))
+                    {
+                        g_bPlacingSoldier = false;
+                    }
+                    break;
                 }
                 break;
             case PlacingBoat:
-                pBoard->GetSelectRect().setFillColor(sf::Color(255, 255, 255, 128));
-                pBoat->PlaceTroop(event, &window);
-                if (pBoat->GetPosition() != sf::Vector2f(-100, -100))
+                if (g_iPlayer == 1)
                 {
-                    TroopPlaced = PlacingNone;
+                    pPlayer1->GetSelectRect().setFillColor(sf::Color(255, 255, 255, 128));
+                    pBoat->PlaceTroop(event, &window);
+                    if (pBoat->GetPosition() != sf::Vector2f(-100, -100))
+                    {
+                        g_bPlacingSoldier = false;
+                    }
+                    break;
+                }
+                else if (g_iPlayer == 2)
+                {
+                    pPlayer2->GetSelectRect().setFillColor(sf::Color(255, 255, 255, 128));
+                    pBoat1->PlaceTroop(event, &window);
+                    if (pBoat1->GetPosition() != sf::Vector2f(-100, -100))
+                    {
+                        g_bPlacingSoldier = false;
+                    }
+                    break;
                 }
                 break;
             case PlacingShield:
-                pBoard->GetSelectRect().setFillColor(sf::Color(255, 255, 255, 128));
-                pShield->PlaceTroop(event, &window);
-                if (pShield->GetPosition() != sf::Vector2f(-100, -100))
+                if (g_iPlayer == 1)
                 {
-                    TroopPlaced = PlacingNone;
+                    pPlayer1->GetSelectRect().setFillColor(sf::Color(255, 255, 255, 128));
+                    pShield->PlaceTroop(event, &window);
+                    if (pShield->GetPosition() != sf::Vector2f(-100, -100))
+                    {
+                        g_bPlacingSoldier = false;
+                    }
+                    break;
+                }
+                else if (g_iPlayer == 2)
+                {
+                    pPlayer2->GetSelectRect().setFillColor(sf::Color(255, 255, 255, 128));
+                    pShield1->PlaceTroop(event, &window);
+                    if (pShield1->GetPosition() != sf::Vector2f(-100, -100))
+                    {
+                        g_bPlacingSoldier = false;
+                    }
+                    break;
                 }
                 break;
             default:
                 break;
                 }
 
-            // click on troops to move them
-            for (int i = 0; i < pBoard->m_Troops.size(); i++)
+            if (g_iPlayer == 1)
             {
-                if (pBoard->m_Troops[i]->GetSprite().getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(window))))
+                int iTroopsMoved = 0;
+                // click on troops to move them
+                for (int i = 0; i < pPlayer1->m_Troops.size(); i++)
                 {
-                    if (event.type == sf::Event::MouseButtonPressed)
+                    // check if mouse is clicking in troop sprite
+                    if (pPlayer1->m_Troops[i]->GetSprite().getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(window))))
                     {
-                        if (event.mouseButton.button == sf::Mouse::Left)
+                        if (event.type == sf::Event::MouseButtonPressed)
                         {
-                            bMovingTroop = true;
-                            pMovingTroop = pBoard->m_Troops[i];
+                            if (event.mouseButton.button == sf::Mouse::Left)
+                            {
+                                // only move if troop hasn't moved this turn
+                                if (!pPlayer1->m_Troops[i]->m_bTroopMoved)
+                                {
+                                    bMovingTroop = true;
+                                    pMovingTroop = pPlayer1->m_Troops[i];
+                                }
+                            }
                         }
+                    }
+
+                    if (bMovingTroop)
+                    {
+                        pPlayer1->MoveTroop(*pMovingTroop, event, &window);
+                    }
+                    // count troops moved
+                    if (pPlayer1->m_Troops[i]->m_bTroopMoved)
+                    {
+                        iTroopsMoved++;
+                    }
+                    // change player if all troops moved
+                    if (iTroopsMoved == pPlayer1->m_Troops.size())
+                    {
+                        for (int j = 0; j < pPlayer1->m_Troops.size(); j++)
+                        {
+                            pPlayer1->m_Troops[j]->m_bTroopMoved = false;
+                        }
+                        g_iPlayer++;
                     }
                 }
             }
-
-            if (bMovingTroop)
+            else if (g_iPlayer == 2)
             {
-                pBoard->MoveTroop(*pMovingTroop, event, &window);
+                int iTroopsMoved = 0;
+                // click on troops to move them
+                for (int i = 0; i < pPlayer2->m_Troops.size(); i++)
+                {
+                    // check if mouse is clicking in troop sprite
+                    if (pPlayer2->m_Troops[i]->GetSprite().getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(window))))
+                    {
+                        if (event.type == sf::Event::MouseButtonPressed)
+                        {
+                            if (event.mouseButton.button == sf::Mouse::Left)
+                            {
+                                // only move if troop hasn't moved this turn
+                                if (!pPlayer2->m_Troops[i]->m_bTroopMoved)
+                                {
+                                    bMovingTroop = true;
+                                    pMovingTroop = pPlayer2->m_Troops[i];
+                                }
+                            }
+                        }
+                    }
+
+                    if (bMovingTroop)
+                    {
+                        pPlayer2->MoveTroop(*pMovingTroop, event, &window);
+                    }
+                    // count troops moved
+                    if (pPlayer2->m_Troops[i]->m_bTroopMoved)
+                    {
+                        iTroopsMoved++;
+                    }
+                    // change player if all troops moved
+                    if (iTroopsMoved == pPlayer2->m_Troops.size())
+                    {
+                        for (int j = 0; j < pPlayer2->m_Troops.size(); j++)
+                        {
+                            pPlayer2->m_Troops[j]->m_bTroopMoved = false;
+                        }
+                        g_iPlayer--;
+                    }
+                }
             }
         }
             // -- main window event loop end --//
@@ -379,7 +544,14 @@ int main()
         }
             // -- settings event loop end -- //
         
-        pBoard->ShowMouseSquare(&window);
+        if (g_iPlayer == 1)
+        {
+            pPlayer1->ShowMouseSquare(&window);
+        }
+        else
+        {
+            pPlayer2->ShowMouseSquare(&window);
+        }
 
         //clearing
         window.clear();;
@@ -387,13 +559,36 @@ int main()
         //drawing **order matters**
         window.draw(terrain->Draw());
         level.Draw(&window);
-        window.draw(pBoard->GetRangeRect());
-        // draw troops
-        for (int i = 0; i < pBoard->m_Troops.size(); i++)
+        if (g_iPlayer == 1)
         {
-            window.draw(pBoard->m_Troops[i]->GetSprite());
+            window.draw(pPlayer1->GetRangeRect());
         }
-        window.draw(pBoard->GetSelectRect());
+        else
+        {
+            window.draw(pPlayer2->GetRangeRect());
+        }
+
+        // draw player 1 troops
+        for (int i = 0; i < pPlayer1->m_Troops.size(); i++)
+        {
+            window.draw(pPlayer1->m_Troops[i]->GetSprite());
+        }
+
+        // draw player 2 troops
+        for (int i = 0; i < pPlayer2->m_Troops.size(); i++)
+        {
+            window.draw(pPlayer2->m_Troops[i]->GetSprite());
+        }
+
+        if (g_iPlayer == 1)
+        {
+            window.draw(pPlayer1->GetSelectRect());
+        }
+        else
+        {
+            window.draw(pPlayer2->GetSelectRect());
+        }
+
 
         window.display();
 
