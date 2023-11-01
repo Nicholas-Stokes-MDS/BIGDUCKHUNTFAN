@@ -13,12 +13,13 @@ protected:
 	sf::Color SelectColour;
 	bool m_bPlacingTroops = true;
 	Level m_Level;
+	int m_iPlayerID = 0;
 
 public:
 	// vector holding all the troop
 	std::vector<Troop*> m_Troops;
 
-	Board(Level _level);
+	Board(Level _level, int _iPlayerID);
 	~Board();
 
 	void MoveTroop(Troop& _Troop, sf::Event _event, sf::RenderWindow* _WindowRef);
@@ -31,6 +32,7 @@ public:
 
 
 	bool InAttackRange(Troop& _TroopA, Troop& _TroopB);
+	void AttackEnemies(Board* _EnemyBoard);
 
 	// getters
 	sf::RectangleShape GetSelectRect() { return SelectRect; };

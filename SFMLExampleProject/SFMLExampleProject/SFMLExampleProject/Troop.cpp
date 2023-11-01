@@ -171,4 +171,10 @@ sf::Sprite Troop::GetSprite()
     return m_TroopSprite;
 }
 
+void Troop::SetHealth(int _iNewHealth)
+{
+    std::cout << "old health: " << m_iHealth << "\nNew Health: " << _iNewHealth << std::endl;
+    m_iHealth = _iNewHealth;
+}
+
 

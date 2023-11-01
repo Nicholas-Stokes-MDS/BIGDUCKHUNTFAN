@@ -60,8 +60,8 @@ int main()
     terrain->SetWindowRef(&window);
 
     // These objects handle player actions
-    Board* pPlayer1 = new Board(level);
-    Board* pPlayer2 = new Board(level);
+    Board* pPlayer1 = new Board(level, 1);
+    Board* pPlayer2 = new Board(level, 2);
 
     // add troops to Player1 vector
     Troop* pSoldier = new Troop("Troops/Soldier.txt");
@@ -201,7 +201,7 @@ int main()
             }
 
             
-            // placing troops
+            // placing troop if button pressed
             switch (TroopPlaced)
                 if (g_bPlacingSoldier)
                 {
@@ -382,6 +382,7 @@ int main()
                         {
                             pPlayer1->m_Troops[j]->m_bTroopMoved = false;
                         }
+                        pPlayer1->AttackEnemies(pPlayer2);
                         g_iPlayer++;
                     }
                 }
@@ -425,6 +426,7 @@ int main()
                         {
                             pPlayer2->m_Troops[j]->m_bTroopMoved = false;
                         }
+                        pPlayer2->AttackEnemies(pPlayer1);
                         g_iPlayer--;
                     }
                 }

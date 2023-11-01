@@ -63,7 +63,7 @@ public:
 	sf::Vector2f GetPosition() { return m_TroopPosition; };
 
 	// setters
-	void SetHealth(int _iNewHealth) { m_iHealth = _iNewHealth; };
+	void SetHealth(int _iNewHealth); //{ m_iHealth = _iNewHealth; };
 	void SetDamage(int _iNewDamage) { m_iDamage = _iNewDamage; };
 	void SetRange(int _iNewRange) { m_iRange = _iNewRange; };
 	void SetAttackRange(int _iNewAttackRange) { m_iAttackRange = _iNewAttackRange; };

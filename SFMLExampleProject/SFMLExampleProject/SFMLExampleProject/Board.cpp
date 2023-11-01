@@ -1,6 +1,6 @@
 #include "Board.h"
 
-Board::Board(Level _level)
+Board::Board(Level _level, int _iPlayerID)
 {
 	SelectColour = sf::Color(255, 255, 255, 128);
 	SelectRect.setSize(sf::Vector2f(32, 32));
@@ -88,5 +88,31 @@ void Board::ShowMouseSquare(sf::RenderWindow* _WindowRef)
 
 bool Board::InAttackRange(Troop& _TroopA, Troop& _TroopB)
 {
+	int iRange = 64 * _TroopA.GetAttackRange() + 32;
+	RangeRect.setSize(sf::Vector2f(iRange, iRange));
+	// put rectangle around centre of troop
+	RangeRect.setPosition(sf::Vector2f(_TroopA.GetPosition().x - iRange / 2 + 16, _TroopA.GetPosition().y - iRange / 2 + 16));
+
+	if (_TroopB.GetSprite().getGlobalBounds().intersects(RangeRect.getGlobalBounds()))
+	{
+		return true;
+	}
 	return false;
+}
+
+void Board::AttackEnemies(Board* _EnemyBoard)
+{
+	// sort through all enemy troops
+	for (int j = 0; j < _EnemyBoard->m_Troops.size(); j++)
+	{
+		// sort through all player troops
+		for (int i = 0; i < m_Troops.size(); i++)
+		{
+			// deal damage to every enemy in range
+			if (InAttackRange(*m_Troops[i], *_EnemyBoard->m_Troops[j]))
+			{
+				_EnemyBoard->m_Troops[j]->SetHealth(_EnemyBoard->m_Troops[j]->GetHealth() - m_Troops[i]->GetDamage());
+			}
+		}
+	}
 }
