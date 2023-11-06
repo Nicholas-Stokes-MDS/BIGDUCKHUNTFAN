@@ -241,7 +241,6 @@ int main()
                 break;
             default:
                 break;
-
             }
 
             // placing troops
@@ -267,6 +266,8 @@ int main()
                     break;
                 case PlacingSoldier:
                     // count number of troops placed every time new troop placed
+                    
+                    // put this somewhere LevelManager::GetInstance()->g_iLevel1Troops[count]
                     g_iTroopsPlaced = PlaceTroop(g_iTroopsPlaced, pCurrentPlayer, "Troops/Soldier.txt", event, &window);
                     break;
                 case PlacingArcher:
