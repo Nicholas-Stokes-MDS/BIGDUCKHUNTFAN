@@ -17,7 +17,7 @@ enum PlacingTroop
     PlacingShield,
 };
 
-void PlaceTroop(Board* _Player, std::string _TroopPath, sf::Event _event, sf::RenderWindow* _WindowRef)
+int PlaceTroop(int _iTroopsPlaced, Board* _Player, std::string _TroopPath, sf::Event _event, sf::RenderWindow* _WindowRef)
 {
     // change the select rectangle to grey
     _Player->GetSelectRect().setFillColor(sf::Color(255, 255, 255, 128));
@@ -30,8 +30,11 @@ void PlaceTroop(Board* _Player, std::string _TroopPath, sf::Event _event, sf::Re
             Troop* pTroop = new Troop(_TroopPath);
             pTroop->PlaceTroop(_event, _WindowRef);
             _Player->AddTroop(pTroop);
+            _iTroopsPlaced++;
+            return _iTroopsPlaced;
         }
     }
+    return _iTroopsPlaced;
 }
 
 int main()
@@ -116,7 +119,7 @@ int main()
     bool g_bLevelFinished = false;
 
     bool g_bTroopsPlaced = false;
-    int g_iTroopsPlaced = false;
+    int g_iTroopsPlaced = 0;
 
     int g_iTurns = 0;
     int g_iPlayer = 1;
@@ -241,6 +244,7 @@ int main()
 
             }
 
+            // placing troops
             if (!g_bTroopsPlaced)
             {
                 // placing troop if button pressed
@@ -259,34 +263,51 @@ int main()
                     }
 
                     // troop created based on button
-                case None:
+                case PlacingNone:
                     break;
                 case PlacingSoldier:
-                    PlaceTroop(pCurrentPlayer, "Troops/Soldier.txt", event, &window);
-                    //g_iTroopsPlaced++;
+                    // count number of troops placed every time new troop placed
+                    g_iTroopsPlaced = PlaceTroop(g_iTroopsPlaced, pCurrentPlayer, "Troops/Soldier.txt", event, &window);
                     break;
                 case PlacingArcher:
-                    PlaceTroop(pCurrentPlayer, "Troops/Archer.txt", event, &window);
-                    //g_iTroopsPlaced++;
+                    g_iTroopsPlaced = PlaceTroop(g_iTroopsPlaced, pCurrentPlayer, "Troops/Archer.txt", event, &window);
                     break;
                 case PlacingScout:
-                    PlaceTroop(pCurrentPlayer, "Troops/Scout.txt", event, &window);
-                    g_bTroopsPlaced = true;
+                    g_iTroopsPlaced = PlaceTroop(g_iTroopsPlaced, pCurrentPlayer, "Troops/Scout.txt", event, &window);
                     break;
                 case PlacingGiant:
-                    PlaceTroop(pCurrentPlayer, "Troops/Giant.txt", event, &window);
-                    g_bTroopsPlaced = true;
+                    g_iTroopsPlaced = PlaceTroop(g_iTroopsPlaced, pCurrentPlayer, "Troops/Giant.txt", event, &window);
                     break;
                 case PlacingBoat:
-                    PlaceTroop(pCurrentPlayer, "Troops/Boat.txt", event, &window);
-                    g_bTroopsPlaced = true;
+                    g_iTroopsPlaced = PlaceTroop(g_iTroopsPlaced, pCurrentPlayer, "Troops/Boat.txt", event, &window);
                     break;
                 case PlacingShield:
-                    PlaceTroop(pCurrentPlayer, "Troops/Shield.txt", event, &window);
-                    g_bTroopsPlaced = true;
+                    g_iTroopsPlaced = PlaceTroop(g_iTroopsPlaced, pCurrentPlayer, "Troops/Shield.txt", event, &window);
                     break;
                 default:
                     break;
+                }
+
+                int iTotalTroops = 0;
+                // get total number of troops to be placed
+                for (int count = 0; count < 6; count++)
+                {
+                    iTotalTroops += LevelManager::GetInstance()->g_iLevel1Troops[count];
+                }
+                // stop placing troops if all troops placed
+                if (g_iTroopsPlaced == iTotalTroops)
+                {
+                    TroopPlaced = PlacingNone;
+                    if (g_iPlayer == 1)
+                    {
+                        g_bTroopsPlaced = false;
+                        g_iPlayer++;
+                        g_iTroopsPlaced = 0;
+                    }
+                    else
+                    {
+                        g_bTroopsPlaced = true;
+                    }
                 }
             }
 
