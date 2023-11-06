@@ -62,9 +62,9 @@ int main()
 
     std::vector<UIElement> MenuElements;
     // creation of buttons
-    UIElement SinglePlayer(sf::Vector2f(50, 30), sf::Vector2f(150, 50), std::string("SinglePlayer(") + std::to_string(5) + std::string(")"), UIElementFont);
+    UIElement SinglePlayer(sf::Vector2f(50, 30), sf::Vector2f(150, 50), std::string("SinglePlayer"), UIElementFont, sf::Color::Black);
     MenuElements.push_back(SinglePlayer);
-    UIElement TwoPlayer(sf::Vector2f(50, 100), sf::Vector2f(150, 50), std::string("TwoPlayer"), UIElementFont);
+    UIElement TwoPlayer(sf::Vector2f(50, 100), sf::Vector2f(150, 50), std::string("TwoPlayer"), UIElementFont, sf::Color::Black);
     MenuElements.push_back(TwoPlayer);
 
     while (LevelManager::GetInstance()->GetGameType() == 0)
@@ -151,42 +151,42 @@ int main()
     // vector for buttons
     std::vector<UIElement> UIElements;
     // creation of buttons
-    UIElement rectElement(sf::Vector2f(50, 30), sf::Vector2f(100, 50), std::string("Soldier(") + std::to_string(5) + std::string(")"), UIElementFont);
+    UIElement rectElement(sf::Vector2f(50, 30), sf::Vector2f(100, 50), std::string("Soldier(") + std::to_string(5) + std::string(")"), UIElementFont, sf::Color::Black);
     UIElements.push_back(rectElement);
-    UIElement circleElement(sf::Vector2f(50, 100), sf::Vector2f(100, 50), std::string("Archer"), UIElementFont);
+    UIElement circleElement(sf::Vector2f(50, 100), sf::Vector2f(100, 50), std::string("Archer"), UIElementFont, sf::Color::Black);
     UIElements.push_back(circleElement);
-    UIElement lineElement(sf::Vector2f(50, 170), sf::Vector2f(100, 50), std::string("Shield"), UIElementFont);
+    UIElement lineElement(sf::Vector2f(50, 170), sf::Vector2f(100, 50), std::string("Shield"), UIElementFont, sf::Color::Black);
     UIElements.push_back(lineElement);
-    UIElement lineWidthIncreaseElement(sf::Vector2f(50, 240), sf::Vector2f(100, 50), std::string("Scout"), UIElementFont);
+    UIElement lineWidthIncreaseElement(sf::Vector2f(50, 240), sf::Vector2f(100, 50), std::string("Scout"), UIElementFont, sf::Color::Black);
     UIElements.push_back(lineWidthIncreaseElement);
-    UIElement lineWidthReduceElement(sf::Vector2f(50, 310), sf::Vector2f(100, 50), std::string("Boat"), UIElementFont);
+    UIElement lineWidthReduceElement(sf::Vector2f(50, 310), sf::Vector2f(100, 50), std::string("Boat"), UIElementFont, sf::Color::Black);
     UIElements.push_back(lineWidthReduceElement);
-    UIElement saveElement(sf::Vector2f(250, 30), sf::Vector2f(100, 50), std::string("Giant"), UIElementFont);
+    UIElement saveElement(sf::Vector2f(250, 30), sf::Vector2f(100, 50), std::string("Giant"), UIElementFont, sf::Color::Black);
     UIElements.push_back(saveElement);
-    UIElement loadElement(sf::Vector2f(250, 100), sf::Vector2f(100, 50), std::string("idk"), UIElementFont);
+    UIElement loadElement(sf::Vector2f(250, 100), sf::Vector2f(100, 50), std::string("idk"), UIElementFont, sf::Color::Black);
     UIElements.push_back(loadElement);
 
     std::vector<UIElement> UIElements2;
     // creation of buttons
-    UIElement volume1Element(sf::Vector2f(20, 30), sf::Vector2f(150, 50), std::string("Volume+"), UIElementFont);
+    UIElement volume1Element(sf::Vector2f(20, 30), sf::Vector2f(150, 50), std::string("Volume+"), UIElementFont, sf::Color::Black);
     UIElements2.push_back(volume1Element);
-    UIElement volume2Element(sf::Vector2f(20, 100), sf::Vector2f(150, 50), std::string("Volume-"), UIElementFont);
+    UIElement volume2Element(sf::Vector2f(20, 100), sf::Vector2f(150, 50), std::string("Volume-"), UIElementFont, sf::Color::Black);
     UIElements2.push_back(volume2Element);
-    UIElement vsync1Element(sf::Vector2f(20, 170), sf::Vector2f(150, 50), std::string("Vsync Enable"), UIElementFont);
+    UIElement vsync1Element(sf::Vector2f(20, 170), sf::Vector2f(150, 50), std::string("Vsync Enable"), UIElementFont, sf::Color::Black);
     UIElements2.push_back(vsync1Element);
-    UIElement vsync2Element(sf::Vector2f(20, 240), sf::Vector2f(150, 50), std::string("Vsync Disable"), UIElementFont);
+    UIElement vsync2Element(sf::Vector2f(20, 240), sf::Vector2f(150, 50), std::string("Vsync Disable"), UIElementFont, sf::Color::Black);
     UIElements2.push_back(vsync2Element);
-    UIElement resolution1Element(sf::Vector2f(20, 310), sf::Vector2f(150, 50), std::string("800 by 600"), UIElementFont);
+    UIElement resolution1Element(sf::Vector2f(20, 310), sf::Vector2f(150, 50), std::string("800 by 600"), UIElementFont, sf::Color::Black);
     UIElements2.push_back(resolution1Element);
-    UIElement resolution2Element(sf::Vector2f(220, 30), sf::Vector2f(150, 50), std::string("1366 by 768"), UIElementFont);
+    UIElement resolution2Element(sf::Vector2f(220, 30), sf::Vector2f(150, 50), std::string("1366 by 768"), UIElementFont, sf::Color::Black);
     UIElements2.push_back(resolution2Element);
-    UIElement resolution3Element(sf::Vector2f(220, 100), sf::Vector2f(150, 50), std::string("1920 by 1080"), UIElementFont);
+    UIElement resolution3Element(sf::Vector2f(220, 100), sf::Vector2f(150, 50), std::string("1920 by 1080"), UIElementFont, sf::Color::Black);
     UIElements2.push_back(resolution3Element);
 
     std::vector<UIElement> PlayerTurn;
-    UIElement Player1Element(sf::Vector2f(0, 415), sf::Vector2f(150, 50), std::string("Player 1's turn"), UIElementFont);
+    UIElement Player1Element(sf::Vector2f(0, 415), sf::Vector2f(150, 50), std::string("Player 1's turn"), UIElementFont, sf::Color::Blue);
     PlayerTurn.push_back(Player1Element);
-    UIElement Player2Element(sf::Vector2f(0, 415), sf::Vector2f(150, 50), std::string("Player 2's turn"), UIElementFont);
+    UIElement Player2Element(sf::Vector2f(0, 415), sf::Vector2f(150, 50), std::string("Player 2's turn"), UIElementFont, sf::Color::Red);
     PlayerTurn.push_back(Player2Element);
 
     if (LevelManager::GetInstance()->GetCurrentLevel() == 1)
@@ -595,6 +595,7 @@ int main()
         {
             // say player 1 placing
             PlayerTurn[0].Draw(&window);
+            
         }
         else if (g_iPlayer == 2)
         {

@@ -9,7 +9,7 @@ public:
 
 	sf::Text m_ElementText;
 
-	UIElement(sf::Vector2f _Position, sf::Vector2f _Size, std::string _ID, sf::Font* _FontRef);
+	UIElement(sf::Vector2f _Position, sf::Vector2f _Size, std::string _ID, sf::Font* _FontRef, sf::Color _Color);
 	~UIElement();
 
 	void ButtonReact();
