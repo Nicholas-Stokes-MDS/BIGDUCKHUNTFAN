@@ -110,12 +110,13 @@ int main()
 
     PlacingTroop TroopPlaced = PlacingNone;
     Troop* pMovingTroop = new Troop("");
-    bool g_bPlacingSoldier = true;
+    //bool g_bPlacingSoldier = true;
     bool bMovingTroop = false;
 
     bool g_bLevelFinished = false;
 
     bool g_bTroopsPlaced = false;
+    int g_iTroopsPlaced = false;
 
     int g_iTurns = 0;
     int g_iPlayer = 1;
@@ -142,34 +143,6 @@ int main()
     Board* pPlayer2 = new Board(level, 2);
 
     Board* pCurrentPlayer = pPlayer1;
-
-    // add troops to Player1 vector
-    //Troop* pSoldier = new Troop("Troops/Soldier.txt");
-    //pPlayer1->AddTroop(pSoldier);
-    //Troop* pGiant = new Troop("Troops/Giant.txt");
-    //pPlayer1->AddTroop(pGiant);
-    //Troop* pArcher = new Troop("Troops/Archer.txt");
-    //pPlayer1->AddTroop(pArcher);
-    //Troop* pScout = new Troop("Troops/Scout.txt");
-    //pPlayer1->AddTroop(pScout);
-    //Troop* pShield = new Troop("Troops/Shield.txt");
-    //pPlayer1->AddTroop(pShield);
-    //Troop* pBoat = new Troop("Troops/Boat.txt");
-    //pPlayer1->AddTroop(pBoat);
-
-    // add troops to Player2 vector
-    Troop* pSoldier1 = new Troop("Troops/Soldier.txt");
-    pPlayer2->AddTroop(pSoldier1);
-    Troop* pGiant1 = new Troop("Troops/Giant.txt");
-    pPlayer2->AddTroop(pGiant1);
-    Troop* pArcher1 = new Troop("Troops/Archer.txt");
-    pPlayer2->AddTroop(pArcher1);
-    Troop* pScout1 = new Troop("Troops/Scout.txt");
-    pPlayer2->AddTroop(pScout1);
-    Troop* pShield1 = new Troop("Troops/Shield.txt");
-    pPlayer2->AddTroop(pShield1);
-    Troop* pBoat1 = new Troop("Troops/Boat.txt");
-    pPlayer2->AddTroop(pBoat1);
 
     // UI stuff
     // vector for buttons
@@ -268,51 +241,54 @@ int main()
 
             }
 
-            
-            // placing troop if button pressed
-            switch (TroopPlaced)
+            if (!g_bTroopsPlaced)
             {
-                // check which player placing troops
-                if (g_iPlayer == 1)
+                // placing troop if button pressed
+                switch (TroopPlaced)
                 {
-                    pCurrentPlayer = pPlayer1;
-                }
-                else if (g_iPlayer == 2)
-                {
-                    pCurrentPlayer = pPlayer2;
-                }
+                    // check which player placing troops
+                    if (g_iPlayer == 1)
+                    {
+                        // say player 1 placing
+                        pCurrentPlayer = pPlayer1;
+                    }
+                    else if (g_iPlayer == 2)
+                    {
+                        // say player 2 placing
+                        pCurrentPlayer = pPlayer2;
+                    }
 
-            // troop created based on button
-            case None:
-                break;
-            case PlacingSoldier:
-                PlaceTroop(pCurrentPlayer, "Troops/Soldier.txt", event, &window);
-                g_bTroopsPlaced = true;
-                break;
-            case PlacingArcher:
-                PlaceTroop(pCurrentPlayer, "Troops/Archer.txt", event, &window);
-                g_bTroopsPlaced = true;
-                break;
-            case PlacingScout:
-                PlaceTroop(pCurrentPlayer, "Troops/Scout.txt", event, &window);
-                g_bTroopsPlaced = true;
-                break;
-            case PlacingGiant:
-                PlaceTroop(pCurrentPlayer, "Troops/Giant.txt", event, &window);
-                g_bTroopsPlaced = true;
-                break;
-            case PlacingBoat:
-                PlaceTroop(pCurrentPlayer, "Troops/Boat.txt", event, &window);
-                g_bTroopsPlaced = true;
-                break;
-            case PlacingShield:
-                PlaceTroop(pCurrentPlayer, "Troops/Shield.txt", event, &window);
-                g_bTroopsPlaced = true;
-                break;
-            default:
-                break;
+                    // troop created based on button
+                case None:
+                    break;
+                case PlacingSoldier:
+                    PlaceTroop(pCurrentPlayer, "Troops/Soldier.txt", event, &window);
+                    //g_iTroopsPlaced++;
+                    break;
+                case PlacingArcher:
+                    PlaceTroop(pCurrentPlayer, "Troops/Archer.txt", event, &window);
+                    //g_iTroopsPlaced++;
+                    break;
+                case PlacingScout:
+                    PlaceTroop(pCurrentPlayer, "Troops/Scout.txt", event, &window);
+                    g_bTroopsPlaced = true;
+                    break;
+                case PlacingGiant:
+                    PlaceTroop(pCurrentPlayer, "Troops/Giant.txt", event, &window);
+                    g_bTroopsPlaced = true;
+                    break;
+                case PlacingBoat:
+                    PlaceTroop(pCurrentPlayer, "Troops/Boat.txt", event, &window);
+                    g_bTroopsPlaced = true;
+                    break;
+                case PlacingShield:
+                    PlaceTroop(pCurrentPlayer, "Troops/Shield.txt", event, &window);
+                    g_bTroopsPlaced = true;
+                    break;
+                default:
+                    break;
                 }
-
+            }
 
             // -- Turn loop -- //    
             if (!g_bLevelFinished && g_bTroopsPlaced)
