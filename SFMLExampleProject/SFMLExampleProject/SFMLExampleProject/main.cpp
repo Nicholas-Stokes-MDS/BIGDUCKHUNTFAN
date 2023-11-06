@@ -432,6 +432,15 @@ int main()
                 }
             }
         }
+        // check if one player has won
+        if (pPlayer1->m_Troops.size() <= 0)
+        {
+
+        }
+        else if (pPlayer2->m_Troops.size() <= 0)
+        {
+
+        }
             // -- main window event loop end --//
 
             // -- select troop event loop -- //

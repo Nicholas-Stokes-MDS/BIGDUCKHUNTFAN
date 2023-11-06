@@ -37,6 +37,7 @@ protected:
 	sf::Vector2f m_TroopPosition;
 
 public:
+	// loadis in a troops stats through a txt file
 	Troop(std::string _sFilePath);
 	TroopType Type = None;
 
