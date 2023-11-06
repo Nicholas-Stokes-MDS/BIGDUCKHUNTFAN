@@ -176,12 +176,18 @@ int main()
     UIElements2.push_back(vsync1Element);
     UIElement vsync2Element(sf::Vector2f(20, 240), sf::Vector2f(150, 50), std::string("Vsync Disable"), UIElementFont);
     UIElements2.push_back(vsync2Element);
-    UIElement resolution1Element(sf::Vector2f(20, 310), sf::Vector2f(150, 50), std::string("640 by 480"), UIElementFont);
+    UIElement resolution1Element(sf::Vector2f(20, 310), sf::Vector2f(150, 50), std::string("800 by 600"), UIElementFont);
     UIElements2.push_back(resolution1Element);
-    UIElement resolution2Element(sf::Vector2f(220, 30), sf::Vector2f(150, 50), std::string("800 by 600"), UIElementFont);
+    UIElement resolution2Element(sf::Vector2f(220, 30), sf::Vector2f(150, 50), std::string("1366 by 768"), UIElementFont);
     UIElements2.push_back(resolution2Element);
     UIElement resolution3Element(sf::Vector2f(220, 100), sf::Vector2f(150, 50), std::string("1920 by 1080"), UIElementFont);
     UIElements2.push_back(resolution3Element);
+
+    std::vector<UIElement> PlayerTurn;
+    UIElement Player1Element(sf::Vector2f(0, 415), sf::Vector2f(150, 50), std::string("Player 1's turn"), UIElementFont);
+    PlayerTurn.push_back(Player1Element);
+    UIElement Player2Element(sf::Vector2f(0, 415), sf::Vector2f(150, 50), std::string("Player 2's turn"), UIElementFont);
+    PlayerTurn.push_back(Player2Element);
 
     if (LevelManager::GetInstance()->GetCurrentLevel() == 1)
     {
@@ -518,12 +524,12 @@ int main()
                     // Boat
                     if (UIElements[4].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(Settings))))
                     {
-                        window.create(sf::VideoMode(640, 480), "Game!");
+                        window.create(sf::VideoMode(800, 600), "Game!");
                     }
                     // Giant
                     if (UIElements[5].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(Settings))))
                     {
-                        window.create(sf::VideoMode(800, 600), "Game!");
+                        window.create(sf::VideoMode(1366, 768), "Game!");
                     }
                     // idk
                     if (UIElements[6].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(Settings))))
@@ -582,6 +588,17 @@ int main()
         }
 
 
+        if (g_iPlayer == 1)
+        {
+            // say player 1 placing
+            PlayerTurn[0].Draw(&window);
+        }
+        else if (g_iPlayer == 2)
+        {
+            // say player 2 placing
+            PlayerTurn[1].Draw(&window);
+        }
+
         window.display();
 
 
@@ -604,6 +621,8 @@ int main()
         }
         Settings.display();
         // Settings window render loop
+
+
     }
 
     return 0;
