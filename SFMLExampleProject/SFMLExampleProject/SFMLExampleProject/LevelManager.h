@@ -2,10 +2,12 @@
 #include <iostream>
 #include "Level.h"
 
+
 class LevelManager
 {
 private:
 	int currentLevelNum;
+	int gameType;
 	static LevelManager* g_LevelManagerRef; // the pointer to the manager instance
 	LevelManager();
 
@@ -39,5 +41,7 @@ public:
 	void SetCurrentLevel(int _Level);
 	void PrintCurrentLevel();
 	int GetCurrentLevel();
+	void SetGameType(int _gameType);
+	int GetGameType();
 };
 

@@ -32,6 +32,9 @@ void Terrain::SetTerrainType(TerrainType _Type)
 	case Wall:
 		SetSprite("Sprites/DefaultBlock.bmp");
 		break;
+	case Water:
+		SetSprite("Sprites/WaterTile.bmp");
+		break;
 	default:
 		break;
 	}

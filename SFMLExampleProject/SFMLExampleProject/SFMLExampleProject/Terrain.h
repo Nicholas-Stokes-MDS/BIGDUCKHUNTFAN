@@ -15,7 +15,8 @@
 
 enum TerrainType {
 	// static characters
-	Wall // block movement
+	Wall,
+	Water
 };
 
 
