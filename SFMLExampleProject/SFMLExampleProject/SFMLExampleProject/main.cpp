@@ -4,6 +4,7 @@
 #include "Board.h"
 #include "UIElement.h"
 #include <SFML/Audio.hpp>
+#include <algorithm>
 // ALWAYS BUILD IN RELEASE, AT LEAST ONCE A DAY. 
 enum PlacingTroop
 {
@@ -16,6 +17,71 @@ enum PlacingTroop
     PlacingShield,
 };
 
+void PlaceTroop(Board* _Player, std::string _TroopPath, sf::Event _event, sf::RenderWindow* _WindowRef)
+{
+    _Player->GetSelectRect().setFillColor(sf::Color(255, 255, 255, 128));
+
+    if (_event.type == sf::Event::MouseButtonPressed)
+    {
+        if (_event.mouseButton.button == sf::Mouse::Left)
+        {
+            Troop* pTroop = new Troop(_TroopPath);
+            pTroop->PlaceTroop(_event, _WindowRef);
+            _Player->AddTroop(pTroop);
+        }
+    }
+  //case PlacingSoldier:
+  //    if (g_iPlayer == 1)
+  //    {
+  //        _Player->GetSelectRect().setFillColor(sf::Color(255, 255, 255, 128));
+
+  //        std::vector<Troop*> iterator = std::find(_Player->m_Troops.begin(), _Player->m_Troops.end(), pSoldier)
+  //        pSoldier->PlaceTroop(event, &window);
+  //        if (pSoldier->GetPosition() != sf::Vector2f(-100, -100))
+  //        {
+  //            g_bPlacingSoldier = false;
+  //        }
+  //        break;
+  //    }
+
+  //    for (int i = 0; i < 6; i++)
+  //    {
+  //        for (int j = 0; j < LevelManager::GetInstance()->g_Level1Troops[i]; j++)
+  //        {
+  //            if (i == 0)
+  //            {
+  //                Troop* pTroop = new Troop("Troops/Archer.txt");
+  //                pPlayer1->AddTroop(pTroop);
+  //            }
+  //            else if (i == 1)
+  //            {
+  //                Troop* pTroop = new Troop("Troops/Boat.txt");
+  //                pPlayer1->AddTroop(pTroop);
+  //            }
+  //            else if (i == 2)
+  //            {
+  //                Troop* pTroop = new Troop("Troops/Giant.txt");
+  //                pPlayer1->AddTroop(pTroop);
+  //            }
+  //            else if (i == 3)
+  //            {
+  //                Troop* pTroop = new Troop("Troops/Scout.txt");
+  //                pPlayer1->AddTroop(pTroop);
+  //            }
+  //            else if (i == 4)
+  //            {
+  //                Troop* pTroop = new Troop("Troops/Shield.txt");
+  //                pPlayer1->AddTroop(pTroop);
+  //            }
+  //            else if (i == 5)
+  //            {
+  //                Troop* pTroop = new Troop("Troops/Soldier.txt");
+  //                pPlayer1->AddTroop(pTroop);
+  //            }
+  //        }
+  //    }
+}
+
 int main()
 {
     sf::SoundBuffer laugh;
@@ -27,14 +93,14 @@ int main()
     sf::Sound sound;
     sound.setBuffer(laugh);
     sound.play();
-    
+
     // menu
     sf::Font* UIElementFont = new sf::Font();
     if (!UIElementFont->loadFromFile("BRLNSR.TTF"))
     {
         std::cout << "Error loading file" << std::endl;
     }
-    
+
     sf::RenderWindow window(sf::VideoMode(800, 600), "Game!");
     window.setFramerateLimit(60);
     window.setVerticalSyncEnabled(true);
@@ -97,6 +163,8 @@ int main()
 
     bool g_bLevelFinished = false;
 
+    bool g_bTroopsPlaced = false;
+
     int g_iTurns = 0;
     int g_iPlayer = 1;
 
@@ -111,7 +179,7 @@ int main()
 
     LevelManager* g_LevelManager = LevelManager::GetInstance();
     LevelManager::GetInstance()->GetCurrentLevel();
-    
+
     // creates level instance and loads level based on supplied text file
     Level level;
     //level.LoadLevel("Levels/level1.txt");
@@ -124,19 +192,21 @@ int main()
     Board* pPlayer1 = new Board(level, 1);
     Board* pPlayer2 = new Board(level, 2);
 
+    Board* pCurrentPlayer = pPlayer1;
+
     // add troops to Player1 vector
-    Troop* pSoldier = new Troop("Troops/Soldier.txt");
-    pPlayer1->AddTroop(pSoldier);
-    Troop* pGiant = new Troop("Troops/Giant.txt");
-    pPlayer1->AddTroop(pGiant);
-    Troop* pArcher = new Troop("Troops/Archer.txt");
-    pPlayer1->AddTroop(pArcher);
-    Troop* pScout = new Troop("Troops/Scout.txt");
-    pPlayer1->AddTroop(pScout);
-    Troop* pShield = new Troop("Troops/Shield.txt");
-    pPlayer1->AddTroop(pShield);
-    Troop* pBoat = new Troop("Troops/Boat.txt");
-    pPlayer1->AddTroop(pBoat);
+    //Troop* pSoldier = new Troop("Troops/Soldier.txt");
+    //pPlayer1->AddTroop(pSoldier);
+    //Troop* pGiant = new Troop("Troops/Giant.txt");
+    //pPlayer1->AddTroop(pGiant);
+    //Troop* pArcher = new Troop("Troops/Archer.txt");
+    //pPlayer1->AddTroop(pArcher);
+    //Troop* pScout = new Troop("Troops/Scout.txt");
+    //pPlayer1->AddTroop(pScout);
+    //Troop* pShield = new Troop("Troops/Shield.txt");
+    //pPlayer1->AddTroop(pShield);
+    //Troop* pBoat = new Troop("Troops/Boat.txt");
+    //pPlayer1->AddTroop(pBoat);
 
     // add troops to Player2 vector
     Troop* pSoldier1 = new Troop("Troops/Soldier.txt");
@@ -151,9 +221,6 @@ int main()
     pPlayer2->AddTroop(pShield1);
     Troop* pBoat1 = new Troop("Troops/Boat.txt");
     pPlayer2->AddTroop(pBoat1);
-
-    pSoldier->PrintStats();
-    pGiant->PrintStats();
 
     // UI stuff
     // vector for buttons
@@ -258,141 +325,150 @@ int main()
             
             // placing troop if button pressed
             switch (TroopPlaced)
-                if (g_bPlacingSoldier)
+            {
+                if (g_iPlayer == 1)
                 {
+                    pCurrentPlayer = pPlayer1;
+                }
+                else if (g_iPlayer == 2)
+                {
+                    pCurrentPlayer = pPlayer2;
+                }
             case None:
                 break;
             case PlacingSoldier:
-                if (g_iPlayer == 1)
-                {
-                    pPlayer1->GetSelectRect().setFillColor(sf::Color(255, 255, 255, 128));
-                    pSoldier->PlaceTroop(event, &window);
-                    if (pSoldier->GetPosition() != sf::Vector2f(-100, -100))
-                    {
-                        g_bPlacingSoldier = false;
-                    }
-                    break;
-                }
-                else if (g_iPlayer == 2)
-                {
-                    pPlayer2->GetSelectRect().setFillColor(sf::Color(255, 255, 255, 128));
-                    pSoldier1->PlaceTroop(event, &window);
-                    if (pSoldier1->GetPosition() != sf::Vector2f(-100, -100))
-                    {
-                        g_bPlacingSoldier = false;
-                    }
-                    break;
-                }
+                //if (g_iPlayer == 1)
+                //{
+                //    pPlayer1->GetSelectRect().setFillColor(sf::Color(255, 255, 255, 128));
+                //    pSoldier->PlaceTroop(event, &window);
+                //    if (pSoldier->GetPosition() != sf::Vector2f(-100, -100))
+                //    {
+                //        g_bPlacingSoldier = false;
+                //    }
+                //    break;
+                //}
+                //else if (g_iPlayer == 2)
+                //{
+                //    pPlayer2->GetSelectRect().setFillColor(sf::Color(255, 255, 255, 128));
+                //    pSoldier1->PlaceTroop(event, &window);
+                //    if (pSoldier1->GetPosition() != sf::Vector2f(-100, -100))
+                //    {
+                //        g_bPlacingSoldier = false;
+                //    }
+                //    break;
+                //}
+                PlaceTroop(pCurrentPlayer, "Troops/Soldier.txt", event, &window);
+                g_bTroopsPlaced = true;
                 break;
             case PlacingArcher:
-                if (g_iPlayer == 1)
-                {
-                    pPlayer1->GetSelectRect().setFillColor(sf::Color(255, 255, 255, 128));
-                    pArcher->PlaceTroop(event, &window);
-                    if (pArcher->GetPosition() != sf::Vector2f(-100, -100))
-                    {
-                        g_bPlacingSoldier = false;
-                    }
-                    break;
-                }
-                else if (g_iPlayer == 2)
-                {
-                    pPlayer2->GetSelectRect().setFillColor(sf::Color(255, 255, 255, 128));
-                    pArcher1->PlaceTroop(event, &window);
-                    if (pArcher1->GetPosition() != sf::Vector2f(-100, -100))
-                    {
-                        g_bPlacingSoldier = false;
-                    }
-                    break;
-                }
+                //if (g_iPlayer == 1)
+                //{
+                //    pPlayer1->GetSelectRect().setFillColor(sf::Color(255, 255, 255, 128));
+                //    pArcher->PlaceTroop(event, &window);
+                //    if (pArcher->GetPosition() != sf::Vector2f(-100, -100))
+                //    {
+                //        g_bPlacingSoldier = false;
+                //    }
+                //    break;
+                //}
+                //else if (g_iPlayer == 2)
+                //{
+                //    pPlayer2->GetSelectRect().setFillColor(sf::Color(255, 255, 255, 128));
+                //    pArcher1->PlaceTroop(event, &window);
+                //    if (pArcher1->GetPosition() != sf::Vector2f(-100, -100))
+                //    {
+                //        g_bPlacingSoldier = false;
+                //    }
+                //    break;
+                //}
                 break;
             case PlacingScout:
-                if (g_iPlayer == 1)
-                {
-                    pPlayer1->GetSelectRect().setFillColor(sf::Color(255, 255, 255, 128));
-                    pScout->PlaceTroop(event, &window);
-                    if (pScout->GetPosition() != sf::Vector2f(-100, -100))
-                    {
-                        g_bPlacingSoldier = false;
-                    }
-                    break;
-                }
-                else if (g_iPlayer == 2)
-                {
-                    pPlayer2->GetSelectRect().setFillColor(sf::Color(255, 255, 255, 128));
-                    pScout1->PlaceTroop(event, &window);
-                    if (pScout1->GetPosition() != sf::Vector2f(-100, -100))
-                    {
-                        g_bPlacingSoldier = false;
-                    }
-                    break;
-                }
+                //if (g_iPlayer == 1)
+                //{
+                //    pPlayer1->GetSelectRect().setFillColor(sf::Color(255, 255, 255, 128));
+                //    pScout->PlaceTroop(event, &window);
+                //    if (pScout->GetPosition() != sf::Vector2f(-100, -100))
+                //    {
+                //        g_bPlacingSoldier = false;
+                //    }
+                //    break;
+                //}
+                //else if (g_iPlayer == 2)
+                //{
+                //    pPlayer2->GetSelectRect().setFillColor(sf::Color(255, 255, 255, 128));
+                //    pScout1->PlaceTroop(event, &window);
+                //    if (pScout1->GetPosition() != sf::Vector2f(-100, -100))
+                //    {
+                //        g_bPlacingSoldier = false;
+                //    }
+                //    break;
+                //}
                 break;
             case PlacingGiant:
-                if (g_iPlayer == 1)
-                {
-                    pPlayer1->GetSelectRect().setFillColor(sf::Color(255, 255, 255, 128));
-                    pGiant->PlaceTroop(event, &window);
-                    if (pGiant->GetPosition() != sf::Vector2f(-100, -100))
-                    {
-                        g_bPlacingSoldier = false;
-                    }
-                    break;
-                }
-                else if (g_iPlayer == 2)
-                {
-                    pPlayer2->GetSelectRect().setFillColor(sf::Color(255, 255, 255, 128));
-                    pGiant1->PlaceTroop(event, &window);
-                    if (pGiant1->GetPosition() != sf::Vector2f(-100, -100))
-                    {
-                        g_bPlacingSoldier = false;
-                    }
-                    break;
-                }
+                //if (g_iPlayer == 1)
+                //{
+                //    pPlayer1->GetSelectRect().setFillColor(sf::Color(255, 255, 255, 128));
+                //    pGiant->PlaceTroop(event, &window);
+                //    if (pGiant->GetPosition() != sf::Vector2f(-100, -100))
+                //    {
+                //        g_bPlacingSoldier = false;
+                //    }
+                //    break;
+                //}
+                //else if (g_iPlayer == 2)
+                //{
+                //    pPlayer2->GetSelectRect().setFillColor(sf::Color(255, 255, 255, 128));
+                //    pGiant1->PlaceTroop(event, &window);
+                //    if (pGiant1->GetPosition() != sf::Vector2f(-100, -100))
+                //    {
+                //        g_bPlacingSoldier = false;
+                //    }
+                //    break;
+                //}
                 break;
             case PlacingBoat:
-                if (g_iPlayer == 1)
-                {
-                    pPlayer1->GetSelectRect().setFillColor(sf::Color(255, 255, 255, 128));
-                    pBoat->PlaceTroop(event, &window);
-                    if (pBoat->GetPosition() != sf::Vector2f(-100, -100))
-                    {
-                        g_bPlacingSoldier = false;
-                    }
-                    break;
-                }
-                else if (g_iPlayer == 2)
-                {
-                    pPlayer2->GetSelectRect().setFillColor(sf::Color(255, 255, 255, 128));
-                    pBoat1->PlaceTroop(event, &window);
-                    if (pBoat1->GetPosition() != sf::Vector2f(-100, -100))
-                    {
-                        g_bPlacingSoldier = false;
-                    }
-                    break;
-                }
+                //if (g_iPlayer == 1)
+                //{
+                //    pPlayer1->GetSelectRect().setFillColor(sf::Color(255, 255, 255, 128));
+                //    pBoat->PlaceTroop(event, &window);
+                //    if (pBoat->GetPosition() != sf::Vector2f(-100, -100))
+                //    {
+                //        g_bPlacingSoldier = false;
+                //    }
+                //    break;
+                //}
+                //else if (g_iPlayer == 2)
+                //{
+                //    pPlayer2->GetSelectRect().setFillColor(sf::Color(255, 255, 255, 128));
+                //    pBoat1->PlaceTroop(event, &window);
+                //    if (pBoat1->GetPosition() != sf::Vector2f(-100, -100))
+                //    {
+                //        g_bPlacingSoldier = false;
+                //    }
+                //    break;
+                //}
                 break;
             case PlacingShield:
-                if (g_iPlayer == 1)
-                {
-                    pPlayer1->GetSelectRect().setFillColor(sf::Color(255, 255, 255, 128));
-                    pShield->PlaceTroop(event, &window);
-                    if (pShield->GetPosition() != sf::Vector2f(-100, -100))
-                    {
-                        g_bPlacingSoldier = false;
-                    }
-                    break;
-                }
-                else if (g_iPlayer == 2)
-                {
-                    pPlayer2->GetSelectRect().setFillColor(sf::Color(255, 255, 255, 128));
-                    pShield1->PlaceTroop(event, &window);
-                    if (pShield1->GetPosition() != sf::Vector2f(-100, -100))
-                    {
-                        g_bPlacingSoldier = false;
-                    }
-                    break;
-                }
+                //if (g_iPlayer == 1)
+                //{
+                //    pPlayer1->GetSelectRect().setFillColor(sf::Color(255, 255, 255, 128));
+                //    pShield->PlaceTroop(event, &window);
+                //    if (pShield->GetPosition() != sf::Vector2f(-100, -100))
+                //    {
+                //        g_bPlacingSoldier = false;
+                //    }
+                //    break;
+                //}
+                //else if (g_iPlayer == 2)
+                //{
+                //    pPlayer2->GetSelectRect().setFillColor(sf::Color(255, 255, 255, 128));
+                //    pShield1->PlaceTroop(event, &window);
+                //    if (pShield1->GetPosition() != sf::Vector2f(-100, -100))
+                //    {
+                //        g_bPlacingSoldier = false;
+                //    }
+                //    break;
+                //}
                 break;
             default:
                 break;
@@ -401,7 +477,7 @@ int main()
 
             // -- Turn loop -- //
             
-            if (!g_bLevelFinished)
+            if (!g_bLevelFinished && g_bTroopsPlaced)
             {
                 if (g_iPlayer == 1)
                 {
@@ -648,13 +724,13 @@ int main()
             window.draw(pPlayer2->GetRangeRect());
         }
 
-        // draw player 1 troops
+         //draw player 1 troops
         for (int i = 0; i < pPlayer1->m_Troops.size(); i++)
         {
             window.draw(pPlayer1->m_Troops[i]->GetSprite());
         }
 
-        // draw player 2 troops
+         //draw player 2 troops
         for (int i = 0; i < pPlayer2->m_Troops.size(); i++)
         {
             window.draw(pPlayer2->m_Troops[i]->GetSprite());

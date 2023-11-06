@@ -39,6 +39,7 @@ protected:
 public:
 	// loadis in a troops stats through a txt file
 	Troop(std::string _sFilePath);
+	~Troop();
 	TroopType Type = None;
 
 	bool m_bTroopMoved = false;

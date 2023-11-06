@@ -86,6 +86,10 @@ Troop::Troop(std::string _sFilePath)
     SetPosition(sf::Vector2f(-100, -100));
 }
 
+Troop::~Troop()
+{
+}
+
 void Troop::PrintStats()
 {
     std::cout << std::endl;

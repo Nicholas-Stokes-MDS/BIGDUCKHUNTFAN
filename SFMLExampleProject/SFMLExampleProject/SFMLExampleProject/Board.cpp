@@ -119,8 +119,8 @@ void Board::AttackEnemies(Board* _EnemyBoard)
 			// if an enemy is killed, delete that enemy and resize the vector
 			std::cout << m_Troops[j]->GetName() << " Killed" << std::endl;
 			delete _EnemyBoard->m_Troops[j];
-			_EnemyBoard->m_Troops.erase(_EnemyBoard->m_Troops.begin() + j);
-			_EnemyBoard->m_Troops.resize(_EnemyBoard->m_Troops.size() - 1);
+			//_EnemyBoard->m_Troops.erase(_EnemyBoard->m_Troops.begin() + j);
+			//_EnemyBoard->m_Troops.resize(_EnemyBoard->m_Troops.size() - 1);
 		}
 	}
 }

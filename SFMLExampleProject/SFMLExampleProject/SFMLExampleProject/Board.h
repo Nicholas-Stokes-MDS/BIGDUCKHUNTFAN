@@ -28,9 +28,6 @@ public:
 	// creates a square with low opacity that snaps to whichever tile the mouse is inside
 	void ShowMouseSquare(sf::RenderWindow* _WindowRef);
 
-	void DrawBoard(sf::RenderWindow* _Window);
-
-
 	bool InAttackRange(Troop& _TroopA, Troop& _TroopB);
 	void AttackEnemies(Board* _EnemyBoard);
 
