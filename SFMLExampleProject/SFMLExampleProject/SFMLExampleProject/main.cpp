@@ -19,8 +19,10 @@ enum PlacingTroop
 
 void PlaceTroop(Board* _Player, std::string _TroopPath, sf::Event _event, sf::RenderWindow* _WindowRef)
 {
+    // change the select rectangle to grey
     _Player->GetSelectRect().setFillColor(sf::Color(255, 255, 255, 128));
 
+    // if mouse button pressed create a troop instance
     if (_event.type == sf::Event::MouseButtonPressed)
     {
         if (_event.mouseButton.button == sf::Mouse::Left)
@@ -30,56 +32,6 @@ void PlaceTroop(Board* _Player, std::string _TroopPath, sf::Event _event, sf::Re
             _Player->AddTroop(pTroop);
         }
     }
-  //case PlacingSoldier:
-  //    if (g_iPlayer == 1)
-  //    {
-  //        _Player->GetSelectRect().setFillColor(sf::Color(255, 255, 255, 128));
-
-  //        std::vector<Troop*> iterator = std::find(_Player->m_Troops.begin(), _Player->m_Troops.end(), pSoldier)
-  //        pSoldier->PlaceTroop(event, &window);
-  //        if (pSoldier->GetPosition() != sf::Vector2f(-100, -100))
-  //        {
-  //            g_bPlacingSoldier = false;
-  //        }
-  //        break;
-  //    }
-
-  //    for (int i = 0; i < 6; i++)
-  //    {
-  //        for (int j = 0; j < LevelManager::GetInstance()->g_Level1Troops[i]; j++)
-  //        {
-  //            if (i == 0)
-  //            {
-  //                Troop* pTroop = new Troop("Troops/Archer.txt");
-  //                pPlayer1->AddTroop(pTroop);
-  //            }
-  //            else if (i == 1)
-  //            {
-  //                Troop* pTroop = new Troop("Troops/Boat.txt");
-  //                pPlayer1->AddTroop(pTroop);
-  //            }
-  //            else if (i == 2)
-  //            {
-  //                Troop* pTroop = new Troop("Troops/Giant.txt");
-  //                pPlayer1->AddTroop(pTroop);
-  //            }
-  //            else if (i == 3)
-  //            {
-  //                Troop* pTroop = new Troop("Troops/Scout.txt");
-  //                pPlayer1->AddTroop(pTroop);
-  //            }
-  //            else if (i == 4)
-  //            {
-  //                Troop* pTroop = new Troop("Troops/Shield.txt");
-  //                pPlayer1->AddTroop(pTroop);
-  //            }
-  //            else if (i == 5)
-  //            {
-  //                Troop* pTroop = new Troop("Troops/Soldier.txt");
-  //                pPlayer1->AddTroop(pTroop);
-  //            }
-  //        }
-  //    }
 }
 
 int main()
@@ -168,14 +120,11 @@ int main()
     int g_iTurns = 0;
     int g_iPlayer = 1;
 
-
-
     sf::RenderWindow OptionsWindow(sf::VideoMode(400, 400), "Place troops");
     OptionsWindow.setVerticalSyncEnabled(true);
 
     sf::RenderWindow Settings(sf::VideoMode(400, 400), "Settings");
     Settings.setVerticalSyncEnabled(true);
-
 
     LevelManager* g_LevelManager = LevelManager::GetInstance();
     LevelManager::GetInstance()->GetCurrentLevel();
@@ -313,9 +262,6 @@ int main()
                 {
                     sound.play();
                 }
-
-
-
                 break;
             default:
                 break;
@@ -326,6 +272,7 @@ int main()
             // placing troop if button pressed
             switch (TroopPlaced)
             {
+                // check which player placing troops
                 if (g_iPlayer == 1)
                 {
                     pCurrentPlayer = pPlayer1;
@@ -334,149 +281,40 @@ int main()
                 {
                     pCurrentPlayer = pPlayer2;
                 }
+
+            // troop created based on button
             case None:
                 break;
             case PlacingSoldier:
-                //if (g_iPlayer == 1)
-                //{
-                //    pPlayer1->GetSelectRect().setFillColor(sf::Color(255, 255, 255, 128));
-                //    pSoldier->PlaceTroop(event, &window);
-                //    if (pSoldier->GetPosition() != sf::Vector2f(-100, -100))
-                //    {
-                //        g_bPlacingSoldier = false;
-                //    }
-                //    break;
-                //}
-                //else if (g_iPlayer == 2)
-                //{
-                //    pPlayer2->GetSelectRect().setFillColor(sf::Color(255, 255, 255, 128));
-                //    pSoldier1->PlaceTroop(event, &window);
-                //    if (pSoldier1->GetPosition() != sf::Vector2f(-100, -100))
-                //    {
-                //        g_bPlacingSoldier = false;
-                //    }
-                //    break;
-                //}
                 PlaceTroop(pCurrentPlayer, "Troops/Soldier.txt", event, &window);
                 g_bTroopsPlaced = true;
                 break;
             case PlacingArcher:
-                //if (g_iPlayer == 1)
-                //{
-                //    pPlayer1->GetSelectRect().setFillColor(sf::Color(255, 255, 255, 128));
-                //    pArcher->PlaceTroop(event, &window);
-                //    if (pArcher->GetPosition() != sf::Vector2f(-100, -100))
-                //    {
-                //        g_bPlacingSoldier = false;
-                //    }
-                //    break;
-                //}
-                //else if (g_iPlayer == 2)
-                //{
-                //    pPlayer2->GetSelectRect().setFillColor(sf::Color(255, 255, 255, 128));
-                //    pArcher1->PlaceTroop(event, &window);
-                //    if (pArcher1->GetPosition() != sf::Vector2f(-100, -100))
-                //    {
-                //        g_bPlacingSoldier = false;
-                //    }
-                //    break;
-                //}
+                PlaceTroop(pCurrentPlayer, "Troops/Archer.txt", event, &window);
+                g_bTroopsPlaced = true;
                 break;
             case PlacingScout:
-                //if (g_iPlayer == 1)
-                //{
-                //    pPlayer1->GetSelectRect().setFillColor(sf::Color(255, 255, 255, 128));
-                //    pScout->PlaceTroop(event, &window);
-                //    if (pScout->GetPosition() != sf::Vector2f(-100, -100))
-                //    {
-                //        g_bPlacingSoldier = false;
-                //    }
-                //    break;
-                //}
-                //else if (g_iPlayer == 2)
-                //{
-                //    pPlayer2->GetSelectRect().setFillColor(sf::Color(255, 255, 255, 128));
-                //    pScout1->PlaceTroop(event, &window);
-                //    if (pScout1->GetPosition() != sf::Vector2f(-100, -100))
-                //    {
-                //        g_bPlacingSoldier = false;
-                //    }
-                //    break;
-                //}
+                PlaceTroop(pCurrentPlayer, "Troops/Scout.txt", event, &window);
+                g_bTroopsPlaced = true;
                 break;
             case PlacingGiant:
-                //if (g_iPlayer == 1)
-                //{
-                //    pPlayer1->GetSelectRect().setFillColor(sf::Color(255, 255, 255, 128));
-                //    pGiant->PlaceTroop(event, &window);
-                //    if (pGiant->GetPosition() != sf::Vector2f(-100, -100))
-                //    {
-                //        g_bPlacingSoldier = false;
-                //    }
-                //    break;
-                //}
-                //else if (g_iPlayer == 2)
-                //{
-                //    pPlayer2->GetSelectRect().setFillColor(sf::Color(255, 255, 255, 128));
-                //    pGiant1->PlaceTroop(event, &window);
-                //    if (pGiant1->GetPosition() != sf::Vector2f(-100, -100))
-                //    {
-                //        g_bPlacingSoldier = false;
-                //    }
-                //    break;
-                //}
+                PlaceTroop(pCurrentPlayer, "Troops/Giant.txt", event, &window);
+                g_bTroopsPlaced = true;
                 break;
             case PlacingBoat:
-                //if (g_iPlayer == 1)
-                //{
-                //    pPlayer1->GetSelectRect().setFillColor(sf::Color(255, 255, 255, 128));
-                //    pBoat->PlaceTroop(event, &window);
-                //    if (pBoat->GetPosition() != sf::Vector2f(-100, -100))
-                //    {
-                //        g_bPlacingSoldier = false;
-                //    }
-                //    break;
-                //}
-                //else if (g_iPlayer == 2)
-                //{
-                //    pPlayer2->GetSelectRect().setFillColor(sf::Color(255, 255, 255, 128));
-                //    pBoat1->PlaceTroop(event, &window);
-                //    if (pBoat1->GetPosition() != sf::Vector2f(-100, -100))
-                //    {
-                //        g_bPlacingSoldier = false;
-                //    }
-                //    break;
-                //}
+                PlaceTroop(pCurrentPlayer, "Troops/Boat.txt", event, &window);
+                g_bTroopsPlaced = true;
                 break;
             case PlacingShield:
-                //if (g_iPlayer == 1)
-                //{
-                //    pPlayer1->GetSelectRect().setFillColor(sf::Color(255, 255, 255, 128));
-                //    pShield->PlaceTroop(event, &window);
-                //    if (pShield->GetPosition() != sf::Vector2f(-100, -100))
-                //    {
-                //        g_bPlacingSoldier = false;
-                //    }
-                //    break;
-                //}
-                //else if (g_iPlayer == 2)
-                //{
-                //    pPlayer2->GetSelectRect().setFillColor(sf::Color(255, 255, 255, 128));
-                //    pShield1->PlaceTroop(event, &window);
-                //    if (pShield1->GetPosition() != sf::Vector2f(-100, -100))
-                //    {
-                //        g_bPlacingSoldier = false;
-                //    }
-                //    break;
-                //}
+                PlaceTroop(pCurrentPlayer, "Troops/Shield.txt", event, &window);
+                g_bTroopsPlaced = true;
                 break;
             default:
                 break;
                 }
 
 
-            // -- Turn loop -- //
-            
+            // -- Turn loop -- //    
             if (!g_bLevelFinished && g_bTroopsPlaced)
             {
                 if (g_iPlayer == 1)
