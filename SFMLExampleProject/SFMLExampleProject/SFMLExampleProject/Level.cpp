@@ -60,6 +60,13 @@ void Level::CreateLevel()
 				newTile->SetPosition(sf::Vector2f(x * 32, y * 32)); // sprite size
 				m_LevelTiles.push_back(newTile);
 			}
+			if (cLevelArray[y][x] == 'w')
+			{
+				Terrain* newTile = new Terrain();
+				newTile->SetTerrainType(TerrainType::Water);
+				newTile->SetPosition(sf::Vector2f(x * 32, y * 32)); // sprite size
+				m_LevelTiles.push_back(newTile);
+			}
 		}
 	}
 }

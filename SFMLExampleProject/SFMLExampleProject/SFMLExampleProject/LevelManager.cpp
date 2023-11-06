@@ -15,6 +15,18 @@ LevelManager::LevelManager()
         // If the file does not exist, start at level 1.
         this->currentLevelNum = 1;
     }
+
+    std::ifstream infile2("Levels/gameType.txt");
+    if (infile2.is_open())
+    {
+        infile2 >> this->gameType;
+        infile2.close();
+    }
+    else
+    {
+        // If the file does not exist
+        this->currentLevelNum = 0;
+    }
 }
 
 void LevelManager::LoadLevel(int _LevelNum, Level* _LevelRef)
@@ -46,6 +58,24 @@ void LevelManager::PrintCurrentLevel()
 int LevelManager::GetCurrentLevel()
 {
     return this->currentLevelNum;
+}
+
+void LevelManager::SetGameType(int _gameType)
+{
+    this->gameType = _gameType;
+
+    // Save the current gameType to a file.
+    std::ofstream outfile("Levels/gameType.txt");
+    if (outfile.is_open())
+    {
+        outfile << this->gameType;
+        outfile.close();
+    }
+}
+
+int LevelManager::GetGameType()
+{
+    return this->gameType;
 }
 
 

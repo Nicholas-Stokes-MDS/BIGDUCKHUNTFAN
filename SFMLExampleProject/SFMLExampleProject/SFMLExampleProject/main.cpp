@@ -28,6 +28,68 @@ int main()
     sound.setBuffer(laugh);
     sound.play();
     
+    // menu
+    sf::Font* UIElementFont = new sf::Font();
+    if (!UIElementFont->loadFromFile("BRLNSR.TTF"))
+    {
+        std::cout << "Error loading file" << std::endl;
+    }
+    
+    sf::RenderWindow window(sf::VideoMode(800, 600), "Game!");
+    window.setFramerateLimit(60);
+    window.setVerticalSyncEnabled(true);
+
+    std::vector<UIElement> MenuElements;
+    // creation of buttons
+    UIElement SinglePlayer(sf::Vector2f(50, 30), sf::Vector2f(150, 50), std::string("SinglePlayer(") + std::to_string(5) + std::string(")"), UIElementFont);
+    MenuElements.push_back(SinglePlayer);
+    UIElement TwoPlayer(sf::Vector2f(50, 100), sf::Vector2f(150, 50), std::string("TwoPlayer"), UIElementFont);
+    MenuElements.push_back(TwoPlayer);
+
+    while (LevelManager::GetInstance()->GetGameType() == 0)
+    {
+        while (window.isOpen() && LevelManager::GetInstance()->GetGameType() == 0)
+        {
+            sf::Event menu;
+            while (window.pollEvent(menu) && LevelManager::GetInstance()->GetGameType() == 0)
+            {
+                if (menu.type == sf::Event::Closed)
+                {
+                    window.close();
+                }
+
+                if (menu.type == sf::Event::MouseButtonPressed)
+                {
+                    if (menu.mouseButton.button == sf::Mouse::Left)
+                    {
+                        //clicking buttons in Options window and calling the appropriate class method
+                        // Soldier
+                        if (MenuElements[0].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(window))))
+                        {
+                            LevelManager::GetInstance()->SetGameType(1);
+                        }
+                        // Archer
+                        if (MenuElements[1].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(window))))
+                        {
+                            LevelManager::GetInstance()->SetGameType(2);
+                        }
+                    }
+                }
+
+                // Menu render loop
+                window.clear();
+                // draw UI elements of menu
+                for (int i = 0; i < MenuElements.size(); i++)
+                {
+                    MenuElements[i].Draw(&window);
+                }
+                window.display();
+                // Settings window render loop
+            }
+
+        }
+    }
+
     PlacingTroop TroopPlaced = PlacingNone;
     Troop* pMovingTroop = new Troop("");
     bool g_bPlacingSoldier = true;
@@ -38,9 +100,7 @@ int main()
     int g_iTurns = 0;
     int g_iPlayer = 1;
 
-    sf::RenderWindow window(sf::VideoMode(800, 600), "Game!");
-    window.setFramerateLimit(60);
-    window.setVerticalSyncEnabled(true);
+
 
     sf::RenderWindow OptionsWindow(sf::VideoMode(400, 400), "Place troops");
     OptionsWindow.setVerticalSyncEnabled(true);
@@ -96,12 +156,6 @@ int main()
     pGiant->PrintStats();
 
     // UI stuff
-    sf::Font* UIElementFont = new sf::Font();
-    if (!UIElementFont->loadFromFile("BRLNSR.TTF"))
-    {
-        std::cout << "Error loading file" << std::endl;
-    }
-
     // vector for buttons
     std::vector<UIElement> UIElements;
     // creation of buttons
