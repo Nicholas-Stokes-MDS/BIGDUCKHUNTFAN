@@ -314,6 +314,7 @@ int main()
                     else
                     {
                         g_bTroopsPlaced = true;
+                        g_iPlayer = 1;
                     }
                 }
             }
@@ -413,20 +414,23 @@ int main()
             // -- turn loop end -- //
         }
         // check if one player has won
-        if (pPlayer1->m_Troops.size() <= 0 && pPlayer2->m_Troops.size() <= 0)
+        if (g_bTroopsPlaced)
         {
-            //draw 
-            g_bLevelFinished = true;
-        }
-        else if (pPlayer1->m_Troops.size() <= 0)
-        {
-            //player 1 win
-            g_bLevelFinished = true;
-        }
-        else if (pPlayer2->m_Troops.size() <= 0)
-        {
-            // player 2 win
-            g_bLevelFinished = true;
+            if (pPlayer1->m_Troops.size() <= 0 && pPlayer2->m_Troops.size() <= 0)
+            {
+                //draw 
+                g_bLevelFinished = true;
+            }
+            else if (pPlayer1->m_Troops.size() <= 0)
+            {
+                //player 1 win
+                g_bLevelFinished = true;
+            }
+            else if (pPlayer2->m_Troops.size() <= 0)
+            {
+                // player 2 win
+                g_bLevelFinished = true;
+            }
         }
             // -- main window event loop end --//
 
@@ -480,7 +484,6 @@ int main()
                     {
                         TroopPlaced = PlacingNone;
                     }
-
                 }
             }
         }
