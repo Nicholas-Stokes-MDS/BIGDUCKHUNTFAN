@@ -17,7 +17,7 @@ enum PlacingTroop
     PlacingShield,
 };
 
-int PlaceTroop(int _iTroopsPlaced, Board* _Player, std::string _TroopPath, sf::Event _event, sf::RenderWindow* _WindowRef)
+int PlaceTroop(Board* _Player, std::string _TroopPath, sf::Event _event, sf::RenderWindow* _WindowRef)
 {
     // change the select rectangle to grey
     _Player->GetSelectRect().setFillColor(sf::Color(255, 255, 255, 128));
@@ -30,11 +30,10 @@ int PlaceTroop(int _iTroopsPlaced, Board* _Player, std::string _TroopPath, sf::E
             Troop* pTroop = new Troop(_TroopPath);
             pTroop->PlaceTroop(_event, _WindowRef);
             _Player->AddTroop(pTroop);
-            _iTroopsPlaced++;
-            return _iTroopsPlaced;
+            return 1;
         }
     }
-    return _iTroopsPlaced;
+    return 0;
 }
 
 int main()
@@ -120,6 +119,11 @@ int main()
 
     bool g_bTroopsPlaced = false;
     int g_iTroopsPlaced = 0;
+    int g_iTroopCounts[6];
+    for (int i = 0; i < 6; i++)
+    {
+        g_iTroopCounts[i] = LevelManager::GetInstance()->g_iLevel1Troops[i];
+    }
 
     int g_iTurns = 0;
     int g_iPlayer = 1;
@@ -272,24 +276,41 @@ int main()
                     break;
                 case PlacingSoldier:
                     // count number of troops placed every time new troop placed
-                    
-                    // put this somewhere LevelManager::GetInstance()->g_iLevel1Troops[count]
-                    g_iTroopsPlaced = PlaceTroop(g_iTroopsPlaced, pCurrentPlayer, "Troops/Soldier.txt", event, &window);
+                    // only allow placing as many as are in the level troop array
+                    if (g_iTroopCounts[5] > 0)
+                    {
+                        g_iTroopCounts[5] -= PlaceTroop(pCurrentPlayer, "Troops/Soldier.txt", event, &window);
+                    }
                     break;
                 case PlacingArcher:
-                    g_iTroopsPlaced = PlaceTroop(g_iTroopsPlaced, pCurrentPlayer, "Troops/Archer.txt", event, &window);
+                    if (g_iTroopCounts[0] > 0)
+                    {
+                        g_iTroopCounts[0] -= PlaceTroop(pCurrentPlayer, "Troops/Archer.txt", event, &window);
+                    }
                     break;
                 case PlacingScout:
-                    g_iTroopsPlaced = PlaceTroop(g_iTroopsPlaced, pCurrentPlayer, "Troops/Scout.txt", event, &window);
+                    if (g_iTroopCounts[3] > 0)
+                    {
+                        g_iTroopCounts[3] -= PlaceTroop(pCurrentPlayer, "Troops/Scout.txt", event, &window);
+                    }
                     break;
                 case PlacingGiant:
-                    g_iTroopsPlaced = PlaceTroop(g_iTroopsPlaced, pCurrentPlayer, "Troops/Giant.txt", event, &window);
+                    if (g_iTroopCounts[2] > 0)
+                    {
+                        g_iTroopCounts[2] -= PlaceTroop(pCurrentPlayer, "Troops/Giant.txt", event, &window);
+                    }
                     break;
                 case PlacingBoat:
-                    g_iTroopsPlaced = PlaceTroop(g_iTroopsPlaced, pCurrentPlayer, "Troops/Boat.txt", event, &window);
+                    if (g_iTroopCounts[1] > 0)
+                    {
+                        g_iTroopCounts[1] -= PlaceTroop(pCurrentPlayer, "Troops/Boat.txt", event, &window);
+                    }
                     break;
                 case PlacingShield:
-                    g_iTroopsPlaced = PlaceTroop(g_iTroopsPlaced, pCurrentPlayer, "Troops/Shield.txt", event, &window);
+                    if (g_iTroopCounts[4] > 0)
+                    {
+                        g_iTroopCounts[4] -= PlaceTroop(pCurrentPlayer, "Troops/Shield.txt", event, &window);
+                    }
                     break;
                 default:
                     break;
@@ -299,17 +320,21 @@ int main()
                 // get total number of troops to be placed
                 for (int count = 0; count < 6; count++)
                 {
-                    iTotalTroops += LevelManager::GetInstance()->g_iLevel1Troops[count];
+                    iTotalTroops += g_iTroopCounts[count];
                 }
                 // stop placing troops if all troops placed
-                if (g_iTroopsPlaced == iTotalTroops)
+                if (iTotalTroops == 0)
                 {
                     TroopPlaced = PlacingNone;
                     if (g_iPlayer == 1)
                     {
                         g_bTroopsPlaced = false;
                         g_iPlayer++;
-                        g_iTroopsPlaced = 0;
+                        //g_iTroopsPlaced = 0;
+                        for (int i = 0; i < 6; i++)
+                        {
+                            g_iTroopCounts[i] = LevelManager::GetInstance()->g_iLevel1Troops[i];
+                        }
                     }
                     else
                     {
