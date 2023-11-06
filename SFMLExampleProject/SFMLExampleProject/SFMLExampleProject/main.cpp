@@ -33,6 +33,8 @@ int main()
     bool g_bPlacingSoldier = true;
     bool bMovingTroop = false;
 
+    bool g_bLevelFinished = false;
+
     int g_iTurns = 0;
     int g_iPlayer = 1;
 
@@ -45,7 +47,6 @@ int main()
 
     sf::RenderWindow Settings(sf::VideoMode(400, 400), "Settings");
     Settings.setVerticalSyncEnabled(true);
-
 
 
     LevelManager* g_LevelManager = LevelManager::GetInstance();
@@ -343,103 +344,117 @@ int main()
                 break;
                 }
 
-            if (g_iPlayer == 1)
+
+            // -- Turn loop -- //
+            
+            if (!g_bLevelFinished)
             {
-                int iTroopsMoved = 0;
-                // click on troops to move them
-                for (int i = 0; i < pPlayer1->m_Troops.size(); i++)
+                if (g_iPlayer == 1)
                 {
-                    // check if mouse is clicking in troop sprite
-                    if (pPlayer1->m_Troops[i]->GetSprite().getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(window))))
+                    int iTroopsMoved = 0;
+                    // click on troops to move them
+                    for (int i = 0; i < pPlayer1->m_Troops.size(); i++)
                     {
-                        if (event.type == sf::Event::MouseButtonPressed)
+                        // check if mouse is clicking in troop sprite
+                        if (pPlayer1->m_Troops[i]->GetSprite().getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(window))))
                         {
-                            if (event.mouseButton.button == sf::Mouse::Left)
+                            if (event.type == sf::Event::MouseButtonPressed)
                             {
-                                // only move if troop hasn't moved this turn
-                                if (!pPlayer1->m_Troops[i]->m_bTroopMoved)
+                                if (event.mouseButton.button == sf::Mouse::Left)
                                 {
-                                    bMovingTroop = true;
-                                    pMovingTroop = pPlayer1->m_Troops[i];
+                                    // only move if troop hasn't moved this turn
+                                    if (!pPlayer1->m_Troops[i]->m_bTroopMoved)
+                                    {
+                                        bMovingTroop = true;
+                                        pMovingTroop = pPlayer1->m_Troops[i];
+                                    }
                                 }
                             }
                         }
-                    }
 
-                    if (bMovingTroop)
-                    {
-                        pPlayer1->MoveTroop(*pMovingTroop, event, &window);
-                    }
-                    // count troops moved
-                    if (pPlayer1->m_Troops[i]->m_bTroopMoved)
-                    {
-                        iTroopsMoved++;
-                    }
-                    // change player if all troops moved
-                    if (iTroopsMoved == pPlayer1->m_Troops.size())
-                    {
-                        for (int j = 0; j < pPlayer1->m_Troops.size(); j++)
+                        if (bMovingTroop)
                         {
-                            pPlayer1->m_Troops[j]->m_bTroopMoved = false;
+                            pPlayer1->MoveTroop(*pMovingTroop, event, &window);
                         }
-                        pPlayer1->AttackEnemies(pPlayer2);
-                        g_iPlayer++;
+                        // count troops moved
+                        if (pPlayer1->m_Troops[i]->m_bTroopMoved)
+                        {
+                            iTroopsMoved++;
+                        }
+                        // change player if all troops moved
+                        if (iTroopsMoved == pPlayer1->m_Troops.size())
+                        {
+                            for (int j = 0; j < pPlayer1->m_Troops.size(); j++)
+                            {
+                                pPlayer1->m_Troops[j]->m_bTroopMoved = false;
+                            }
+                            pPlayer1->AttackEnemies(pPlayer2);
+                            g_iPlayer++;
+                        }
                     }
                 }
-            }
-            else if (g_iPlayer == 2)
-            {
-                int iTroopsMoved = 0;
-                // click on troops to move them
-                for (int i = 0; i < pPlayer2->m_Troops.size(); i++)
+                else if (g_iPlayer == 2)
                 {
-                    // check if mouse is clicking in troop sprite
-                    if (pPlayer2->m_Troops[i]->GetSprite().getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(window))))
+                    int iTroopsMoved = 0;
+                    // click on troops to move them
+                    for (int i = 0; i < pPlayer2->m_Troops.size(); i++)
                     {
-                        if (event.type == sf::Event::MouseButtonPressed)
+                        // check if mouse is clicking in troop sprite
+                        if (pPlayer2->m_Troops[i]->GetSprite().getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(window))))
                         {
-                            if (event.mouseButton.button == sf::Mouse::Left)
+                            if (event.type == sf::Event::MouseButtonPressed)
                             {
-                                // only move if troop hasn't moved this turn
-                                if (!pPlayer2->m_Troops[i]->m_bTroopMoved)
+                                if (event.mouseButton.button == sf::Mouse::Left)
                                 {
-                                    bMovingTroop = true;
-                                    pMovingTroop = pPlayer2->m_Troops[i];
+                                    // only move if troop hasn't moved this turn
+                                    if (!pPlayer2->m_Troops[i]->m_bTroopMoved)
+                                    {
+                                        bMovingTroop = true;
+                                        pMovingTroop = pPlayer2->m_Troops[i];
+                                    }
                                 }
                             }
                         }
-                    }
 
-                    if (bMovingTroop)
-                    {
-                        pPlayer2->MoveTroop(*pMovingTroop, event, &window);
-                    }
-                    // count troops moved
-                    if (pPlayer2->m_Troops[i]->m_bTroopMoved)
-                    {
-                        iTroopsMoved++;
-                    }
-                    // change player if all troops moved
-                    if (iTroopsMoved == pPlayer2->m_Troops.size())
-                    {
-                        for (int j = 0; j < pPlayer2->m_Troops.size(); j++)
+                        if (bMovingTroop)
                         {
-                            pPlayer2->m_Troops[j]->m_bTroopMoved = false;
+                            pPlayer2->MoveTroop(*pMovingTroop, event, &window);
                         }
-                        pPlayer2->AttackEnemies(pPlayer1);
-                        g_iPlayer--;
+                        // count troops moved
+                        if (pPlayer2->m_Troops[i]->m_bTroopMoved)
+                        {
+                            iTroopsMoved++;
+                        }
+                        // change player if all troops moved
+                        if (iTroopsMoved == pPlayer2->m_Troops.size())
+                        {
+                            for (int j = 0; j < pPlayer2->m_Troops.size(); j++)
+                            {
+                                pPlayer2->m_Troops[j]->m_bTroopMoved = false;
+                            }
+                            pPlayer2->AttackEnemies(pPlayer1);
+                            g_iPlayer--;
+                        }
                     }
                 }
             }
+            // -- turn loop end -- //
         }
         // check if one player has won
-        if (pPlayer1->m_Troops.size() <= 0)
+        if (pPlayer1->m_Troops.size() <= 0 && pPlayer2->m_Troops.size() <= 0)
         {
-
+            //draw 
+            g_bLevelFinished = true;
+        }
+        else if (pPlayer1->m_Troops.size() <= 0)
+        {
+            //player 1 win
+            g_bLevelFinished = true;
         }
         else if (pPlayer2->m_Troops.size() <= 0)
         {
-
+            // player 2 win
+            g_bLevelFinished = true;
         }
             // -- main window event loop end --//
 
