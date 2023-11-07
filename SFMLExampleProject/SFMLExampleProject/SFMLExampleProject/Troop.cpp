@@ -158,7 +158,7 @@ void Troop::PlaceTroop(sf::Event _event, sf::RenderWindow* _WindowRef)
 
         SetPosition(sf::Vector2f(fXPos * 32, fYPos * 32));
 
-        //m_bTroopMoved = true;
+        m_bTroopMoved = true;
     }
 }
 

@@ -256,21 +256,21 @@ int main()
             // placing troops
             if (!g_bTroopsPlaced)
             {
+                // check which player placing troops
+                if (g_iPlayer == 1)
+                {
+                    // say player 1 placing
+                    pCurrentPlayer = pPlayer1;
+                }
+                else if (g_iPlayer == 2)
+                {
+                    // say player 2 placing
+                    pCurrentPlayer = pPlayer2;
+                }
+
                 // placing troop if button pressed
                 switch (TroopPlaced)
                 {
-                    // check which player placing troops
-                    if (g_iPlayer == 1)
-                    {
-                        // say player 1 placing
-                        pCurrentPlayer = pPlayer1;
-                    }
-                    else if (g_iPlayer == 2)
-                    {
-                        // say player 2 placing
-                        pCurrentPlayer = pPlayer2;
-                    }
-
                     // troop created based on button
                 case PlacingNone:
                     break;
