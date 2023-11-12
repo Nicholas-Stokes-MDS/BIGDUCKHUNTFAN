@@ -119,7 +119,7 @@ int main()
 
     bool g_bTroopsPlaced = false;
     int g_iTroopsPlaced = 0;
-    int g_iTroopCounts[6];
+    int g_iTroopCounts[6]{};
     for (int i = 0; i < 6; i++)
     {
         g_iTroopCounts[i] = LevelManager::GetInstance()->g_iLevel1Troops[i];
@@ -377,7 +377,10 @@ int main()
                         // count troops moved
                         if (pPlayer1->m_Troops[i]->m_bTroopMoved)
                         {
-                            iTroopsMoved++;
+                            if (g_bTroopsPlaced)
+                            {
+                                iTroopsMoved++;
+                            }
                         }
                         // change player if all troops moved
                         if (iTroopsMoved == pPlayer1->m_Troops.size())
@@ -387,6 +390,7 @@ int main()
                                 pPlayer1->m_Troops[j]->m_bTroopMoved = false;
                             }
                             pPlayer1->AttackEnemies(pPlayer2);
+                            //pPlayer2->AttackEnemies(pPlayer1);
                             g_iPlayer++;
                         }
                     }
@@ -421,7 +425,10 @@ int main()
                         // count troops moved
                         if (pPlayer2->m_Troops[i]->m_bTroopMoved)
                         {
-                            iTroopsMoved++;
+                            if (g_bTroopsPlaced)
+                            {
+                                iTroopsMoved++;
+                            }
                         }
                         // change player if all troops moved
                         if (iTroopsMoved == pPlayer2->m_Troops.size())
@@ -431,6 +438,7 @@ int main()
                                 pPlayer2->m_Troops[j]->m_bTroopMoved = false;
                             }
                             pPlayer2->AttackEnemies(pPlayer1);
+                            //pPlayer1->AttackEnemies(pPlayer2);
                             g_iPlayer--;
                         }
                     }
@@ -450,11 +458,21 @@ int main()
             {
                 //player 1 win
                 g_bLevelFinished = true;
+                g_bTroopsPlaced = false;
+                if (g_LevelManager->GetCurrentLevel() <= 2)
+                {
+                    LevelManager::GetInstance()->LoadLevel(g_LevelManager->GetCurrentLevel() + 1, &level);
+                }
             }
             else if (pPlayer2->m_Troops.size() <= 0)
             {
                 // player 2 win
                 g_bLevelFinished = true;
+                g_bTroopsPlaced = false;
+                if (g_LevelManager->GetCurrentLevel() <= 2)
+                {
+                    LevelManager::GetInstance()->LoadLevel(g_LevelManager->GetCurrentLevel() + 1, &level);
+                }
             }
         }
             // -- main window event loop end --//
@@ -614,7 +632,6 @@ int main()
         {
             window.draw(pPlayer2->GetSelectRect());
         }
-
 
         if (g_iPlayer == 1)
         {

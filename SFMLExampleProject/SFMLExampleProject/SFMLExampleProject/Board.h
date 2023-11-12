@@ -31,6 +31,8 @@ public:
 	bool InAttackRange(Troop& _TroopA, Troop& _TroopB);
 	void AttackEnemies(Board* _EnemyBoard);
 
+	void ClearTroops();
+
 	// getters
 	sf::RectangleShape GetSelectRect() { return SelectRect; };
 	sf::RectangleShape GetRangeRect() { return RangeRect; };
