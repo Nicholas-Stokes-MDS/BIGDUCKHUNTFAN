@@ -20,6 +20,7 @@ void Board::MoveTroop(Troop& _Troop, sf::Event _event, sf::RenderWindow* _Window
 	// display square showing movement range
 
 	// ?? maybe display multiple tiles and have squares you can't move to be red ??
+	if (!_Troop->btroopmoved)
 	_Troop.GetRange();
 	bool bInRange = true;
 	bool bAvailableSpace = false;
@@ -157,6 +158,7 @@ void Board::AttackEnemies(Board* _EnemyBoard)
 	//	}
 	//}
 
+	// for loop using vector iterator
 	for (auto it = _EnemyBoard->m_Troops.begin(); it != _EnemyBoard->m_Troops.end(); /* no increment here */) 
 	{
 		// deal damage to every enemy in range
