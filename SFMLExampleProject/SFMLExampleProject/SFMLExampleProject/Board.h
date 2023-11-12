@@ -23,7 +23,7 @@ public:
 	Board(Level _level, int _iPlayerID);
 	~Board();
 
-	void MoveTroop(Troop& _Troop, sf::Event _event, sf::RenderWindow* _WindowRef);
+	void MoveTroop(Troop& _Troop, sf::Event _event, sf::RenderWindow* _WindowRef, Board* _EnemyTroops);
 	void AddTroop(Troop* _Troop);
 
 	// creates a square with low opacity that snaps to whichever tile the mouse is inside
@@ -39,5 +39,7 @@ public:
 	sf::RectangleShape GetSelectRect() { return SelectRect; };
 	sf::RectangleShape GetRangeRect() { return RangeRect; };
 	bool IsPlacingTroops() { return m_bPlacingTroops; };
+
+	void SetLevel(Level _level);
 };
 

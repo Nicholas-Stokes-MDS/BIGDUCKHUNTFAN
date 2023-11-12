@@ -217,6 +217,9 @@ int main()
         level.LoadLevel("Levels/level3.txt");
     }
 
+    pPlayer1->SetLevel(level);
+    pPlayer2->SetLevel(level);
+
     while (window.isOpen())
     {
         sf::Event event;
@@ -338,31 +341,39 @@ int main()
                 if (iTotalTroops == 0)
                 {
                     TroopPlaced = PlacingNone;
+                    for (int i = 0; i < 6; i++)
+                    {
+                        if (LevelManager::GetInstance()->GetCurrentLevel() == 1)
+                        {
+                            g_iTroopCounts[i] = LevelManager::GetInstance()->g_iLevel1Troops[i];
+                        }
+                        else if (LevelManager::GetInstance()->GetCurrentLevel() == 2)
+                        {
+                            g_iTroopCounts[i] = LevelManager::GetInstance()->g_iLevel2Troops[i];
+                        }
+                        else if (LevelManager::GetInstance()->GetCurrentLevel() == 3)
+                        {
+                            g_iTroopCounts[i] = LevelManager::GetInstance()->g_iLevel3Troops[i];
+                        }
+                    }
                     if (g_iPlayer == 1)
                     {
                         g_bTroopsPlaced = false;
                         g_iPlayer++;
                         //g_iTroopsPlaced = 0;
-                        for (int i = 0; i < 6; i++)
+                        for (int j = 0; j < pPlayer1->m_Troops.size(); j++)
                         {
-                            if (LevelManager::GetInstance()->GetCurrentLevel() == 1)
-                            {
-                                g_iTroopCounts[i] = LevelManager::GetInstance()->g_iLevel1Troops[i];
-                            }
-                            else if (LevelManager::GetInstance()->GetCurrentLevel() == 2)
-                            {
-                                g_iTroopCounts[i] = LevelManager::GetInstance()->g_iLevel2Troops[i];
-                            }
-                            else if (LevelManager::GetInstance()->GetCurrentLevel() == 3)
-                            {
-                                g_iTroopCounts[i] = LevelManager::GetInstance()->g_iLevel3Troops[i];
-                            }
+                            pPlayer1->m_Troops[j]->m_bTroopMoved = false;
                         }
                     }
                     else
                     {
                         g_bTroopsPlaced = true;
                         g_iPlayer = 1;
+                        for (int j = 0; j < pPlayer1->m_Troops.size(); j++)
+                        {
+                            pPlayer2->m_Troops[j]->m_bTroopMoved = false;
+                        }
                     }
                 }
             }
@@ -395,7 +406,7 @@ int main()
 
                         if (bMovingTroop)
                         {
-                            pPlayer1->MoveTroop(*pMovingTroop, event, &window);
+                            pPlayer1->MoveTroop(*pMovingTroop, event, &window, pPlayer2);
                         }
                         // count troops moved
                         if (pPlayer1->m_Troops[i]->m_bTroopMoved)
@@ -413,7 +424,7 @@ int main()
                                 pPlayer1->m_Troops[j]->m_bTroopMoved = false;
                             }
                             pPlayer1->AttackEnemies(pPlayer2);
-                            //pPlayer2->AttackEnemies(pPlayer1);
+                            pPlayer2->AttackEnemies(pPlayer1);
                             g_iPlayer++;
                         }
                     }
@@ -443,7 +454,7 @@ int main()
 
                         if (bMovingTroop)
                         {
-                            pPlayer2->MoveTroop(*pMovingTroop, event, &window);
+                            pPlayer2->MoveTroop(*pMovingTroop, event, &window, pPlayer1);
                         }
                         // count troops moved
                         if (pPlayer2->m_Troops[i]->m_bTroopMoved)
@@ -461,7 +472,7 @@ int main()
                                 pPlayer2->m_Troops[j]->m_bTroopMoved = false;
                             }
                             pPlayer2->AttackEnemies(pPlayer1);
-                            //pPlayer1->AttackEnemies(pPlayer2);
+                            pPlayer1->AttackEnemies(pPlayer2);
                             g_iPlayer--;
                         }
                     }

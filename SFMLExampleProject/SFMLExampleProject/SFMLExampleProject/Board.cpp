@@ -10,7 +10,7 @@ Board::Board(Level _level, int _iPlayerID)
 	m_Level = _level;
 }
 
-void Board::MoveTroop(Troop& _Troop, sf::Event _event, sf::RenderWindow* _WindowRef)
+void Board::MoveTroop(Troop& _Troop, sf::Event _event, sf::RenderWindow* _WindowRef, Board* _EnemyTroops)
 {
 
 	// check movement range
@@ -22,7 +22,7 @@ void Board::MoveTroop(Troop& _Troop, sf::Event _event, sf::RenderWindow* _Window
 	// ?? maybe display multiple tiles and have squares you can't move to be red ??
 	_Troop.GetRange();
 	bool bInRange = true;
-	bool bAvailableSpace = true;
+	bool bAvailableSpace = false;
 	int iRange = 0;
 	// how far the x and y of rectange around troop is
 	iRange = 64 * _Troop.GetRange() + 32;
@@ -42,12 +42,31 @@ void Board::MoveTroop(Troop& _Troop, sf::Event _event, sf::RenderWindow* _Window
 		SelectRect.setFillColor(sf::Color(255, 0, 0, 128));
 	}
 
-	// only move if no tile in the way
-	for (int i = 0; i < m_Level.m_LevelTiles.size(); i++)
+	// only move if on suitable terrain
+	if (_Troop.GetName() == "Boat")
 	{
-		if (SelectRect.getGlobalBounds().intersects(m_Level.m_LevelTiles[i]->m_CharacterSprite.getGlobalBounds()))
+		for (int i = 0; i < m_Level.m_LevelTiles.size(); i++)
 		{
-			//bAvailableSpace = false;
+			if (m_Level.m_LevelTiles[i]->m_TerrainType == Water)
+			{
+				if (SelectRect.getGlobalBounds().intersects(m_Level.m_LevelTiles[i]->m_CharacterSprite.getGlobalBounds()))
+				{
+					bAvailableSpace = true;
+				}
+			}
+		}
+	}
+	else
+	{
+		for (int i = 0; i < m_Level.m_LevelTiles.size(); i++)
+		{
+			if (m_Level.m_LevelTiles[i]->m_TerrainType == Wall)
+			{
+				if (SelectRect.getGlobalBounds().intersects(m_Level.m_LevelTiles[i]->m_CharacterSprite.getGlobalBounds()))
+				{
+					bAvailableSpace = true;
+				}
+			}
 		}
 	}
 	
@@ -60,11 +79,25 @@ void Board::MoveTroop(Troop& _Troop, sf::Event _event, sf::RenderWindow* _Window
 		}
 	}
 
+	// only move if no enemy troops in the way
+	for (int j = 0; j < m_Troops.size(); j++)
+	{
+		if (SelectRect.getGlobalBounds().intersects(_EnemyTroops->m_Troops[j]->GetSprite().getGlobalBounds()))
+		{
+			bAvailableSpace = false;
+		}
+	}
+
+	// place troops if conditions satisfied
 	if (m_bPlacingTroops)
 	{
 		if (bInRange && bAvailableSpace)
 		{
 			_Troop.PlaceTroop(_event, _WindowRef);
+		}
+		else
+		{
+			SelectRect.setFillColor(sf::Color(255, 0, 0, 128));
 		}
 	}
 }
@@ -151,4 +184,9 @@ void Board::AttackEnemies(Board* _EnemyBoard)
 void Board::ClearTroops()
 {
 	m_Troops.resize(0);
+}
+
+void Board::SetLevel(Level _level)
+{
+	m_Level = _level;
 }
