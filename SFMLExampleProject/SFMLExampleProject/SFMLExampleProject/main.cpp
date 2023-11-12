@@ -122,7 +122,18 @@ int main()
     int g_iTroopCounts[6]{};
     for (int i = 0; i < 6; i++)
     {
-        g_iTroopCounts[i] = LevelManager::GetInstance()->g_iLevel1Troops[i];
+        if (LevelManager::GetInstance()->GetCurrentLevel() == 1)
+        {
+            g_iTroopCounts[i] = LevelManager::GetInstance()->g_iLevel1Troops[i];
+        }
+        else if (LevelManager::GetInstance()->GetCurrentLevel() == 2)
+        {
+            g_iTroopCounts[i] = LevelManager::GetInstance()->g_iLevel2Troops[i];
+        }
+        else if (LevelManager::GetInstance()->GetCurrentLevel() == 3)
+        {
+            g_iTroopCounts[i] = LevelManager::GetInstance()->g_iLevel3Troops[i];
+        }
     }
 
     int g_iTurns = 0;
@@ -256,6 +267,7 @@ int main()
             // placing troops
             if (!g_bTroopsPlaced)
             {
+                g_bLevelFinished = false;
                 // check which player placing troops
                 if (g_iPlayer == 1)
                 {
@@ -333,7 +345,18 @@ int main()
                         //g_iTroopsPlaced = 0;
                         for (int i = 0; i < 6; i++)
                         {
-                            g_iTroopCounts[i] = LevelManager::GetInstance()->g_iLevel1Troops[i];
+                            if (LevelManager::GetInstance()->GetCurrentLevel() == 1)
+                            {
+                                g_iTroopCounts[i] = LevelManager::GetInstance()->g_iLevel1Troops[i];
+                            }
+                            else if (LevelManager::GetInstance()->GetCurrentLevel() == 2)
+                            {
+                                g_iTroopCounts[i] = LevelManager::GetInstance()->g_iLevel2Troops[i];
+                            }
+                            else if (LevelManager::GetInstance()->GetCurrentLevel() == 3)
+                            {
+                                g_iTroopCounts[i] = LevelManager::GetInstance()->g_iLevel3Troops[i];
+                            }
                         }
                     }
                     else
@@ -459,20 +482,57 @@ int main()
                 //player 1 win
                 g_bLevelFinished = true;
                 g_bTroopsPlaced = false;
+                pPlayer1->ClearTroops();
+                pPlayer2->ClearTroops();
                 if (g_LevelManager->GetCurrentLevel() <= 2)
                 {
                     LevelManager::GetInstance()->LoadLevel(g_LevelManager->GetCurrentLevel() + 1, &level);
                 }
+                for (int i = 0; i < 6; i++)
+                {
+                    if (LevelManager::GetInstance()->GetCurrentLevel() == 1)
+                    {
+                        g_iTroopCounts[i] = LevelManager::GetInstance()->g_iLevel1Troops[i];
+                    }
+                    else if (LevelManager::GetInstance()->GetCurrentLevel() == 2)
+                    {
+                        g_iTroopCounts[i] = LevelManager::GetInstance()->g_iLevel2Troops[i];
+                    }
+                    else if (LevelManager::GetInstance()->GetCurrentLevel() == 3)
+                    {
+                        g_iTroopCounts[i] = LevelManager::GetInstance()->g_iLevel3Troops[i];
+                    }
+                }
+                g_iPlayer = 1;
             }
             else if (pPlayer2->m_Troops.size() <= 0)
             {
                 // player 2 win
                 g_bLevelFinished = true;
                 g_bTroopsPlaced = false;
+                pPlayer1->ClearTroops();
+                pPlayer2->ClearTroops();
                 if (g_LevelManager->GetCurrentLevel() <= 2)
                 {
                     LevelManager::GetInstance()->LoadLevel(g_LevelManager->GetCurrentLevel() + 1, &level);
                 }
+                for (int i = 0; i < 6; i++)
+                {
+                    if (LevelManager::GetInstance()->GetCurrentLevel() == 1)
+                    {
+                        g_iTroopCounts[i] = LevelManager::GetInstance()->g_iLevel1Troops[i];
+                    }
+                    else if (LevelManager::GetInstance()->GetCurrentLevel() == 2)
+                    {
+                        g_iTroopCounts[i] = LevelManager::GetInstance()->g_iLevel2Troops[i];
+                    }
+                    else if (LevelManager::GetInstance()->GetCurrentLevel() == 3)
+                    {
+                        g_iTroopCounts[i] = LevelManager::GetInstance()->g_iLevel3Troops[i];
+                    }
+                }
+
+                g_iPlayer = 1;
             }
         }
             // -- main window event loop end --//

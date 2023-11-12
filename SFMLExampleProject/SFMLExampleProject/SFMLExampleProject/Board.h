@@ -4,6 +4,7 @@
 #include "Level.h"
 #include "Troop.h"
 #include "Terrain.h"
+#include <algorithm>
 
 class Board
 {
@@ -31,6 +32,7 @@ public:
 	bool InAttackRange(Troop& _TroopA, Troop& _TroopB);
 	void AttackEnemies(Board* _EnemyBoard);
 
+	void DeleteTroop(std::vector<Troop*> _Troops);
 	void ClearTroops();
 
 	// getters

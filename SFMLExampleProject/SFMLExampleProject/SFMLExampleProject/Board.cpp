@@ -102,25 +102,53 @@ bool Board::InAttackRange(Troop& _TroopA, Troop& _TroopB)
 
 void Board::AttackEnemies(Board* _EnemyBoard)
 {
-	// sort through all enemy troops
-	for (int j = 0; j < _EnemyBoard->m_Troops.size(); j++)
+	//// sort through all enemy troops
+	//for (int j = 0; j < _EnemyBoard->m_Troops.size(); j++)
+	//{
+	//	// sort through all player troops
+	//	for (int i = 0; i < m_Troops.size(); i++)
+	//	{
+	//		// deal damage to every enemy in range
+	//		if (InAttackRange(*m_Troops[i], *_EnemyBoard->m_Troops[j]))
+	//		{
+	//			_EnemyBoard->m_Troops[j]->SetHealth(_EnemyBoard->m_Troops[j]->GetHealth() - m_Troops[i]->GetDamage());
+	//		}
+	//	}
+	//	if (_EnemyBoard->m_Troops[j]->GetHealth() <= 0)
+	//	{
+	//		// if an enemy is killed, delete that enemy and resize the vector
+	//		std::cout << m_Troops[j]->GetName() << " Killed" << std::endl;
+	//		delete _EnemyBoard->m_Troops[j];
+	//		_EnemyBoard->m_Troops.erase(_EnemyBoard->m_Troops.begin() + j);
+	//		_EnemyBoard->m_Troops.resize(_EnemyBoard->m_Troops.size() - 1);
+	//	}
+	//}
+
+	for (auto it = _EnemyBoard->m_Troops.begin(); it != _EnemyBoard->m_Troops.end(); /* no increment here */) 
 	{
-		// sort through all player troops
-		for (int i = 0; i < m_Troops.size(); i++)
+		// deal damage to every enemy in range
+		for (auto& playerTroop : m_Troops) 
 		{
-			// deal damage to every enemy in range
-			if (InAttackRange(*m_Troops[i], *_EnemyBoard->m_Troops[j]))
+			if (InAttackRange(*playerTroop, **it)) 
 			{
-				_EnemyBoard->m_Troops[j]->SetHealth(_EnemyBoard->m_Troops[j]->GetHealth() - m_Troops[i]->GetDamage());
+				(*it)->SetHealth((*it)->GetHealth() - playerTroop->GetDamage());
 			}
 		}
-		if (_EnemyBoard->m_Troops[j]->GetHealth() <= 0)
+		if ((*it)->GetHealth() <= 0) 
 		{
-			// if an enemy is killed, delete that enemy and resize the vector
-			std::cout << m_Troops[j]->GetName() << " Killed" << std::endl;
-			delete _EnemyBoard->m_Troops[j];
-			_EnemyBoard->m_Troops.erase(_EnemyBoard->m_Troops.begin() + j);
-			_EnemyBoard->m_Troops.resize(_EnemyBoard->m_Troops.size() - 1);
+			// if an enemy is killed, delete that enemy and remove it from the vector
+			std::cout << (*it)->GetName() << " Killed" << std::endl;
+			delete* it;
+			it = _EnemyBoard->m_Troops.erase(it);
+		}
+		else 
+		{
+			it++;
 		}
 	}
+}
+
+void Board::ClearTroops()
+{
+	m_Troops.resize(0);
 }
