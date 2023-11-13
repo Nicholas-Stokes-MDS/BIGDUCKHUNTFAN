@@ -198,6 +198,8 @@ int main()
     bool bMovingTroop = false;
 
     bool g_bLevelFinished = false;
+    bool g_bPlayer1Won = false;
+    bool g_bPlayer2Won = false;
 
     bool g_bTroopsPlaced = false;
     int g_iTroopsPlaced = 0;
@@ -366,18 +368,6 @@ int main()
                 break;
             }
 
-            if (event.type == sf::Event::MouseButtonPressed)
-            {
-                if (PlayerTurn[2].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(window))))
-                {
-                    // end turn code
-                }
-                if (PlayerTurn[6].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(window))))
-                {
-                    // next levl code
-                }
-            }
-
             // placing troops
             if (!g_bTroopsPlaced)
             {
@@ -494,9 +484,59 @@ int main()
             // -- Turn loop -- //    
             if (!g_bLevelFinished && g_bTroopsPlaced)
             {
+                int iTroopsMoved = 0;
+
+                if (event.type == sf::Event::MouseButtonPressed)
+                {
+                    // end turn button
+                    if (PlayerTurn[2].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(window))))
+                    {
+                        // end turn code
+                        if (g_iPlayer == 2)
+                        {
+                            iTroopsMoved = pPlayer2->m_Troops.size();
+                            g_iPlayer = 1;
+                        }
+                        else
+                        {
+                            iTroopsMoved = pPlayer1->m_Troops.size();
+                            g_iPlayer = 2;
+                        }
+                    }
+                    // next level button
+                    if (PlayerTurn[6].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(window))))
+                    {
+                        if (g_bPlayer1Won || g_bPlayer2Won)
+                        {
+                            // next levl code
+                            if (g_LevelManager->GetCurrentLevel() <= 2)
+                            {
+                                LevelManager::GetInstance()->LoadLevel(g_LevelManager->GetCurrentLevel() + 1, &level);
+                            }
+                            for (int i = 0; i < 6; i++)
+                            {
+                                if (LevelManager::GetInstance()->GetCurrentLevel() == 1)
+                                {
+                                    g_iTroopCounts[i] = LevelManager::GetInstance()->g_iLevel1Troops[i];
+                                }
+                                else if (LevelManager::GetInstance()->GetCurrentLevel() == 2)
+                                {
+                                    g_iTroopCounts[i] = LevelManager::GetInstance()->g_iLevel2Troops[i];
+                                }
+                                else if (LevelManager::GetInstance()->GetCurrentLevel() == 3)
+                                {
+                                    g_iTroopCounts[i] = LevelManager::GetInstance()->g_iLevel3Troops[i];
+                                }
+                            }
+
+                            g_bLevelFinished = true;
+                            g_bTroopsPlaced = false;
+                        }
+                    }
+                }
+
                 if (g_iPlayer == 1)
                 {
-                    int iTroopsMoved = 0;
                     // click on troops to move them
                     for (int i = 0; i < pPlayer1->m_Troops.size(); i++)
                     {
@@ -548,7 +588,6 @@ int main()
                 }
                 else if (g_iPlayer == 2)
                 {
-                    int iTroopsMoved = 0;
                     // click on troops to move them
                     for (int i = 0; i < pPlayer2->m_Troops.size(); i++)
                     {
@@ -607,63 +646,22 @@ int main()
             if (pPlayer1->m_Troops.size() <= 0 && pPlayer2->m_Troops.size() <= 0)
             {
                 //draw 
-                g_bLevelFinished = true;
+                //g_bLevelFinished = true;
             }
             else if (pPlayer1->m_Troops.size() <= 0)
             {
                 //player 1 win
-                g_bLevelFinished = true;
-                g_bTroopsPlaced = false;
                 pPlayer1->ClearTroops();
                 pPlayer2->ClearTroops();
-                if (g_LevelManager->GetCurrentLevel() <= 2)
-                {
-                    LevelManager::GetInstance()->LoadLevel(g_LevelManager->GetCurrentLevel() + 1, &level);
-                }
-                for (int i = 0; i < 6; i++)
-                {
-                    if (LevelManager::GetInstance()->GetCurrentLevel() == 1)
-                    {
-                        g_iTroopCounts[i] = LevelManager::GetInstance()->g_iLevel1Troops[i];
-                    }
-                    else if (LevelManager::GetInstance()->GetCurrentLevel() == 2)
-                    {
-                        g_iTroopCounts[i] = LevelManager::GetInstance()->g_iLevel2Troops[i];
-                    }
-                    else if (LevelManager::GetInstance()->GetCurrentLevel() == 3)
-                    {
-                        g_iTroopCounts[i] = LevelManager::GetInstance()->g_iLevel3Troops[i];
-                    }
-                }
                 g_iPlayer = 1;
+                g_bPlayer1Won = true;
             }
             else if (pPlayer2->m_Troops.size() <= 0)
             {
                 // player 2 win
-                g_bLevelFinished = true;
-                g_bTroopsPlaced = false;
                 pPlayer1->ClearTroops();
                 pPlayer2->ClearTroops();
-                if (g_LevelManager->GetCurrentLevel() <= 2)
-                {
-                    LevelManager::GetInstance()->LoadLevel(g_LevelManager->GetCurrentLevel() + 1, &level);
-                }
-                for (int i = 0; i < 6; i++)
-                {
-                    if (LevelManager::GetInstance()->GetCurrentLevel() == 1)
-                    {
-                        g_iTroopCounts[i] = LevelManager::GetInstance()->g_iLevel1Troops[i];
-                    }
-                    else if (LevelManager::GetInstance()->GetCurrentLevel() == 2)
-                    {
-                        g_iTroopCounts[i] = LevelManager::GetInstance()->g_iLevel2Troops[i];
-                    }
-                    else if (LevelManager::GetInstance()->GetCurrentLevel() == 3)
-                    {
-                        g_iTroopCounts[i] = LevelManager::GetInstance()->g_iLevel3Troops[i];
-                    }
-                }
-
+                g_bPlayer2Won = true;
                 g_iPlayer = 1;
             }
         }
@@ -844,10 +842,16 @@ int main()
         }
 
         //if player 1 wins
-        //PlayerTurn[4].Draw(&window);
+        if (g_bPlayer1Won)
+        {
+            PlayerTurn[4].Draw(&window);
+        }
 
         //if player 2 wins
-        //PlayerTurn[5].Draw(&window);
+        if (g_bPlayer2Won)
+        {
+            PlayerTurn[5].Draw(&window);
+        }
 
         // if a player wins
         PlayerTurn[6].Draw(&window);
