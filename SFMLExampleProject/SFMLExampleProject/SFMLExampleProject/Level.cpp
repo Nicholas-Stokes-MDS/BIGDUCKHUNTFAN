@@ -10,6 +10,7 @@
 // Author : Nick Stokes
 // Mail : Nicholas.Stokes@mds.ac.nz
 #include "Level.h"
+#include <iostream>
 
 Level::Level()
 {
@@ -78,6 +79,7 @@ void Level::Draw(sf::RenderWindow* _Window)
 	for (int j = 0; j < m_LevelTiles.size(); j++)
 	{
 		_Window->draw(m_LevelTiles[j]->Draw());
+		//std::cout << m_LevelTiles[j]->GetTerrainType();
 	}
 }
 
@@ -88,4 +90,20 @@ void Level::UnloadLevel()
 		delete m_LevelTiles[i];
 	}
 	m_LevelTiles.resize(0);
+}
+
+void Level::PrintTerrainType()
+{
+	std::cout << std::endl;
+	int lineBreaker = 0;
+	for (int j = 0; j < m_LevelTiles.size(); j++)
+	{
+		std::cout << m_LevelTiles[j]->GetTerrainType();
+		lineBreaker += 1;
+		if (lineBreaker == 15)
+		{
+			std::cout << std::endl;
+			lineBreaker = 0;
+		}
+	}
 }

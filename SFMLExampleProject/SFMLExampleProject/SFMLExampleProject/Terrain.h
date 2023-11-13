@@ -64,6 +64,10 @@ public:
 	// reposition
 	void SetPosition(sf::Vector2f _Pos) { m_CharacterSprite.setPosition(_Pos); m_CharacterPosition = _Pos; }
 
+	TerrainType GetTerrainType()
+	{
+		return m_TerrainType;
+	}
 
 	//// movement
 	//void ApplyGravity(float _Grav, float _dt) { m_fCharacterYVelocity += _Grav * _dt; }

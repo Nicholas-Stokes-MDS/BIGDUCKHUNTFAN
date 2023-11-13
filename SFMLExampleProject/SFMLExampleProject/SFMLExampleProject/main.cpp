@@ -54,6 +54,7 @@ int PlaceTroop(Board* _Player, std::string _TroopPath, sf::Event _event, sf::Ren
                         if (_Player->GetSelectRect().getGlobalBounds().intersects(_level.m_LevelTiles[i]->m_CharacterSprite.getGlobalBounds()))
                         {
                             bAvailableSpace = true;
+                            std::cout << "wall" << std::endl;
                         }
                     }
                 }
@@ -325,6 +326,8 @@ int main()
         level.LoadLevel("Levels/level3.txt");
     }
 
+    level.PrintTerrainType();
+
     pPlayer1->SetLevel(level);
     pPlayer2->SetLevel(level);
 
@@ -344,16 +347,19 @@ int main()
                 if (event.key.code == sf::Keyboard::Num1)
                 {
                     LevelManager::GetInstance()->LoadLevel(1, &level);
+                    level.PrintTerrainType();
                 }
 
                 else if (event.key.code == sf::Keyboard::Num2)
                 {
                     LevelManager::GetInstance()->LoadLevel(2, &level);
+                    level.PrintTerrainType();
                 }
 
                 else if (event.key.code == sf::Keyboard::Num3)
                 {
                     LevelManager::GetInstance()->LoadLevel(3, &level);
+                    level.PrintTerrainType();
                 }
 
                 else if (event.key.code == sf::Keyboard::Num7)
@@ -554,6 +560,7 @@ int main()
                             if (g_LevelManager->GetCurrentLevel() <= 2)
                             {
                                 LevelManager::GetInstance()->LoadLevel(g_LevelManager->GetCurrentLevel() + 1, &level);
+                                level.PrintTerrainType();
                             }
                             for (int i = 0; i < 6; i++)
                             {
