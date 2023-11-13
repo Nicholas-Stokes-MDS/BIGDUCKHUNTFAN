@@ -32,3 +32,9 @@ void UIElement::Draw(sf::RenderWindow* _Window)
 	_Window->draw(m_ElementText);
 }
 
+void UIElement::Update(std::string _ID)
+{
+	m_ElementID = _ID;
+	m_ElementText.setString(m_ElementID);
+}
+

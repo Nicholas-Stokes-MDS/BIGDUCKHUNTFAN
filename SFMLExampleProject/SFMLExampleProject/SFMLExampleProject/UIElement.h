@@ -14,5 +14,6 @@ public:
 
 	void ButtonReact();
 	void Draw(sf::RenderWindow* _Window);
+	void Update(std::string _ID);
 };
 
