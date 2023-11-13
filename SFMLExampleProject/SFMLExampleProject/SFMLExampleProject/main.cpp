@@ -128,10 +128,24 @@ int main()
 
     std::vector<UIElement> MenuElements;
     // creation of buttons
-    UIElement SinglePlayer(sf::Vector2f(50, 30), sf::Vector2f(150, 50), std::string("SinglePlayer"), UIElementFont, sf::Color::Black);
+    UIElement SinglePlayer(sf::Vector2f(300, 30), sf::Vector2f(150, 50), std::string("SinglePlayer"), UIElementFont, sf::Color::Black);
     MenuElements.push_back(SinglePlayer);
-    UIElement TwoPlayer(sf::Vector2f(50, 100), sf::Vector2f(150, 50), std::string("TwoPlayer"), UIElementFont, sf::Color::Black);
+    UIElement TwoPlayer(sf::Vector2f(300, 100), sf::Vector2f(150, 50), std::string("TwoPlayer"), UIElementFont, sf::Color::Black);
     MenuElements.push_back(TwoPlayer);
+    UIElement Instruction1(sf::Vector2f(50, 170), sf::Vector2f(700, 50), std::string("1.Use the buttons on the troop panel to place your troops"), UIElementFont, sf::Color::Black);
+    MenuElements.push_back(Instruction1);
+    UIElement Instruction2(sf::Vector2f(50, 220), sf::Vector2f(700, 50), std::string("2.Click on a troop to move them"), UIElementFont, sf::Color::Black);
+    MenuElements.push_back(Instruction2);
+    UIElement Instruction3(sf::Vector2f(50, 270), sf::Vector2f(700, 50), std::string("3.Once each troop has been moved or the end turn button has been"), UIElementFont, sf::Color::Black);
+    MenuElements.push_back(Instruction3);
+    UIElement Instruction4(sf::Vector2f(50, 320), sf::Vector2f(700, 50), std::string("   pressed, troops deal damage to each other."), UIElementFont, sf::Color::Black);
+    MenuElements.push_back(Instruction4);
+    UIElement Instruction5(sf::Vector2f(50, 370), sf::Vector2f(700, 50), std::string("4.If a troop is adjacent to another troop, those troops will give"), UIElementFont, sf::Color::Black);
+    MenuElements.push_back(Instruction5);
+    UIElement Instruction6(sf::Vector2f(50, 420), sf::Vector2f(700, 50), std::string("   each other plus one damage (non stackable). "), UIElementFont, sf::Color::Black);
+    MenuElements.push_back(Instruction6);
+    UIElement Instruction7(sf::Vector2f(50, 470), sf::Vector2f(700, 50), std::string("5.Strategically move your troops to defeat all the opponent troops."), UIElementFont, sf::Color::Black);
+    MenuElements.push_back(Instruction7);
 
     while (LevelManager::GetInstance()->GetGameType() == 0)
     {
@@ -163,16 +177,17 @@ int main()
                     }
                 }
 
-                // Menu render loop
-                window.clear();
-                // draw UI elements of menu
-                for (int i = 0; i < MenuElements.size(); i++)
-                {
-                    MenuElements[i].Draw(&window);
-                }
-                window.display();
-                // Settings window render loop
+
             }
+            // Menu render loop
+            window.clear();
+            // draw UI elements of menu
+            for (int i = 0; i < MenuElements.size(); i++)
+            {
+                MenuElements[i].Draw(&window);
+            }
+            window.display();
+            // Settings window render loop
 
         }
     }
@@ -267,10 +282,26 @@ int main()
     UIElements2.push_back(resolution3Element);
 
     std::vector<UIElement> PlayerTurn;
-    UIElement Player1Element(sf::Vector2f(0, 415), sf::Vector2f(150, 50), std::string("Player 1's turn"), UIElementFont, sf::Color::Blue);
+    UIElement Player1Element(sf::Vector2f(165, 480), sf::Vector2f(150, 50), std::string("Player 1's turn"), UIElementFont, sf::Color::Blue);
     PlayerTurn.push_back(Player1Element);
-    UIElement Player2Element(sf::Vector2f(0, 415), sf::Vector2f(150, 50), std::string("Player 2's turn"), UIElementFont, sf::Color::Red);
+    UIElement Player2Element(sf::Vector2f(165, 480), sf::Vector2f(150, 50), std::string("Player 2's turn"), UIElementFont, sf::Color::Red);
     PlayerTurn.push_back(Player2Element);
+    UIElement EndTurn(sf::Vector2f(330, 480), sf::Vector2f(150, 50), std::string("End Turn"), UIElementFont, sf::Color::Black);
+    PlayerTurn.push_back(EndTurn);
+    UIElement LevelNumber(sf::Vector2f(0, 480), sf::Vector2f(150, 50), std::string("Level: ") + std::to_string(LevelManager::GetInstance()->GetCurrentLevel()), UIElementFont, sf::Color::Black);
+    PlayerTurn.push_back(LevelNumber);
+    UIElement Win(sf::Vector2f(0, 540), sf::Vector2f(150, 50), std::string("Player 1 wins"), UIElementFont, sf::Color::Blue);
+    PlayerTurn.push_back(Win);
+    UIElement Lose(sf::Vector2f(0, 540), sf::Vector2f(150, 50), std::string("Player 2 wins"), UIElementFont, sf::Color::Red);
+    PlayerTurn.push_back(Lose);
+    UIElement NextLevel(sf::Vector2f(165, 540), sf::Vector2f(150, 50), std::string("Next level"), UIElementFont, sf::Color::Black);
+    PlayerTurn.push_back(NextLevel);
+
+    //LevelNumber(std::string("End Turn"))
+
+    
+
+    //UIElement PlayerTurn[3](sf::Vector2f(0, 480), sf::Vector2f(150, 50), std::string("Level: ") + std::to_string(LevelManager::GetInstance()->GetCurrentLevel()), UIElementFont, sf::Color::Black);
 
     if (LevelManager::GetInstance()->GetCurrentLevel() == 1)
     {
@@ -333,6 +364,18 @@ int main()
                 break;
             default:
                 break;
+            }
+
+            if (event.type == sf::Event::MouseButtonPressed)
+            {
+                if (PlayerTurn[2].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(window))))
+                {
+                    // end turn code
+                }
+                if (PlayerTurn[6].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(window))))
+                {
+                    // next levl code
+                }
             }
 
             // placing troops
@@ -799,6 +842,20 @@ int main()
             // say player 2 placing
             PlayerTurn[1].Draw(&window);
         }
+
+        //if player 1 wins
+        //PlayerTurn[4].Draw(&window);
+
+        //if player 2 wins
+        //PlayerTurn[5].Draw(&window);
+
+        // if a player wins
+        PlayerTurn[6].Draw(&window);
+        
+
+        PlayerTurn[3].Update(std::string("Level: ") + std::to_string(LevelManager::GetInstance()->GetCurrentLevel()));
+        PlayerTurn[2].Draw(&window);
+        PlayerTurn[3].Draw(&window);
 
         window.display();
 
