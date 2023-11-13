@@ -29,8 +29,16 @@ public:
 	// creates a square with low opacity that snaps to whichever tile the mouse is inside
 	void ShowMouseSquare(sf::RenderWindow* _WindowRef);
 
+	// colour enemy troops to make it obvious who is who
+	void ColourTroops(sf::RenderWindow& window);
+
 	bool InAttackRange(Troop& _TroopA, Troop& _TroopB);
 	void AttackEnemies(Board* _EnemyBoard);
+
+	// buff troops in direct viscinity 
+	bool InVicinity(Troop* _TroopA, Troop* _TroopB);
+	void BuffTroops();
+	void ResetBuffs();
 
 	void DeleteTroop(std::vector<Troop*> _Troops);
 	void ClearTroops();

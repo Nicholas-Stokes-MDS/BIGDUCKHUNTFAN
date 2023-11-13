@@ -493,8 +493,12 @@ int main()
                             {
                                 pPlayer1->m_Troops[j]->m_bTroopMoved = false;
                             }
+                            pPlayer1->BuffTroops();
+                            pPlayer2->BuffTroops();
                             pPlayer1->AttackEnemies(pPlayer2);
                             pPlayer2->AttackEnemies(pPlayer1);
+                            pPlayer1->ResetBuffs();
+                            pPlayer2->ResetBuffs();
                             g_iPlayer++;
                         }
                     }
@@ -541,8 +545,12 @@ int main()
                             {
                                 pPlayer2->m_Troops[j]->m_bTroopMoved = false;
                             }
+                            pPlayer2->BuffTroops();
+                            pPlayer1->BuffTroops();
                             pPlayer2->AttackEnemies(pPlayer1);
                             pPlayer1->AttackEnemies(pPlayer2);
+                            pPlayer1->ResetBuffs();
+                            pPlayer2->ResetBuffs();
                             g_iPlayer--;
                         }
                     }
@@ -772,10 +780,12 @@ int main()
         if (g_iPlayer == 1)
         {
             window.draw(pPlayer1->GetSelectRect());
+            pPlayer2->ColourTroops(window);
         }
         else
         {
             window.draw(pPlayer2->GetSelectRect());
+            pPlayer1->ColourTroops(window);
         }
 
         if (g_iPlayer == 1)

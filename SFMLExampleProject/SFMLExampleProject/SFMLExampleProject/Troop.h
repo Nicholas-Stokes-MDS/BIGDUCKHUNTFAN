@@ -43,6 +43,7 @@ public:
 	TroopType Type = None;
 
 	bool m_bTroopMoved = false;
+	bool m_bIsBuffed = false;
 
 	// show troop health damage etc in debug
 	void PrintStats();

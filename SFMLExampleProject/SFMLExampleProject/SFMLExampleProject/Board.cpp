@@ -137,6 +137,17 @@ void Board::ShowMouseSquare(sf::RenderWindow* _WindowRef)
 	SelectRect.setPosition(sf::Vector2f(fXPos * 32, fYPos * 32));
 }
 
+void Board::ColourTroops(sf::RenderWindow& window)
+{
+	for (auto& troop : m_Troops) 
+	{
+		sf::RectangleShape rectangle(sf::Vector2f(32, 32));
+		rectangle.setFillColor(sf::Color(0, 0, 255, 150));
+		rectangle.setPosition(troop->GetPosition().x, troop->GetPosition().y);
+		window.draw(rectangle);
+	}
+}
+
 bool Board::InAttackRange(Troop& _TroopA, Troop& _TroopB)
 {
 	int iRange = 64 * _TroopA.GetAttackRange() + 32;
@@ -183,7 +194,8 @@ void Board::AttackEnemies(Board* _EnemyBoard)
 		{
 			if (InAttackRange(*playerTroop, **it)) 
 			{
-				(*it)->SetHealth((*it)->GetHealth() - playerTroop->GetDamage());
+				// m_bIsBuffed adds 1 damage if true as a bool
+				(*it)->SetHealth((*it)->GetHealth() - (playerTroop->GetDamage() + playerTroop->m_bIsBuffed));
 			}
 		}
 		if ((*it)->GetHealth() <= 0) 
@@ -197,6 +209,54 @@ void Board::AttackEnemies(Board* _EnemyBoard)
 		{
 			it++;
 		}
+	}
+}
+
+bool Board::InVicinity(Troop* _TroopA, Troop* _TroopB)
+{
+	int iRange = 64 * _TroopA->GetAttackRange() + 32;
+	RangeRect.setSize(sf::Vector2f(iRange, iRange));
+	// put rectangle around centre of troop
+	RangeRect.setPosition(sf::Vector2f(_TroopA->GetPosition().x - iRange / 2 + 16, _TroopA->GetPosition().y - iRange / 2 + 16));
+
+	if (_TroopB->GetSprite().getGlobalBounds().intersects(RangeRect.getGlobalBounds()))
+	{
+		return true;
+	}
+	return false;
+}
+
+void Board::BuffTroops()
+{
+	// for loop using vector iterator
+	for (auto it = m_Troops.begin(); it != m_Troops.end(); /* no increment here */)
+	{
+		// check for troops in vicinity 
+		for (auto& playerTroop : m_Troops)
+		{
+			if (InVicinity(playerTroop, *it))
+			{
+				(*it)->m_bIsBuffed = true;
+			}
+		}
+		it++;
+	}
+}
+
+void Board::ResetBuffs()
+{
+	// for loop using vector iterator
+	for (auto it = m_Troops.begin(); it != m_Troops.end(); /* no increment here */)
+	{
+		// check for buffed troops
+		for (auto& playerTroop : m_Troops)
+		{
+			if ((*it)->m_bIsBuffed)
+			{
+				(*it)->m_bIsBuffed = false;
+			}
+		}
+		it++;
 	}
 }
 
