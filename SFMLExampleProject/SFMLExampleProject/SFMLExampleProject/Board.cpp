@@ -94,7 +94,7 @@ void Board::MoveTroop(Troop& _Troop, sf::Event _event, sf::RenderWindow* _Window
 		// for loop using vector iterator
 		for (auto it = _EnemyTroops->m_Troops.begin(); it != _EnemyTroops->m_Troops.end(); /* no increment here */)
 		{
-			// deal damage to every enemy in range
+			// deny placement if select intersects with a troop
 			for (auto& playerTroop : m_Troops)
 			{
 				if (SelectRect.getGlobalBounds().intersects((*it)->GetSprite().getGlobalBounds()))
@@ -208,4 +208,9 @@ void Board::ClearTroops()
 void Board::SetLevel(Level _level)
 {
 	m_Level = _level;
+}
+
+void Board::SetMouseColour(sf::Color _colour)
+{
+	SelectRect.setFillColor(_colour);
 }

@@ -40,6 +40,8 @@ public:
 	sf::RectangleShape GetRangeRect() { return RangeRect; };
 	bool IsPlacingTroops() { return m_bPlacingTroops; };
 
+	// setters
 	void SetLevel(Level _level);
+	void SetMouseColour(sf::Color _colour);
 };
 

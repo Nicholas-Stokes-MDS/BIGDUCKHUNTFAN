@@ -17,10 +17,12 @@ enum PlacingTroop
     PlacingShield,
 };
 
-int PlaceTroop(Board* _Player, std::string _TroopPath, sf::Event _event, sf::RenderWindow* _WindowRef)
+int PlaceTroop(Board* _Player, std::string _TroopPath, sf::Event _event, sf::RenderWindow* _WindowRef, Board* _EnemyPlayer, Level _level)
 {
+    // assume space is valid
+    bool bAvailableSpace = false;
     // change the select rectangle to grey
-    _Player->GetSelectRect().setFillColor(sf::Color(255, 255, 255, 128));
+    _Player->SetMouseColour(sf::Color(255, 255, 255, 128));
 
     // if mouse button pressed create a troop instance
     if (_event.type == sf::Event::MouseButtonPressed)
@@ -28,9 +30,74 @@ int PlaceTroop(Board* _Player, std::string _TroopPath, sf::Event _event, sf::Ren
         if (_event.mouseButton.button == sf::Mouse::Left)
         {
             Troop* pTroop = new Troop(_TroopPath);
-            pTroop->PlaceTroop(_event, _WindowRef);
-            _Player->AddTroop(pTroop);
-            return 1;
+
+            // only move if on suitable terrain
+            if (pTroop->GetName() == "Boat")
+            {
+                for (int i = 0; i < _level.m_LevelTiles.size(); i++)
+                {
+                    if (_level.m_LevelTiles[i]->m_TerrainType == Water)
+                    {
+                        if (_Player->GetSelectRect().getGlobalBounds().intersects(_level.m_LevelTiles[i]->m_CharacterSprite.getGlobalBounds()))
+                        {
+                            bAvailableSpace = true;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < _level.m_LevelTiles.size(); i++)
+                {
+                    if (_level.m_LevelTiles[i]->m_TerrainType == Wall)
+                    {
+                        if (_Player->GetSelectRect().getGlobalBounds().intersects(_level.m_LevelTiles[i]->m_CharacterSprite.getGlobalBounds()))
+                        {
+                            bAvailableSpace = true;
+                        }
+                    }
+                }
+            }
+
+            // make sure area is not own troop member ! has to be after the tile checks !
+            for (auto it = _Player->m_Troops.begin(); it != _Player->m_Troops.end(); /* no increment here */)
+            {
+                for (auto& playerTroop : _Player->m_Troops)
+                {
+                    if (_Player->GetSelectRect().getGlobalBounds().intersects((*it)->GetSprite().getGlobalBounds()))
+                    {
+                        bAvailableSpace = false;
+                    }
+                }
+                it++;
+            }
+
+            // make sure area is not enemy troop member ! has to be after the tile checks !
+            for (auto it = _EnemyPlayer->m_Troops.begin(); it != _EnemyPlayer->m_Troops.end(); /* no increment here */)
+            {
+                for (auto& playerTroop : _Player->m_Troops)
+                {
+                    if (_Player->GetSelectRect().getGlobalBounds().intersects((*it)->GetSprite().getGlobalBounds()))
+                    {
+                        bAvailableSpace = false;
+                    }
+                }
+                it++;
+            }
+
+            // actually place troop
+            if (bAvailableSpace)
+            {
+                pTroop->PlaceTroop(_event, _WindowRef);
+                _Player->AddTroop(pTroop);
+                // return 1 to count the troops placed
+                return 1;
+            }
+            else
+            {
+                // change the rectangle to red
+                _Player->SetMouseColour(sf::Color(255, 0, 0, 128));
+            }
         }
     }
     return 0;
@@ -161,6 +228,7 @@ int main()
     Board* pPlayer2 = new Board(level, 2);
 
     Board* pCurrentPlayer = pPlayer1;
+    Board* pCurrentEnemy = pPlayer2;
 
     // UI stuff
     // vector for buttons
@@ -276,11 +344,13 @@ int main()
                 {
                     // say player 1 placing
                     pCurrentPlayer = pPlayer1;
+                    pCurrentEnemy = pPlayer2;
                 }
                 else if (g_iPlayer == 2)
                 {
                     // say player 2 placing
                     pCurrentPlayer = pPlayer2;
+                    pCurrentEnemy = pPlayer1;
                 }
 
                 // placing troop if button pressed
@@ -294,37 +364,37 @@ int main()
                     // only allow placing as many as are in the level troop array
                     if (g_iTroopCounts[5] > 0)
                     {
-                        g_iTroopCounts[5] -= PlaceTroop(pCurrentPlayer, "Troops/Soldier.txt", event, &window);
+                        g_iTroopCounts[5] -= PlaceTroop(pCurrentPlayer, "Troops/Soldier.txt", event, &window, pCurrentEnemy, level);
                     }
                     break;
                 case PlacingArcher:
                     if (g_iTroopCounts[0] > 0)
                     {
-                        g_iTroopCounts[0] -= PlaceTroop(pCurrentPlayer, "Troops/Archer.txt", event, &window);
+                        g_iTroopCounts[0] -= PlaceTroop(pCurrentPlayer, "Troops/Archer.txt", event, &window, pCurrentEnemy, level);
                     }
                     break;
                 case PlacingScout:
                     if (g_iTroopCounts[3] > 0)
                     {
-                        g_iTroopCounts[3] -= PlaceTroop(pCurrentPlayer, "Troops/Scout.txt", event, &window);
+                        g_iTroopCounts[3] -= PlaceTroop(pCurrentPlayer, "Troops/Scout.txt", event, &window, pCurrentEnemy, level);
                     }
                     break;
                 case PlacingGiant:
                     if (g_iTroopCounts[2] > 0)
                     {
-                        g_iTroopCounts[2] -= PlaceTroop(pCurrentPlayer, "Troops/Giant.txt", event, &window);
+                        g_iTroopCounts[2] -= PlaceTroop(pCurrentPlayer, "Troops/Giant.txt", event, &window, pCurrentEnemy, level);
                     }
                     break;
                 case PlacingBoat:
                     if (g_iTroopCounts[1] > 0)
                     {
-                        g_iTroopCounts[1] -= PlaceTroop(pCurrentPlayer, "Troops/Boat.txt", event, &window);
+                        g_iTroopCounts[1] -= PlaceTroop(pCurrentPlayer, "Troops/Boat.txt", event, &window, pCurrentEnemy, level);
                     }
                     break;
                 case PlacingShield:
                     if (g_iTroopCounts[4] > 0)
                     {
-                        g_iTroopCounts[4] -= PlaceTroop(pCurrentPlayer, "Troops/Shield.txt", event, &window);
+                        g_iTroopCounts[4] -= PlaceTroop(pCurrentPlayer, "Troops/Shield.txt", event, &window, pCurrentEnemy, level);
                     }
                     break;
                 default:
