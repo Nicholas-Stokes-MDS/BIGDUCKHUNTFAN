@@ -669,18 +669,22 @@ int main()
         }
 
         //clearing
-        window.clear();;
+        window.clear();
 
         //drawing **order matters**
         window.draw(terrain->Draw());
         level.Draw(&window);
-        if (g_iPlayer == 1)
+
+        if (bMovingTroop && g_bTroopsPlaced)
         {
-            window.draw(pPlayer1->GetRangeRect());
-        }
-        else
-        {
-            window.draw(pPlayer2->GetRangeRect());
+            if (g_iPlayer == 1)
+            {
+                window.draw(pPlayer1->GetRangeRect());
+            }
+            else
+            {
+                window.draw(pPlayer2->GetRangeRect());
+            }
         }
 
          //draw player 1 troops

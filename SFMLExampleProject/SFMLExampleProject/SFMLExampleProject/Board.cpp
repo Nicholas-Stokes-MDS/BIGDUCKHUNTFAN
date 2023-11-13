@@ -20,85 +20,102 @@ void Board::MoveTroop(Troop& _Troop, sf::Event _event, sf::RenderWindow* _Window
 	// display square showing movement range
 
 	// ?? maybe display multiple tiles and have squares you can't move to be red ??
-	if (!_Troop->btroopmoved)
-	_Troop.GetRange();
-	bool bInRange = true;
-	bool bAvailableSpace = false;
-	int iRange = 0;
-	// how far the x and y of rectange around troop is
-	iRange = 64 * _Troop.GetRange() + 32;
-	RangeRect.setSize(sf::Vector2f(iRange, iRange));
-	// put rectangle around centre of troop
-	RangeRect.setPosition(sf::Vector2f(_Troop.GetPosition().x - iRange/2 + 16, _Troop.GetPosition().y - iRange/2 + 16));
+	if (!_Troop.m_bTroopMoved)
+	{
+		_Troop.GetRange();
+		bool bInRange = true;
+		bool bAvailableSpace = false;
+		int iRange = 0;
+		// how far the x and y of rectange around troop is
+		iRange = 64 * _Troop.GetRange() + 32;
+		RangeRect.setSize(sf::Vector2f(iRange, iRange));
+		// put rectangle around centre of troop
+		RangeRect.setPosition(sf::Vector2f(_Troop.GetPosition().x - iRange / 2 + 16, _Troop.GetPosition().y - iRange / 2 + 16));
 
-	// only move within range
-	if (SelectRect.getGlobalBounds().intersects(RangeRect.getGlobalBounds()))
-	{
-		bInRange = true;
-		SelectRect.setFillColor(SelectColour);
-	}
-	else
-	{
-		bInRange = false;
-		SelectRect.setFillColor(sf::Color(255, 0, 0, 128));
-	}
-
-	// only move if on suitable terrain
-	if (_Troop.GetName() == "Boat")
-	{
-		for (int i = 0; i < m_Level.m_LevelTiles.size(); i++)
+		// only move within range
+		if (SelectRect.getGlobalBounds().intersects(RangeRect.getGlobalBounds()))
 		{
-			if (m_Level.m_LevelTiles[i]->m_TerrainType == Water)
-			{
-				if (SelectRect.getGlobalBounds().intersects(m_Level.m_LevelTiles[i]->m_CharacterSprite.getGlobalBounds()))
-				{
-					bAvailableSpace = true;
-				}
-			}
-		}
-	}
-	else
-	{
-		for (int i = 0; i < m_Level.m_LevelTiles.size(); i++)
-		{
-			if (m_Level.m_LevelTiles[i]->m_TerrainType == Wall)
-			{
-				if (SelectRect.getGlobalBounds().intersects(m_Level.m_LevelTiles[i]->m_CharacterSprite.getGlobalBounds()))
-				{
-					bAvailableSpace = true;
-				}
-			}
-		}
-	}
-	
-	// only move if no troop in the way
-	for (int j = 0; j < m_Troops.size(); j++)
-	{
-		if (SelectRect.getGlobalBounds().intersects(m_Troops[j]->GetSprite().getGlobalBounds()))
-		{
-			bAvailableSpace = false;
-		}
-	}
-
-	// only move if no enemy troops in the way
-	for (int j = 0; j < m_Troops.size(); j++)
-	{
-		if (SelectRect.getGlobalBounds().intersects(_EnemyTroops->m_Troops[j]->GetSprite().getGlobalBounds()))
-		{
-			bAvailableSpace = false;
-		}
-	}
-
-	// place troops if conditions satisfied
-	if (m_bPlacingTroops)
-	{
-		if (bInRange && bAvailableSpace)
-		{
-			_Troop.PlaceTroop(_event, _WindowRef);
+			bInRange = true;
+			SelectRect.setFillColor(SelectColour);
 		}
 		else
 		{
+			bInRange = false;
 			SelectRect.setFillColor(sf::Color(255, 0, 0, 128));
+		}
+
+		// only move if on suitable terrain
+		if (_Troop.GetName() == "Boat")
+		{
+			for (int i = 0; i < m_Level.m_LevelTiles.size(); i++)
+			{
+				if (m_Level.m_LevelTiles[i]->m_TerrainType == Water)
+				{
+					if (SelectRect.getGlobalBounds().intersects(m_Level.m_LevelTiles[i]->m_CharacterSprite.getGlobalBounds()))
+					{
+						bAvailableSpace = true;
+					}
+				}
+			}
+		}
+		else
+		{
+			for (int i = 0; i < m_Level.m_LevelTiles.size(); i++)
+			{
+				if (m_Level.m_LevelTiles[i]->m_TerrainType == Wall)
+				{
+					if (SelectRect.getGlobalBounds().intersects(m_Level.m_LevelTiles[i]->m_CharacterSprite.getGlobalBounds()))
+					{
+						bAvailableSpace = true;
+					}
+				}
+			}
+		}
+
+		// only move if no troop in the way
+		for (int j = 0; j < m_Troops.size(); j++)
+		{
+			if (SelectRect.getGlobalBounds().intersects(m_Troops[j]->GetSprite().getGlobalBounds()))
+			{
+				bAvailableSpace = false;
+			}
+		}
+
+
+		/*for (int j = 0; j < m_Troops.size(); j++)
+		{
+			if (SelectRect.getGlobalBounds().intersects(_EnemyTroops->m_Troops[j]->GetSprite().getGlobalBounds()))
+			{
+				bAvailableSpace = false;
+			}
+		}*/
+
+		// only move if no enemy troops in the way
+		// for loop using vector iterator
+		for (auto it = _EnemyTroops->m_Troops.begin(); it != _EnemyTroops->m_Troops.end(); /* no increment here */)
+		{
+			// deal damage to every enemy in range
+			for (auto& playerTroop : m_Troops)
+			{
+				if (SelectRect.getGlobalBounds().intersects((*it)->GetSprite().getGlobalBounds()))
+				{
+					bAvailableSpace = false;
+				}
+			}
+			it++;
+		}
+
+		// place troops if conditions satisfied
+		if (m_bPlacingTroops)
+		{
+			if (bInRange && bAvailableSpace)
+			{
+				_Troop.PlaceTroop(_event, _WindowRef);
+			}
+			else
+			{
+				SelectRect.setFillColor(sf::Color(255, 0, 0, 128));
+			}
 		}
 	}
 }
