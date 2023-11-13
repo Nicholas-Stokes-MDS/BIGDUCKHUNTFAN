@@ -234,19 +234,19 @@ int main()
     // vector for buttons
     std::vector<UIElement> UIElements;
     // creation of buttons
-    UIElement rectElement(sf::Vector2f(50, 30), sf::Vector2f(100, 50), std::string("Soldier(") + std::to_string(5) + std::string(")"), UIElementFont, sf::Color::Black);
+    UIElement rectElement(sf::Vector2f(50, 30), sf::Vector2f(100, 50), std::string("Soldier (") + std::to_string(g_iTroopCounts[5]) + std::string(")"), UIElementFont, sf::Color::Black);
     UIElements.push_back(rectElement);
-    UIElement circleElement(sf::Vector2f(50, 100), sf::Vector2f(100, 50), std::string("Archer"), UIElementFont, sf::Color::Black);
+    UIElement circleElement(sf::Vector2f(50, 100), sf::Vector2f(100, 50), std::string("Archer (") + std::to_string(g_iTroopCounts[0]) + std::string(")"), UIElementFont, sf::Color::Black);
     UIElements.push_back(circleElement);
-    UIElement lineElement(sf::Vector2f(50, 170), sf::Vector2f(100, 50), std::string("Shield"), UIElementFont, sf::Color::Black);
+    UIElement lineElement(sf::Vector2f(50, 170), sf::Vector2f(100, 50), std::string("Shield (") + std::to_string(g_iTroopCounts[4]) + std::string(")"), UIElementFont, sf::Color::Black);
     UIElements.push_back(lineElement);
-    UIElement lineWidthIncreaseElement(sf::Vector2f(50, 240), sf::Vector2f(100, 50), std::string("Scout"), UIElementFont, sf::Color::Black);
+    UIElement lineWidthIncreaseElement(sf::Vector2f(50, 240), sf::Vector2f(100, 50), std::string("Scout (") + std::to_string(g_iTroopCounts[3]) + std::string(")"), UIElementFont, sf::Color::Black);
     UIElements.push_back(lineWidthIncreaseElement);
-    UIElement lineWidthReduceElement(sf::Vector2f(50, 310), sf::Vector2f(100, 50), std::string("Boat"), UIElementFont, sf::Color::Black);
+    UIElement lineWidthReduceElement(sf::Vector2f(50, 310), sf::Vector2f(100, 50), std::string("Boat (") + std::to_string(g_iTroopCounts[1]) + std::string(")"), UIElementFont, sf::Color::Black);
     UIElements.push_back(lineWidthReduceElement);
-    UIElement saveElement(sf::Vector2f(250, 30), sf::Vector2f(100, 50), std::string("Giant"), UIElementFont, sf::Color::Black);
+    UIElement saveElement(sf::Vector2f(250, 30), sf::Vector2f(100, 50), std::string("Giant (") + std::to_string(g_iTroopCounts[2]) + std::string(")"), UIElementFont, sf::Color::Black);
     UIElements.push_back(saveElement);
-    UIElement loadElement(sf::Vector2f(250, 100), sf::Vector2f(100, 50), std::string("idk"), UIElementFont, sf::Color::Black);
+    UIElement loadElement(sf::Vector2f(250, 100), sf::Vector2f(100, 50), std::string("idk ("), UIElementFont, sf::Color::Black);
     UIElements.push_back(loadElement);
 
     std::vector<UIElement> UIElements2;
