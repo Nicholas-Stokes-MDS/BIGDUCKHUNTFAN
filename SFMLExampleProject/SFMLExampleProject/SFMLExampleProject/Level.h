@@ -35,5 +35,7 @@ public:
 	void Draw(sf::RenderWindow* _Window);
 
 	void UnloadLevel();
+
+	void PrintTerrainType();
 };
 
