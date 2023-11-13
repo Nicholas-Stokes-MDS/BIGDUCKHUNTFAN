@@ -518,6 +518,7 @@ int main()
                             if (g_LevelManager->GetCurrentLevel() <= 2)
                             {
                                 LevelManager::GetInstance()->LoadLevel(g_LevelManager->GetCurrentLevel() + 1, &level);
+                                level.PrintTerrainType();
                             }
                             for (int i = 0; i < 6; i++)
                             {
