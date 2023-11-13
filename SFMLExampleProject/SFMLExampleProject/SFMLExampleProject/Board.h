@@ -17,14 +17,20 @@ protected:
 	int m_iPlayerID = 0;
 
 public:
+	// check if player is computer player
+	bool m_bIsComputer;
+
 	// vector holding all the troop
 	std::vector<Troop*> m_Troops;
 
-	Board(Level _level, int _iPlayerID);
+	Board(Level _level, int _iPlayerID, bool _bIsComputer);
 	~Board();
 
 	void MoveTroop(Troop& _Troop, sf::Event _event, sf::RenderWindow* _WindowRef, Board* _EnemyTroops);
 	void AddTroop(Troop* _Troop);
+
+	// automatically place all troops
+	void ComputerPlace();
 
 	// creates a square with low opacity that snaps to whichever tile the mouse is inside
 	void ShowMouseSquare(sf::RenderWindow* _WindowRef);

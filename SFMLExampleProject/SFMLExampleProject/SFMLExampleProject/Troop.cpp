@@ -84,6 +84,9 @@ Troop::Troop(std::string _sFilePath)
     }
     SetType();
     SetPosition(sf::Vector2f(-100, -100));
+
+    // initialize random seed
+    srand(time(0)); 
 }
 
 Troop::~Troop()
@@ -160,6 +163,16 @@ void Troop::PlaceTroop(sf::Event _event, sf::RenderWindow* _WindowRef)
 
         m_bTroopMoved = true;
     }
+}
+
+void Troop::PlaceComputerTroop()
+{
+    float fXPos = rand() % 20 + 1;
+    float fYPos = rand() % 15 + 1;
+
+    SetPosition(sf::Vector2f(fXPos * 32, fYPos * 32));
+
+    m_bTroopMoved = true;
 }
 
 void Troop::SetPosition(sf::Vector2f _Pos)

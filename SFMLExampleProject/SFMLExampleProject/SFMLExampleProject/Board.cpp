@@ -1,7 +1,8 @@
 #include "Board.h"
 
-Board::Board(Level _level, int _iPlayerID)
+Board::Board(Level _level, int _iPlayerID, bool _bIsComputer)
 {
+	m_bIsComputer = _bIsComputer;
 	SelectColour = sf::Color(255, 255, 255, 128);
 	SelectRect.setSize(sf::Vector2f(32, 32));
 	// make rectangle half transparent
@@ -123,6 +124,11 @@ void Board::MoveTroop(Troop& _Troop, sf::Event _event, sf::RenderWindow* _Window
 void Board::AddTroop(Troop* _Troop)
 {
 	m_Troops.push_back(_Troop);
+}
+
+void Board::ComputerPlace()
+{
+
 }
 
 void Board::ShowMouseSquare(sf::RenderWindow* _WindowRef)

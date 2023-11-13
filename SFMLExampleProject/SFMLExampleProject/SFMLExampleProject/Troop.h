@@ -52,6 +52,8 @@ public:
 	void SetSprite(sf::String _Path);
 	// place troop
 	void PlaceTroop(sf::Event _event, sf::RenderWindow* _WindowRef);
+	// place troop computer
+	void PlaceComputerTroop();
 	// reposition
 	void SetPosition(sf::Vector2f _Pos);
 	// draw

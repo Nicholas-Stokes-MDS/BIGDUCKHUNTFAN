@@ -88,7 +88,14 @@ int PlaceTroop(Board* _Player, std::string _TroopPath, sf::Event _event, sf::Ren
             // actually place troop
             if (bAvailableSpace)
             {
-                pTroop->PlaceTroop(_event, _WindowRef);
+                if (_Player->m_bIsComputer)
+                {
+                    pTroop->PlaceComputerTroop();
+                }
+                else
+                {
+                    pTroop->PlaceTroop(_event, _WindowRef);
+                }
                 _Player->AddTroop(pTroop);
                 // return 1 to count the troops placed
                 return 1;
@@ -241,8 +248,8 @@ int main()
     terrain->SetWindowRef(&window);
 
     // These objects handle player actions
-    Board* pPlayer1 = new Board(level, 1);
-    Board* pPlayer2 = new Board(level, 2);
+    Board* pPlayer1 = new Board(level, 1, false);
+    Board* pPlayer2 = new Board(level, 2, true);
 
     Board* pCurrentPlayer = pPlayer1;
     Board* pCurrentEnemy = pPlayer2;
@@ -384,6 +391,8 @@ int main()
                     // say player 2 placing
                     pCurrentPlayer = pPlayer2;
                     pCurrentEnemy = pPlayer1;
+
+
                 }
 
                 // placing troop if button pressed
@@ -476,6 +485,39 @@ int main()
                         for (int j = 0; j < pPlayer1->m_Troops.size(); j++)
                         {
                             pPlayer2->m_Troops[j]->m_bTroopMoved = false;
+                        }
+                    }
+                }
+                else
+                {
+                    if (pPlayer2->m_bIsComputer)
+                    {
+                        for (int i = 0; i < iTotalTroops; i++)
+                        {
+                            if (g_iTroopCounts[5] > 0)
+                            {
+                                g_iTroopCounts[5] -= PlaceTroop(pCurrentPlayer, "Troops/Soldier.txt", event, &window, pCurrentEnemy, level);
+                            }
+                            if (g_iTroopCounts[0] > 0)
+                            {
+                                g_iTroopCounts[0] -= PlaceTroop(pCurrentPlayer, "Troops/Archer.txt", event, &window, pCurrentEnemy, level);
+                            }
+                            if (g_iTroopCounts[3] > 0)
+                            {
+                                g_iTroopCounts[3] -= PlaceTroop(pCurrentPlayer, "Troops/Scout.txt", event, &window, pCurrentEnemy, level);
+                            }
+                            if (g_iTroopCounts[2] > 0)
+                            {
+                                g_iTroopCounts[2] -= PlaceTroop(pCurrentPlayer, "Troops/Giant.txt", event, &window, pCurrentEnemy, level);
+                            }
+                            if (g_iTroopCounts[1] > 0)
+                            {
+                                g_iTroopCounts[1] -= PlaceTroop(pCurrentPlayer, "Troops/Boat.txt", event, &window, pCurrentEnemy, level);
+                            }
+                            if (g_iTroopCounts[4] > 0)
+                            {
+                                g_iTroopCounts[4] -= PlaceTroop(pCurrentPlayer, "Troops/Shield.txt", event, &window, pCurrentEnemy, level);
+                            }
                         }
                     }
                 }
