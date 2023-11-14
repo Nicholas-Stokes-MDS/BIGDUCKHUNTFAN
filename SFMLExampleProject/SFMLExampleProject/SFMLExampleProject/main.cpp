@@ -24,6 +24,14 @@ int PlaceTroop(Board* _Player, std::string _TroopPath, sf::Event _event, sf::Ren
     // change the select rectangle to grey
     _Player->SetMouseColour(sf::Color(255, 255, 255, 128));
 
+    if (_Player->m_bIsComputer)
+    {
+        Troop* pTroop = new Troop(_TroopPath);
+        pTroop->PlaceComputerTroop();
+        _Player->AddTroop(pTroop);
+        return 1;
+    }
+
     // if mouse button pressed create a troop instance
     if (_event.type == sf::Event::MouseButtonPressed)
     {
@@ -89,14 +97,7 @@ int PlaceTroop(Board* _Player, std::string _TroopPath, sf::Event _event, sf::Ren
             // actually place troop
             if (bAvailableSpace)
             {
-                if (_Player->m_bIsComputer)
-                {
-                    pTroop->PlaceComputerTroop();
-                }
-                else
-                {
-                    pTroop->PlaceTroop(_event, _WindowRef);
-                }
+                pTroop->PlaceTroop(_event, _WindowRef);
                 _Player->AddTroop(pTroop);
                 // return 1 to count the troops placed
                 return 1;
@@ -113,6 +114,9 @@ int PlaceTroop(Board* _Player, std::string _TroopPath, sf::Event _event, sf::Ren
 
 int main()
 {
+    // initialize random seed
+    srand(time(0));
+
     sf::SoundBuffer laugh;
     laugh.loadFromFile("laugh.wav");
     //if (!laugh.loadFromFile("laugh.wav"))
@@ -637,52 +641,63 @@ int main()
                 }
                 else if (g_iPlayer == 2)
                 {
-                    // click on troops to move them
-                    for (int i = 0; i < pPlayer2->m_Troops.size(); i++)
+                    if (!pPlayer2->m_bIsComputer)
                     {
-                        // check if mouse is clicking in troop sprite
-                        if (pPlayer2->m_Troops[i]->GetSprite().getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(window))))
+                        // click on troops to move them
+                        for (int i = 0; i < pPlayer2->m_Troops.size(); i++)
                         {
-                            if (event.type == sf::Event::MouseButtonPressed)
+                            // check if mouse is clicking in troop sprite
+                            if (pPlayer2->m_Troops[i]->GetSprite().getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(window))))
                             {
-                                if (event.mouseButton.button == sf::Mouse::Left)
+                                if (event.type == sf::Event::MouseButtonPressed)
                                 {
-                                    // only move if troop hasn't moved this turn
-                                    if (!pPlayer2->m_Troops[i]->m_bTroopMoved)
+                                    if (event.mouseButton.button == sf::Mouse::Left)
                                     {
-                                        bMovingTroop = true;
-                                        pMovingTroop = pPlayer2->m_Troops[i];
+                                        // only move if troop hasn't moved this turn
+                                        if (!pPlayer2->m_Troops[i]->m_bTroopMoved)
+                                        {
+                                            bMovingTroop = true;
+                                            pMovingTroop = pPlayer2->m_Troops[i];
+                                        }
                                     }
                                 }
                             }
-                        }
 
-                        if (bMovingTroop)
-                        {
-                            pPlayer2->MoveTroop(*pMovingTroop, event, &window, pPlayer1);
-                        }
-                        // count troops moved
-                        if (pPlayer2->m_Troops[i]->m_bTroopMoved)
-                        {
-                            if (g_bTroopsPlaced)
+                            if (bMovingTroop)
                             {
-                                iTroopsMoved++;
+                                pPlayer2->MoveTroop(*pMovingTroop, event, &window, pPlayer1);
+                            }
+                            // count troops moved
+                            if (pPlayer2->m_Troops[i]->m_bTroopMoved)
+                            {
+                                if (g_bTroopsPlaced)
+                                {
+                                    iTroopsMoved++;
+                                }
+                            }
+                            // change player if all troops moved
+                            if (iTroopsMoved == pPlayer2->m_Troops.size())
+                            {
+                                for (int j = 0; j < pPlayer2->m_Troops.size(); j++)
+                                {
+                                    pPlayer2->m_Troops[j]->m_bTroopMoved = false;
+                                }
+                                pPlayer2->BuffTroops();
+                                pPlayer1->BuffTroops();
+                                pPlayer2->AttackEnemies(pPlayer1);
+                                pPlayer1->AttackEnemies(pPlayer2);
+                                pPlayer1->ResetBuffs();
+                                pPlayer2->ResetBuffs();
+                                g_iPlayer--;
                             }
                         }
-                        // change player if all troops moved
-                        if (iTroopsMoved == pPlayer2->m_Troops.size())
+                    }
+                    else
+                    {
+                        // for each troop move once 
+                        for (auto& computerTroop : pPlayer2->m_Troops)
                         {
-                            for (int j = 0; j < pPlayer2->m_Troops.size(); j++)
-                            {
-                                pPlayer2->m_Troops[j]->m_bTroopMoved = false;
-                            }
-                            pPlayer2->BuffTroops();
-                            pPlayer1->BuffTroops();
-                            pPlayer2->AttackEnemies(pPlayer1);
-                            pPlayer1->AttackEnemies(pPlayer2);
-                            pPlayer1->ResetBuffs();
-                            pPlayer2->ResetBuffs();
-                            g_iPlayer--;
+
                         }
                     }
                 }
