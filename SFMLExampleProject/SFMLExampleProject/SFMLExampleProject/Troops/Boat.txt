@@ -1,5 +1,5 @@
 Boat Name
 4 HP
 2 Damage
-3 Attack Range
+2 Attack Range
 2 Travel Range
