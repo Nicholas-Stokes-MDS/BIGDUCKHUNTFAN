@@ -1051,12 +1051,17 @@ int main()
                         // LevelIncrease
                         if (DebugElement[0].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(Debug))))
                         {
-
+                            LevelManager::GetInstance()->SetCurrentLevel(LevelManager::GetInstance()->GetCurrentLevel() + 1);
+                            window.close();
                         }
                         // LevelDecrease
                         if (DebugElement[1].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(Debug))))
                         {
-
+                            if (LevelManager::GetInstance()->GetCurrentLevel() <= 2)
+                            {
+                                LevelManager::GetInstance()->SetCurrentLevel(LevelManager::GetInstance()->GetCurrentLevel() + 1);
+                                window.close();
+                            }
                         }
                         // HealthIncrease
                         if (DebugElement[2].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(Debug))))
@@ -1200,8 +1205,10 @@ int main()
             }
 
             // if a player wins
-            PlayerTurn[6].Draw(&window);
-
+            if (g_bPlayer1Won || g_bPlayer2Won)
+            {
+                PlayerTurn[6].Draw(&window);
+            }
 
             PlayerTurn[3].Update(std::string("Level: ") + std::to_string(LevelManager::GetInstance()->GetCurrentLevel()));
             PlayerTurn[2].Draw(&window);
