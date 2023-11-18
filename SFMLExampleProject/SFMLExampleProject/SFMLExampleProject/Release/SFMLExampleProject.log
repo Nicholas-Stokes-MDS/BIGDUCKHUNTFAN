@@ -2,22 +2,22 @@
 C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\main.cpp(45,39): warning C4018: '<': signed/unsigned mismatch
 C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\main.cpp(58,39): warning C4018: '<': signed/unsigned mismatch
 C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\main.cpp(120,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\main.cpp(220,35): warning C4018: '<': signed/unsigned mismatch
-C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\main.cpp(577,47): warning C4018: '<': signed/unsigned mismatch
-C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\main.cpp(586,47): warning C4018: '<': signed/unsigned mismatch
-C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\main.cpp(631,47): warning C4018: '<': signed/unsigned mismatch
-C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\main.cpp(653,51): warning C4018: '<': signed/unsigned mismatch
-C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\main.cpp(668,51): warning C4018: '<': signed/unsigned mismatch
-C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\main.cpp(749,43): warning C4018: '<': signed/unsigned mismatch
-C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\main.cpp(783,51): warning C4018: '<': signed/unsigned mismatch
-C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\main.cpp(802,47): warning C4018: '<': signed/unsigned mismatch
-C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\main.cpp(836,55): warning C4018: '<': signed/unsigned mismatch
-C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\main.cpp(855,51): warning C4018: '<': signed/unsigned mismatch
-C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\main.cpp(1107,31): warning C4018: '<': signed/unsigned mismatch
-C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\main.cpp(1115,31): warning C4018: '<': signed/unsigned mismatch
-C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\main.cpp(1179,31): warning C4018: '<': signed/unsigned mismatch
-C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\main.cpp(1189,31): warning C4018: '<': signed/unsigned mismatch
-C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\main.cpp(1200,31): warning C4018: '<': signed/unsigned mismatch
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\main.cpp(221,35): warning C4018: '<': signed/unsigned mismatch
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\main.cpp(582,47): warning C4018: '<': signed/unsigned mismatch
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\main.cpp(591,47): warning C4018: '<': signed/unsigned mismatch
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\main.cpp(636,47): warning C4018: '<': signed/unsigned mismatch
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\main.cpp(658,51): warning C4018: '<': signed/unsigned mismatch
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\main.cpp(673,51): warning C4018: '<': signed/unsigned mismatch
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\main.cpp(754,43): warning C4018: '<': signed/unsigned mismatch
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\main.cpp(788,51): warning C4018: '<': signed/unsigned mismatch
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\main.cpp(807,47): warning C4018: '<': signed/unsigned mismatch
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\main.cpp(841,55): warning C4018: '<': signed/unsigned mismatch
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\main.cpp(860,51): warning C4018: '<': signed/unsigned mismatch
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\main.cpp(1148,31): warning C4018: '<': signed/unsigned mismatch
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\main.cpp(1156,31): warning C4018: '<': signed/unsigned mismatch
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\main.cpp(1240,31): warning C4018: '<': signed/unsigned mismatch
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\main.cpp(1250,31): warning C4018: '<': signed/unsigned mismatch
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\main.cpp(1261,31): warning C4018: '<': signed/unsigned mismatch
   Generating code
   1 of 567 functions ( 0.2%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation

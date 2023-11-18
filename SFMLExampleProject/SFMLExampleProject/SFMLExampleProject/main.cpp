@@ -464,18 +464,6 @@ int main()
                     {
                         Debug.create(sf::VideoMode(400, 400), "Debug window");
                     }
-
-                    else if (event.key.code == sf::Keyboard::W)
-                    {
-                        g_bPlayerWin = true;
-                        WinLose.create(sf::VideoMode(400, 400), "Win window");
-                    }
-
-                    else if (event.key.code == sf::Keyboard::L)
-                    {
-                        g_bPlayerWin = false;
-                        WinLose.create(sf::VideoMode(400, 400), "Lose window");
-                    }
                     break;
                 default:
                     break;
@@ -902,6 +890,12 @@ int main()
                     pPlayer2->ClearTroops();
                     g_iPlayer = 2;
                     g_bPlayer2Won = true;
+
+                    if (pPlayer2->m_bIsComputer)
+                    {
+                        g_bPlayerWin = false;
+                        WinLose.create(sf::VideoMode(400, 400), "Lose window");
+                    }
                 }
                 else if (pPlayer2->m_Troops.size() <= 0)
                 {
@@ -910,6 +904,12 @@ int main()
                     pPlayer2->ClearTroops();
                     g_bPlayer1Won = true;
                     g_iPlayer = 1;
+
+                    if (pPlayer2->m_bIsComputer)
+                    {
+                        g_bPlayerWin = true;
+                        WinLose.create(sf::VideoMode(400, 400), "Win window");
+                    }
                 }
             }
             // -- main window event loop end --//
