@@ -120,7 +120,7 @@ int main()
     srand(time(0));
 
     bool g_bGameRunning = true;
-    bool g_bDebug = false;
+    bool g_bPlayerWin = false;
 
     while (g_bGameRunning)
     {
@@ -278,10 +278,16 @@ int main()
         sf::RenderWindow Settings(sf::VideoMode(400, 400), "Settings");
         Settings.setVerticalSyncEnabled(true);
 
+        // create debug window and effectively hide it by closing it and opening it later
         sf::RenderWindow Debug(sf::VideoMode(400, 400), "Debug window");
         Debug.setVerticalSyncEnabled(true);
-
         Debug.close();
+
+        // create win lose window and effectively hide it by closing it and opening it later
+        sf::RenderWindow WinLose(sf::VideoMode(400, 400), "Win Lose window");
+        WinLose.setVerticalSyncEnabled(true);
+        WinLose.close();
+        
 
         LevelManager* g_LevelManager = LevelManager::GetInstance();
         LevelManager::GetInstance()->GetCurrentLevel();
@@ -378,6 +384,14 @@ int main()
         UIElement TroopRangeDecrease(sf::Vector2f(220, 170), sf::Vector2f(150, 50), std::string("Troop Range-"), UIElementFont, sf::Color::Black);
         DebugElement.push_back(TroopRangeDecrease);
 
+        std::vector<UIElement> WinLoseElement;
+        UIElement YouWinElement(sf::Vector2f(125, 30), sf::Vector2f(150, 50), std::string("You win!"), UIElementFont, sf::Color::Black);
+        WinLoseElement.push_back(YouWinElement);
+        UIElement YouLoseElement(sf::Vector2f(125, 30), sf::Vector2f(150, 50), std::string("You lose!"), UIElementFont, sf::Color::Black);
+        WinLoseElement.push_back(YouLoseElement);
+        UIElement RestartButton(sf::Vector2f(125, 100), sf::Vector2f(150, 50), std::string("Restart"), UIElementFont, sf::Color::Black);
+        WinLoseElement.push_back(RestartButton);
+
 
         //UIElement PlayerTurn[3](sf::Vector2f(0, 480), sf::Vector2f(150, 50), std::string("Level: ") + std::to_string(LevelManager::GetInstance()->GetCurrentLevel()), UIElementFont, sf::Color::Black);
 
@@ -451,14 +465,16 @@ int main()
                         Debug.create(sf::VideoMode(400, 400), "Debug window");
                     }
 
-                    else if (event.key.code == sf::Keyboard::Num8)
+                    else if (event.key.code == sf::Keyboard::W)
                     {
-
+                        g_bPlayerWin = true;
+                        WinLose.create(sf::VideoMode(400, 400), "Win window");
                     }
 
-                    else if (event.key.code == sf::Keyboard::Num9)
+                    else if (event.key.code == sf::Keyboard::L)
                     {
-                        sound.play();
+                        g_bPlayerWin = false;
+                        WinLose.create(sf::VideoMode(400, 400), "Lose window");
                     }
                     break;
                 default:
@@ -1074,6 +1090,30 @@ int main()
             }
             // -- debug event loop end -- //
 
+            // -- win lose event loop -- //
+            sf::Event WinLoseEvent;
+            while (WinLose.pollEvent(WinLoseEvent))
+            {
+                // lets user close the window
+                if (WinLoseEvent.type == sf::Event::Closed)
+                {
+                    WinLose.close();
+                }
+
+                if (WinLoseEvent.type == sf::Event::MouseButtonPressed)
+                {
+                    if (WinLoseEvent.mouseButton.button == sf::Mouse::Left)
+                    {
+                        // Restart button
+                        if (WinLoseElement[2].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(WinLose))))
+                        {
+                            window.close();
+                        }
+                    }
+                }
+            }
+            // -- win lose event loop end -- //
+
 
             if (g_iPlayer == 1)
             {
@@ -1165,6 +1205,26 @@ int main()
             PlayerTurn[7].Draw(&window);
 
             window.display();
+
+            // WinLose window render loop
+            WinLose.clear();
+
+            // if player 1 wins
+            if (g_bPlayerWin)
+            {
+                WinLoseElement[0].Draw(&WinLose);
+            }
+            
+            // if player 2 wins
+            else
+            {
+                WinLoseElement[1].Draw(&WinLose);
+            }
+            // restart button
+            WinLoseElement[2].Draw(&WinLose);
+            
+            WinLose.display();
+            // Win Lose window render loop
 
 
             // Options window render loop
