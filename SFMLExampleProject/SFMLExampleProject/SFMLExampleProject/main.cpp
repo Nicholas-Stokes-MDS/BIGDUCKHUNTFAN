@@ -124,9 +124,11 @@ int main()
 
     while (g_bGameRunning)
     {
+        // sounds
+        // music
         sf::SoundBuffer laugh;
         laugh.loadFromFile("SFX/music.wav");
-        if (!laugh.loadFromFile("music.wav"))
+        if (!laugh.loadFromFile("SFX/music.wav"))
         {
             std::cout << "Error loading file" << std::endl;
         }
@@ -136,6 +138,30 @@ int main()
         sound.setBuffer(laugh);
         sound.setLoop(true);
         sound.play();
+
+        // Win sound effect
+        sf::SoundBuffer WinBuffer;
+        laugh.loadFromFile("SFX/win.wav");
+        if (!laugh.loadFromFile("SFX/win.wav"))
+        {
+            std::cout << "Error loading file" << std::endl;
+        }
+        sf::Sound winSound;
+        // set volume to 50 to not hurt Zach's ears
+        winSound.setVolume(50.f);
+        winSound.setBuffer(WinBuffer);
+
+        // click sound effect
+        sf::SoundBuffer Click;
+        laugh.loadFromFile("SFX/win.wav");
+        if (!laugh.loadFromFile("SFX/win.wav"))
+        {
+            std::cout << "Error loading file" << std::endl;
+        }
+        sf::Sound clickSound;
+        // set volume to 50 to not hurt Zach's ears
+        clickSound.setVolume(50.f);
+        clickSound.setBuffer(Click);
 
         // menu
         sf::Font* UIElementFont = new sf::Font();
@@ -649,6 +675,8 @@ int main()
 
                     if (event.type == sf::Event::MouseButtonPressed)
                     {
+                        // play click sound
+                        clickSound.play();
                         // end turn button
                         if (PlayerTurn[2].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(window))))
                         {
@@ -896,6 +924,10 @@ int main()
                         g_bPlayerWin = false;
                         WinLose.create(sf::VideoMode(400, 400), "Lose window");
                     }
+                    else
+                    {
+                        winSound.play();
+                    }
                 }
                 else if (pPlayer2->m_Troops.size() <= 0)
                 {
@@ -905,14 +937,16 @@ int main()
                     g_bPlayer1Won = true;
                     g_iPlayer = 1;
 
-                    if (LevelManager::GetInstance()->GetCurrentLevel() == 6)
+                    if (pPlayer2->m_bIsComputer && LevelManager::GetInstance()->GetCurrentLevel() == 6)
                     {
-                        if (pPlayer2->m_bIsComputer)
-                        {
-                            g_bPlayerWin = true;
-                            WinLose.create(sf::VideoMode(400, 400), "Win window");
-                            LevelManager::GetInstance()->SetCurrentLevel(1);
-                        }
+                        g_bPlayerWin = true;
+                        WinLose.create(sf::VideoMode(400, 400), "Win window");
+                        LevelManager::GetInstance()->SetCurrentLevel(1);
+                        winSound.play();
+                    }
+                    else
+                    {
+                        winSound.play();
                     }
                 }
             }
