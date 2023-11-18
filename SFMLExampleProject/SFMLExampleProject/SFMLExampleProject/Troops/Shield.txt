@@ -1,5 +1,5 @@
 Shield Name
-11 HP
+12 HP
 1 Damage
 1 Attack Range
 1 Travel Range
