@@ -996,40 +996,46 @@ int main()
                     if (DebugEvent.mouseButton.button == sf::Mouse::Left)
                     {
                         //clicking buttons in Options window and calling the appropriate class method
-                        // Volume Plus
+                        // LevelIncrease
                         if (DebugElement[0].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(Settings))))
                         {
 
                         }
-                        // Volume - 
+                        // LevelDecrease
                         if (DebugElement[1].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(Settings))))
                         {
 
                         }
-                        // VSync Enable
+                        // HealthIncrease
                         if (DebugElement[2].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(Settings))))
                         {
-                            Settings.setVerticalSyncEnabled(true);
+                            
                         }
-                        // Vsync Disable
+                        // HealthDecrease
                         if (DebugElement[3].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(Settings))))
                         {
-                            Settings.setVerticalSyncEnabled(false);
+                            
                         }
-                        // 800, 600 resolution
+                        // DamageIncrease
                         if (DebugElement[4].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(Settings))))
                         {
-                            window.create(sf::VideoMode(800, 600), "Game!");
+                            
                         }
-                        // 1366 768 resolution
+                        // DamageDecrease
                         if (DebugElement[5].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(Settings))))
                         {
-                            window.create(sf::VideoMode(1366, 768), "Game!");
+
                         }
-                        // 1920 1080 resolution
+                        // RangeIncrease
                         if (DebugElement[6].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(Settings))))
                         {
-                            window.create(sf::VideoMode(1920, 1080), "Game!");
+
+                        }
+
+                        // RangeDecrease
+                        if (DebugElement[7].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(Settings))))
+                        {
+
                         }
 
                     }
