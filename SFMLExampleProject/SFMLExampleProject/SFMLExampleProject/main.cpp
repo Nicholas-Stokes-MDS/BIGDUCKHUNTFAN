@@ -911,37 +911,37 @@ int main()
                     if (SettingsEvent.mouseButton.button == sf::Mouse::Left)
                     {
                         //clicking buttons in Options window and calling the appropriate class method
-                        // Soldier
+                        // Volume Plus
                         if (UIElements2[0].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(Settings))))
                         {
 
                         }
-                        // Archer
+                        // Volume - 
                         if (UIElements[1].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(Settings))))
                         {
 
                         }
-                        // Shield
+                        // VSync Enable
                         if (UIElements[2].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(Settings))))
                         {
                             Settings.setVerticalSyncEnabled(true);
                         }
-                        // Scout
+                        // Vsync Disable
                         if (UIElements[3].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(Settings))))
                         {
                             Settings.setVerticalSyncEnabled(false);
                         }
-                        // Boat
+                        // 800, 600 resolution
                         if (UIElements[4].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(Settings))))
                         {
                             window.create(sf::VideoMode(800, 600), "Game!");
                         }
-                        // Giant
+                        // 1366 768 resolution
                         if (UIElements[5].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(Settings))))
                         {
                             window.create(sf::VideoMode(1366, 768), "Game!");
                         }
-                        // idk
+                        // 1920 1080 resolution
                         if (UIElements[6].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(Settings))))
                         {
                             window.create(sf::VideoMode(1920, 1080), "Game!");
