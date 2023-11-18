@@ -1009,33 +1009,33 @@ int main()
                         // HealthIncrease
                         if (DebugElement[2].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(Settings))))
                         {
-                            
+                            pMovingTroop->SetHealth((pMovingTroop->GetHealth()) + 1);
                         }
                         // HealthDecrease
                         if (DebugElement[3].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(Settings))))
                         {
-                            
+                            pMovingTroop->SetHealth((pMovingTroop->GetHealth()) - 1);
                         }
                         // DamageIncrease
                         if (DebugElement[4].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(Settings))))
                         {
-                            
+                            pMovingTroop->SetDamage((pMovingTroop->GetDamage()) + 1);
                         }
                         // DamageDecrease
                         if (DebugElement[5].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(Settings))))
                         {
-
+                            pMovingTroop->SetDamage((pMovingTroop->GetDamage()) - 1);
                         }
                         // RangeIncrease
                         if (DebugElement[6].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(Settings))))
                         {
-
+                            pMovingTroop->SetRange((pMovingTroop->GetRange()) + 1);
                         }
 
                         // RangeDecrease
                         if (DebugElement[7].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(Settings))))
                         {
-
+                            pMovingTroop->SetRange((pMovingTroop->GetRange()) - 1);
                         }
 
                     }
