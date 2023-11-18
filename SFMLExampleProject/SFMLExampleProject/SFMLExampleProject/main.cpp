@@ -124,11 +124,11 @@ int main()
     while (g_bGameRunning)
     {
         sf::SoundBuffer laugh;
-        laugh.loadFromFile("laugh.wav");
-        //if (!laugh.loadFromFile("laugh.wav"))
-        //{
-        //    std::cout << "Error loading file" << std::endl;
-        //}
+        laugh.loadFromFile("SFX/music.wav");
+        if (!laugh.loadFromFile("music.wav"))
+        {
+            std::cout << "Error loading file" << std::endl;
+        }
         sf::Sound sound;
         sound.setBuffer(laugh);
         sound.play();
@@ -611,12 +611,24 @@ int main()
                             // end turn code
                             if (g_iPlayer == 2)
                             {
-                                iTroopsMoved = pPlayer2->m_Troops.size();
+                                // change player and call end turn functions
+                                pPlayer2->BuffTroops();
+                                pPlayer1->BuffTroops();
+                                pPlayer2->AttackEnemies(pPlayer1);
+                                pPlayer1->AttackEnemies(pPlayer2);
+                                pPlayer1->ResetBuffs();
+                                pPlayer2->ResetBuffs();
                                 g_iPlayer = 1;
                             }
                             else
                             {
-                                iTroopsMoved = pPlayer1->m_Troops.size();
+                                // change player and call end turn functions
+                                pPlayer1->BuffTroops();
+                                pPlayer2->BuffTroops();
+                                pPlayer1->AttackEnemies(pPlayer1);
+                                pPlayer2->AttackEnemies(pPlayer2);
+                                pPlayer1->ResetBuffs();
+                                pPlayer2->ResetBuffs();
                                 g_iPlayer = 2;
                             }
                         }
@@ -725,7 +737,6 @@ int main()
                                 for (int j = 0; j < pPlayer1->m_Troops.size(); j++)
                                 {
                                     pPlayer1->m_Troops[j]->m_bTroopMoved = false;
-                                    pPlayer2->m_Troops[j]->m_bTroopMoved = false;
                                 }
                                 pPlayer1->BuffTroops();
                                 pPlayer2->BuffTroops();
@@ -779,7 +790,6 @@ int main()
                                     for (int j = 0; j < pPlayer2->m_Troops.size(); j++)
                                     {
                                         pPlayer2->m_Troops[j]->m_bTroopMoved = false;
-                                        pPlayer1->m_Troops[j]->m_bTroopMoved = false;
                                     }
                                     pPlayer2->BuffTroops();
                                     pPlayer1->BuffTroops();
