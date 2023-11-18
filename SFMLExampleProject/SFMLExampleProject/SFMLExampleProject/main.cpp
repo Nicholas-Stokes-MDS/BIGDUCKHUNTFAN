@@ -310,6 +310,8 @@ int main()
     PlayerTurn.push_back(Lose);
     UIElement NextLevel(sf::Vector2f(165, 540), sf::Vector2f(150, 50), std::string("Next level"), UIElementFont, sf::Color::Black);
     PlayerTurn.push_back(NextLevel);
+    UIElement Restart(sf::Vector2f(330, 540), sf::Vector2f(150, 50), std::string("Restart"), UIElementFont, sf::Color::Black);
+    PlayerTurn.push_back(Restart);
 
     //LevelNumber(std::string("End Turn"))
 
@@ -586,6 +588,14 @@ int main()
                             g_bTroopsPlaced = false;
                         }
                     }
+                    if (PlayerTurn[6].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(window))))
+                    {
+                        g_iPlayer = 0;
+                        LevelManager::GetInstance()->SetCurrentLevel(1);
+                        main();
+
+                    }
+
                 }
 
                 if (g_iPlayer == 1)
@@ -933,6 +943,7 @@ int main()
         PlayerTurn[3].Update(std::string("Level: ") + std::to_string(LevelManager::GetInstance()->GetCurrentLevel()));
         PlayerTurn[2].Draw(&window);
         PlayerTurn[3].Draw(&window);
+        PlayerTurn[7].Draw(&window);
 
         window.display();
 
