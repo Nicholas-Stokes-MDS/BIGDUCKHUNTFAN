@@ -119,6 +119,7 @@ int main()
     // initialize random seed
     srand(time(0));
 
+    // initialise game running and player win booleans
     bool g_bGameRunning = true;
     bool g_bPlayerWin = false;
 
@@ -149,7 +150,7 @@ int main()
         window.setVerticalSyncEnabled(true);
 
         std::vector<UIElement> MenuElements;
-        // creation of buttons
+        // creation of buttons and text for the start menu
         UIElement SinglePlayer(sf::Vector2f(300, 30), sf::Vector2f(150, 50), std::string("SinglePlayer"), UIElementFont, sf::Color::Black);
         MenuElements.push_back(SinglePlayer);
         UIElement TwoPlayer(sf::Vector2f(300, 100), sf::Vector2f(150, 50), std::string("TwoPlayer"), UIElementFont, sf::Color::Black);
@@ -169,6 +170,7 @@ int main()
         UIElement Instruction7(sf::Vector2f(50, 470), sf::Vector2f(700, 50), std::string("5.Strategically move your troops to defeat all the opponent troops."), UIElementFont, sf::Color::Black);
         MenuElements.push_back(Instruction7);
         
+        // sets screen resolution of the main window based on the GetResolution global variable
         if (LevelManager::GetInstance()->GetResolution() == 1)
         {
             window.create(sf::VideoMode(800, 600), "Game!");
@@ -182,7 +184,9 @@ int main()
             window.create(sf::VideoMode(1920, 1080), "Game!");
         }
 
-        LevelManager::GetInstance()->SetGameType(0);
+        //LevelManager::GetInstance()->SetGameType(0);
+
+        // code for start menu displayed on the main window before transitioning to the main game 
         while (LevelManager::GetInstance()->GetGameType() == 0)
         {
             while (window.isOpen() && LevelManager::GetInstance()->GetGameType() == 0)
@@ -199,7 +203,7 @@ int main()
                     {
                         if (menu.mouseButton.button == sf::Mouse::Left)
                         {
-                            //clicking buttons in Options window and calling the appropriate class method
+                            //clicking buttons in Menu window and calling the appropriate class method
                             // Single Player
                             if (MenuElements[0].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(window))))
                             {
@@ -272,9 +276,11 @@ int main()
         int g_iTurns = 0;
         int g_iPlayer = 1;
 
+        // create place troops window
         sf::RenderWindow OptionsWindow(sf::VideoMode(400, 400), "Place troops");
         OptionsWindow.setVerticalSyncEnabled(true);
 
+        // create settings window
         sf::RenderWindow Settings(sf::VideoMode(400, 400), "Settings");
         Settings.setVerticalSyncEnabled(true);
 
@@ -288,13 +294,11 @@ int main()
         WinLose.setVerticalSyncEnabled(true);
         WinLose.close();
         
-
+        // creates an instance of the singleton class
         LevelManager* g_LevelManager = LevelManager::GetInstance();
         LevelManager::GetInstance()->GetCurrentLevel();
 
-        // creates level instance and loads level based on supplied text file
         Level level;
-        //level.LoadLevel("Levels/level1.txt");
 
         // creates instance of terrain tiles
         Terrain* terrain = new Terrain();
@@ -315,7 +319,7 @@ int main()
         // UI stuff
         // vector for buttons
         std::vector<UIElement> UIElements;
-        // creation of buttons
+        // creation of buttons and text for the troop selection window
         UIElement UISoldier(sf::Vector2f(50, 30), sf::Vector2f(100, 50), std::string("Soldier (") + std::to_string(g_iTroopCounts[5]) + std::string(")"), UIElementFont, sf::Color::Black);
         UIElements.push_back(UISoldier);
         UIElement UIArcher(sf::Vector2f(50, 100), sf::Vector2f(100, 50), std::string("Archer (") + std::to_string(g_iTroopCounts[0]) + std::string(")"), UIElementFont, sf::Color::Black);
@@ -332,7 +336,7 @@ int main()
         UIElements.push_back(UIdeselect);
 
         std::vector<UIElement> UIElements2;
-        // creation of buttons
+        // creation of buttons and text for the settings window
         UIElement volume1Element(sf::Vector2f(20, 30), sf::Vector2f(150, 50), std::string("Volume+"), UIElementFont, sf::Color::Black);
         UIElements2.push_back(volume1Element);
         UIElement volume2Element(sf::Vector2f(20, 100), sf::Vector2f(150, 50), std::string("Volume-"), UIElementFont, sf::Color::Black);
@@ -348,7 +352,9 @@ int main()
         UIElement resolution3Element(sf::Vector2f(220, 100), sf::Vector2f(150, 50), std::string("1920 by 1080"), UIElementFont, sf::Color::Black);
         UIElements2.push_back(resolution3Element);
 
+
         std::vector<UIElement> PlayerTurn;
+        // creation of buttons and text for main game window
         UIElement Player1Element(sf::Vector2f(165, 480), sf::Vector2f(150, 50), std::string("Player 1's turn"), UIElementFont, sf::Color::Blue);
         PlayerTurn.push_back(Player1Element);
         UIElement Player2Element(sf::Vector2f(165, 480), sf::Vector2f(150, 50), std::string("Player 2's turn"), UIElementFont, sf::Color::Red);
@@ -367,6 +373,7 @@ int main()
         PlayerTurn.push_back(Restart);
 
         std::vector<UIElement> DebugElement;
+        // creation of buttons and text for debug window
         UIElement LevelIncrease(sf::Vector2f(20, 30), sf::Vector2f(150, 50), std::string("Level+"), UIElementFont, sf::Color::Black);
         DebugElement.push_back(LevelIncrease);
         UIElement LevelDecrease(sf::Vector2f(20, 100), sf::Vector2f(150, 50), std::string("Level-"), UIElementFont, sf::Color::Black);
@@ -385,6 +392,7 @@ int main()
         DebugElement.push_back(TroopRangeDecrease);
 
         std::vector<UIElement> WinLoseElement;
+        // creation of buttons and text for win lose window
         UIElement YouWinElement(sf::Vector2f(125, 30), sf::Vector2f(150, 50), std::string("You win!"), UIElementFont, sf::Color::Black);
         WinLoseElement.push_back(YouWinElement);
         UIElement YouLoseElement(sf::Vector2f(125, 30), sf::Vector2f(150, 50), std::string("You lose!"), UIElementFont, sf::Color::Black);
@@ -392,9 +400,7 @@ int main()
         UIElement RestartButton(sf::Vector2f(125, 100), sf::Vector2f(150, 50), std::string("Restart"), UIElementFont, sf::Color::Black);
         WinLoseElement.push_back(RestartButton);
 
-
-        //UIElement PlayerTurn[3](sf::Vector2f(0, 480), sf::Vector2f(150, 50), std::string("Level: ") + std::to_string(LevelManager::GetInstance()->GetCurrentLevel()), UIElementFont, sf::Color::Black);
-
+        // loads appropriate level based on current level global variable
         if (LevelManager::GetInstance()->GetCurrentLevel() == 1)
         {
             level.LoadLevel("Levels/level1.txt");
@@ -421,9 +427,6 @@ int main()
         }
         level.PrintTerrainType();
 
-
-
-        std::cout << "resolution: " << LevelManager::GetInstance()->GetResolution() << std::endl;
 
         pPlayer1->SetLevel(level);
         pPlayer2->SetLevel(level);
@@ -462,6 +465,7 @@ int main()
 
                     else if (event.key.code == sf::Keyboard::D)
                     {
+                        // opens debug window if the user presses D
                         Debug.create(sf::VideoMode(400, 400), "Debug window");
                     }
                     break;
@@ -691,49 +695,9 @@ int main()
                                 // next level code
                                 if (g_LevelManager->GetCurrentLevel() <= 5)
                                 {
+                                    // increments current level global variable and restarts the game to effectively transition to the next level
                                     LevelManager::GetInstance()->SetCurrentLevel(LevelManager::GetInstance()->GetCurrentLevel() + 1);
                                     window.close();
-                                    /*if (LevelManager::GetInstance()->GetCurrentLevel() == 1)
-                                    {
-                                        level.LoadLevel("Levels/level1.txt");
-                                    }
-                                    else if (LevelManager::GetInstance()->GetCurrentLevel() == 2)
-                                    {
-                                        level.LoadLevel("Levels/level2.txt");
-                                    }
-                                    else if (LevelManager::GetInstance()->GetCurrentLevel() == 3)
-                                    {
-                                        level.LoadLevel("Levels/level3.txt");
-                                    }
-                                    level.PrintTerrainType();
-                                }
-                                // repeat once for each troop
-                                for (int i = 0; i < 6; i++)
-                                {
-                                    if (LevelManager::GetInstance()->GetCurrentLevel() == 1)
-                                    {
-                                        g_iTroopCounts[i] = LevelManager::GetInstance()->g_iLevel1Troops[i];
-                                    }
-                                    else if (LevelManager::GetInstance()->GetCurrentLevel() == 2)
-                                    {
-                                        g_iTroopCounts[i] = LevelManager::GetInstance()->g_iLevel2Troops[i];
-                                    }
-                                    else if (LevelManager::GetInstance()->GetCurrentLevel() == 3)
-                                    {
-                                        g_iTroopCounts[i] = LevelManager::GetInstance()->g_iLevel3Troops[i];
-                                    }
-                                }
-
-                                g_bLevelFinished = true;
-                                g_bTroopsPlaced = false;
-                                bool bMovingTroop = false;
-
-                                bool g_bLevelFinished = false;
-                                bool g_bPlayer1Won = false;
-                                bool g_bPlayer2Won = false;
-
-                                bool g_bTroopsPlaced = false;
-                                int g_iTroopsPlaced = 0;*/
                                 }
                             }
                         }
@@ -1133,6 +1097,8 @@ int main()
                 pPlayer2->ShowMouseSquare(&window);
             }
 
+
+            // main window render loop
             //clearing
             // make background grey
             window.clear(sf::Color(155, 155, 155, 255));
@@ -1216,6 +1182,9 @@ int main()
             PlayerTurn[7].Draw(&window);
 
             window.display();
+            // main window render loop
+
+
 
             // WinLose window render loop
             WinLose.clear();

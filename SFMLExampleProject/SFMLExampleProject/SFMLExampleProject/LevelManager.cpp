@@ -41,6 +41,7 @@ LevelManager::LevelManager()
     }
 }
 
+// unloads then loads in level based on value
 void LevelManager::LoadLevel(int _LevelNum, Level* _LevelRef)
 {
     _LevelRef->UnloadLevel();
@@ -49,6 +50,7 @@ void LevelManager::LoadLevel(int _LevelNum, Level* _LevelRef)
     std::cout << "The current level is level " << this->currentLevelNum << std::endl;
 }
 
+// sets current level variable and its associated text file to supplied value
 void LevelManager::SetCurrentLevel(int _Level)
 {
     this->currentLevelNum = _Level;
@@ -62,15 +64,19 @@ void LevelManager::SetCurrentLevel(int _Level)
     }
 }
 
+// prints current level variable value
 void LevelManager::PrintCurrentLevel()
 {
     std::cout << "The current level is level " << this->currentLevelNum << std::endl;
 }
 
+// returns current level variable value
 int LevelManager::GetCurrentLevel()
 {
     return this->currentLevelNum;
 }
+
+// sets game type variable and its associated text file to supplied value
 
 void LevelManager::SetGameType(int _gameType)
 {
@@ -85,10 +91,13 @@ void LevelManager::SetGameType(int _gameType)
     }
 }
 
+// return game type variable value
 int LevelManager::GetGameType()
 {
     return this->gameType;
 }
+
+// sets resolution variable and its associated text file to supplied value
 
 void LevelManager::SetResolution(int _resolution)
 {
@@ -101,6 +110,7 @@ void LevelManager::SetResolution(int _resolution)
     }
 }
 
+// returns resolution variable value
 int LevelManager::GetResolution()
 {
     return this->resolution;

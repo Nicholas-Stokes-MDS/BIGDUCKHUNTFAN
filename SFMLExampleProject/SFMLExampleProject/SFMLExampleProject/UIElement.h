@@ -1,3 +1,14 @@
+// Bachelor of Software Engineering
+// Media Design School
+// Auckland
+// New Zealand
+//
+// (c) Media Design School
+//
+// File Name : UIElement.h
+// Description : Class responsible for UI for the debug screen and the visuals for the win and lose screen
+// Author : Nick Stokes
+// Mail : Nicholas.Stokes@mds.ac.nz
 #pragma once
 #include "SFML/Graphics.hpp"
 

@@ -6,9 +6,12 @@
 class LevelManager
 {
 private:
+	// global variables
 	int currentLevelNum;
 	int gameType;
 	int resolution;
+	// global variabls
+
 	static LevelManager* g_LevelManagerRef; // the pointer to the manager instance
 	LevelManager();
 
@@ -30,7 +33,7 @@ public:
 	int g_iLevel4Troops[6] = { 0, 1, 0, 2, 0, 4 };
 	int g_iLevel5Troops[6] = { 2, 0, 2, 3, 0, 0 };
 	//int g_iLevel6Troops[6] = { 4, 2, 2, 3, 4, 6 };
-	int g_iLevel6Troops[6] = { 1, 1, 1, 1, 1, 1 };
+	int g_iLevel6Troops[6] = { 3, 1, 1, 2, 3, 4};
 
 	LevelManager(const LevelManager& _Manager) = delete; // when try to copy, deletes it only should be one (stops copy constructor from working)
 

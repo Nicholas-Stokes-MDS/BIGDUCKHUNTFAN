@@ -1,5 +1,18 @@
+// Bachelor of Software Engineering
+// Media Design School
+// Auckland
+// New Zealand
+//
+// (c) Media Design School
+//
+// File Name : UIElement.cpp
+// Description : cpp file for UIElement.h
+// Author : Nick Stokes
+// Mail : Nicholas.Stokes@mds.ac.nz
 #include "UIElement.h"
 #include <iostream>	
+
+// sets the position, box size, box fill color, font, font fill color, font position and font character size
 UIElement::UIElement(sf::Vector2f _Position, sf::Vector2f _Size, std::string _ID, sf::Font* _FontRef, sf::Color _Color)
 {
 	m_ElementVisual.setPosition(_Position);
