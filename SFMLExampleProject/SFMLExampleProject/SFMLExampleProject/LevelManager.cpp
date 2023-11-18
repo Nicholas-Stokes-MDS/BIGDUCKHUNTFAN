@@ -4,7 +4,7 @@ LevelManager* LevelManager::g_LevelManagerRef = NULL;
 LevelManager::LevelManager()
 {
     // Load the current level from the file when the game starts.
-    std::ifstream infile("Levels/levelState.txt");
+    std::ifstream infile("Levels/currentLevel.txt");
     if (infile.is_open())
     {
         infile >> this->currentLevelNum;
@@ -42,7 +42,7 @@ void LevelManager::SetCurrentLevel(int _Level)
     this->currentLevelNum = _Level;
 
     // Save the current level to a file.
-    std::ofstream outfile("Levels/levelState.txt");
+    std::ofstream outfile("Levels/currentLevel.txt");
     if (outfile.is_open())
     {
         outfile << this->currentLevelNum;
