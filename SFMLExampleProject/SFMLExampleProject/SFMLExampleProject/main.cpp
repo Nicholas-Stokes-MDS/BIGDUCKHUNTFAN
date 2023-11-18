@@ -6,10 +6,10 @@
 // (c) Media Design School
 //
 // File Name : main.cpp
-// Description : Responsible for running the game using instances of classes
+// Description : Responsible for running the game using instances of classes. All buttons created here
 // Author : Nick Stokes and Daniel Wests
-// Mail : Nicholas.Stokes@mds.ac.nz and Daniel.Wests@mds.ac.nz
-#include "Object.h"
+// Mail : Nicholas.Stokes@mds.ac.nz and Daniel.West@mds.ac.nz
+
 #include "Troop.h"
 #include "LevelManager.h"
 #include "Board.h"
@@ -151,29 +151,29 @@ int main()
         sound.setLoop(true);
         sound.play();
 
-        // Win sound effect
-        sf::SoundBuffer WinBuffer;
-        laugh.loadFromFile("SFX/win.wav");
-        if (!laugh.loadFromFile("SFX/win.wav"))
-        {
-            std::cout << "Error loading file" << std::endl;
-        }
-        sf::Sound winSound;
-        // set volume to 50 to not hurt Zach's ears
-        winSound.setVolume(50.f);
-        winSound.setBuffer(WinBuffer);
+        //// Win sound effect
+        //sf::SoundBuffer WinBuffer;
+        //laugh.loadFromFile("SFX/win.wav");
+        //if (!laugh.loadFromFile("SFX/win.wav"))
+        //{
+        //    std::cout << "Error loading file" << std::endl;
+        //}
+        //sf::Sound winSound;
+        //// set volume to 50 to not hurt Zach's ears
+        //winSound.setVolume(50.f);
+        //winSound.setBuffer(WinBuffer);
 
-        // click sound effect
-        sf::SoundBuffer Click;
-        laugh.loadFromFile("SFX/win.wav");
-        if (!laugh.loadFromFile("SFX/win.wav"))
-        {
-            std::cout << "Error loading file" << std::endl;
-        }
-        sf::Sound clickSound;
-        // set volume to 50 to not hurt Zach's ears
-        clickSound.setVolume(50.f);
-        clickSound.setBuffer(Click);
+        //// click sound effect
+        //sf::SoundBuffer Click;
+        //laugh.loadFromFile("SFX/win.wav");
+        //if (!laugh.loadFromFile("SFX/win.wav"))
+        //{
+        //    std::cout << "Error loading file" << std::endl;
+        //}
+        //sf::Sound clickSound;
+        //// set volume to 50 to not hurt Zach's ears
+        //clickSound.setVolume(50.f);
+        //clickSound.setBuffer(Click);
 
         // menu
         sf::Font* UIElementFont = new sf::Font();
@@ -233,6 +233,7 @@ int main()
                 {
                     if (menu.type == sf::Event::Closed)
                     {
+                        g_bGameRunning = false;
                         window.close();
                     }
 
@@ -477,8 +478,8 @@ int main()
                 switch (event.type)
                 {
                 case sf::Event::Closed:
-                    window.close();
                     g_bGameRunning = false;
+                    window.close();
                     break;
                 case sf::Event::KeyPressed:
                     if (event.key.code == sf::Keyboard::Num1)
@@ -687,7 +688,7 @@ int main()
                     if (event.type == sf::Event::MouseButtonPressed)
                     {
                         // play click sound
-                        clickSound.play();
+                        //clickSound.play();
                         // end turn button
                         if (PlayerTurn[2].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(window))))
                         {
@@ -897,7 +898,7 @@ int main()
                     }
                     else
                     {
-                        winSound.play();
+                        //winSound.play();
                     }
                 }
                 else if (pPlayer2->m_Troops.size() <= 0)
@@ -913,11 +914,11 @@ int main()
                         g_bPlayerWin = true;
                         WinLose.create(sf::VideoMode(400, 400), "Win window");
                         LevelManager::GetInstance()->SetCurrentLevel(1);
-                        winSound.play();
+                        //winSound.play();
                     }
                     else
                     {
-                        winSound.play();
+                        //winSound.play();
                     }
                 }
             }

@@ -1,4 +1,14 @@
-// takes level array and creates board. Manages mouse clicks and troop placement. 
+// Bachelor of Software Engineering
+// Media Design School
+// Auckland
+// New Zealand
+//
+// (c) Media Design School
+//
+// File Name : Board.h
+// Description : Header file for Board class. Handles troop placement, troop movement and interactions between troops.
+// Author : Daniel West
+// Mail : daniel.west@mds.ac.nz
 
 #pragma once
 #include "Level.h"

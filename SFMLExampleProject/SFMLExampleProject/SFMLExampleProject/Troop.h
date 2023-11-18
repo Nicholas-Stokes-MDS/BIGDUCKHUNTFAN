@@ -1,3 +1,15 @@
+// Bachelor of Software Engineering
+// Media Design School
+// Auckland
+// New Zealand
+//
+// (c) Media Design School
+//
+// File Name : Troop.h
+// Description : Header file for Troop class. Troop class holds all information on a single troop.
+// Author : Daniel West
+// Mail : daniel.west@mds.ac.nz
+
 #pragma once
 #include "include/SFML/Graphics.hpp"
 #include <string>

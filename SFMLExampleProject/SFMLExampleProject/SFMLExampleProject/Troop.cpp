@@ -1,3 +1,15 @@
+// Bachelor of Software Engineering
+// Media Design School
+// Auckland
+// New Zealand
+//
+// (c) Media Design School
+//
+// File Name : Troop.cpp
+// Description : cpp file for Troop class. reads a text file to designate troop stats.
+// Author : Daniel West
+// Mail : daniel.west@mds.ac.nz
+
 #include "Troop.h"
 
 Troop::Troop(std::string _sFilePath)
@@ -185,7 +197,7 @@ sf::Sprite Troop::GetSprite()
 
 void Troop::SetHealth(int _iNewHealth)
 {
-    std::cout << "old health: " << m_iHealth << "\nNew Health: " << _iNewHealth << std::endl;
+    std::cout << m_sName <<" old health: " << m_iHealth << "\nNew Health: " << _iNewHealth << std::endl;
     m_iHealth = _iNewHealth;
 }
 

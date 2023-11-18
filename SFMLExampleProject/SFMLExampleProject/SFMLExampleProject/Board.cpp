@@ -1,3 +1,15 @@
+// Bachelor of Software Engineering
+// Media Design School
+// Auckland
+// New Zealand
+//
+// (c) Media Design School
+//
+// File Name : Board.cpp
+// Description : Essentially player class. Handles all movement and interactions between troops
+// Author : Daniel West
+// Mail : daniel.west@mds.ac.nz
+
 #include "Board.h"
 
 Board::Board(Level _level, int _iPlayerID, bool _bIsComputer)
