@@ -131,7 +131,10 @@ int main()
             std::cout << "Error loading file" << std::endl;
         }
         sf::Sound sound;
+        // set volume to 50 to not hurt Zach's ears
+        sound.setVolume(50.f);
         sound.setBuffer(laugh);
+        sound.setLoop(true);
         sound.play();
 
         // menu
@@ -354,7 +357,7 @@ int main()
         PlayerTurn.push_back(Lose);
         UIElement NextLevel(sf::Vector2f(165, 540), sf::Vector2f(150, 50), std::string("Next level"), UIElementFont, sf::Color::Black);
         PlayerTurn.push_back(NextLevel);
-        UIElement Restart(sf::Vector2f(330, 540), sf::Vector2f(150, 50), std::string("Restart"), UIElementFont, sf::Color::Black);
+        UIElement Restart(sf::Vector2f(330, 540), sf::Vector2f(150, 50), std::string("New Save"), UIElementFont, sf::Color::Black);
         PlayerTurn.push_back(Restart);
 
         std::vector<UIElement> DebugElement;
@@ -968,12 +971,12 @@ int main()
                         // Volume Plus
                         if (UIElements2[0].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(Settings))))
                         {
-
+                            sound.setVolume(sound.getVolume() + 5);
                         }
                         // Volume - 
                         if (UIElements[1].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(Settings))))
                         {
-
+                            sound.setVolume(sound.getVolume() - 5);
                         }
                         // VSync Enable
                         if (UIElements[2].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(Settings))))
