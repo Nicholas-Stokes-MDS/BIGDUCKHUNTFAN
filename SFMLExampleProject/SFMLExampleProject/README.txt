@@ -17,5 +17,11 @@ Daniel West:
 - Commenting
 
 Nick:
-- Debug menu
-- Level loading
+- UI, buttons and/or creation of windows for start menu, the main game, settings menu and troop selection menu
+- Make sure certain buttons are updated (like how many troops you have left in placing troop menu)
+- Level tile system
+- Level loading and drawing
+- Singleton class
+- Data orientated programming for gameType (single player or two player) and each level (tile lay out) so that progress in the game would be saved
+  when the player exits and joins the game again
+- Level design for the 6 levels and the troops available in each level
