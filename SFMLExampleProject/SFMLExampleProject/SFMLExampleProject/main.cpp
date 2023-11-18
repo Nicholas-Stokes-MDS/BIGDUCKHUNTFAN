@@ -999,43 +999,43 @@ int main()
                     {
                         //clicking buttons in Options window and calling the appropriate class method
                         // LevelIncrease
-                        if (DebugElement[0].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(Settings))))
+                        if (DebugElement[0].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(Debug))))
                         {
 
                         }
                         // LevelDecrease
-                        if (DebugElement[1].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(Settings))))
+                        if (DebugElement[1].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(Debug))))
                         {
 
                         }
                         // HealthIncrease
-                        if (DebugElement[2].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(Settings))))
+                        if (DebugElement[2].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(Debug))))
                         {
                             pMovingTroop->SetHealth((pMovingTroop->GetHealth()) + 1);
                         }
                         // HealthDecrease
-                        if (DebugElement[3].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(Settings))))
+                        if (DebugElement[3].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(Debug))))
                         {
                             pMovingTroop->SetHealth((pMovingTroop->GetHealth()) - 1);
                         }
                         // DamageIncrease
-                        if (DebugElement[4].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(Settings))))
+                        if (DebugElement[4].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(Debug))))
                         {
                             pMovingTroop->SetDamage((pMovingTroop->GetDamage()) + 1);
                         }
                         // DamageDecrease
-                        if (DebugElement[5].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(Settings))))
+                        if (DebugElement[5].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(Debug))))
                         {
                             pMovingTroop->SetDamage((pMovingTroop->GetDamage()) - 1);
                         }
                         // RangeIncrease
-                        if (DebugElement[6].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(Settings))))
+                        if (DebugElement[6].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(Debug))))
                         {
                             pMovingTroop->SetRange((pMovingTroop->GetRange()) + 1);
                         }
 
                         // RangeDecrease
-                        if (DebugElement[7].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(Settings))))
+                        if (DebugElement[7].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(Debug))))
                         {
                             pMovingTroop->SetRange((pMovingTroop->GetRange()) - 1);
                         }
