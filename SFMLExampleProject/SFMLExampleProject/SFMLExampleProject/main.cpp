@@ -237,6 +237,19 @@ int main()
             {
                 g_iTroopCounts[i] = LevelManager::GetInstance()->g_iLevel3Troops[i];
             }
+            else if (LevelManager::GetInstance()->GetCurrentLevel() == 4)
+            {
+                g_iTroopCounts[i] = LevelManager::GetInstance()->g_iLevel4Troops[i];
+            }
+            else if (LevelManager::GetInstance()->GetCurrentLevel() == 5)
+            {
+                g_iTroopCounts[i] = LevelManager::GetInstance()->g_iLevel5Troops[i];
+            }
+            else if (LevelManager::GetInstance()->GetCurrentLevel() == 6)
+            {
+                g_iTroopCounts[i] = LevelManager::GetInstance()->g_iLevel6Troops[i];
+            }
+
         }
 
         int g_iTurns = 0;
@@ -342,6 +355,18 @@ int main()
         else if (LevelManager::GetInstance()->GetCurrentLevel() == 3)
         {
             level.LoadLevel("Levels/level3.txt");
+        }
+        else if (LevelManager::GetInstance()->GetCurrentLevel() == 4)
+        {
+            level.LoadLevel("Levels/level4.txt");
+        }
+        else if (LevelManager::GetInstance()->GetCurrentLevel() == 5)
+        {
+            level.LoadLevel("Levels/level5.txt");
+        }
+        else if (LevelManager::GetInstance()->GetCurrentLevel() == 6)
+        {
+            level.LoadLevel("Levels/level6.txt");
         }
 
         level.PrintTerrainType();
@@ -492,6 +517,18 @@ int main()
                             {
                                 g_iTroopCounts[i] = LevelManager::GetInstance()->g_iLevel3Troops[i];
                             }
+                            else if (LevelManager::GetInstance()->GetCurrentLevel() == 4)
+                            {
+                                g_iTroopCounts[i] = LevelManager::GetInstance()->g_iLevel4Troops[i];
+                            }
+                            else if (LevelManager::GetInstance()->GetCurrentLevel() == 5)
+                            {
+                                g_iTroopCounts[i] = LevelManager::GetInstance()->g_iLevel5Troops[i];
+                            }
+                            else if (LevelManager::GetInstance()->GetCurrentLevel() == 6)
+                            {
+                                g_iTroopCounts[i] = LevelManager::GetInstance()->g_iLevel6Troops[i];
+                            }
                         }
                         if (g_iPlayer == 1)
                         {
@@ -583,11 +620,11 @@ int main()
                             if (g_bPlayer1Won || g_bPlayer2Won)
                             {
                                 // next level code
-                                if (g_LevelManager->GetCurrentLevel() <= 2)
+                                if (g_LevelManager->GetCurrentLevel() <= 5)
                                 {
                                     LevelManager::GetInstance()->SetCurrentLevel(LevelManager::GetInstance()->GetCurrentLevel() + 1);
                                     window.close();
-                                    if (LevelManager::GetInstance()->GetCurrentLevel() == 1)
+                                    /*if (LevelManager::GetInstance()->GetCurrentLevel() == 1)
                                     {
                                         level.LoadLevel("Levels/level1.txt");
                                     }
@@ -626,7 +663,8 @@ int main()
                                 bool g_bPlayer2Won = false;
 
                                 bool g_bTroopsPlaced = false;
-                                int g_iTroopsPlaced = 0;
+                                int g_iTroopsPlaced = 0;*/
+                                }
                             }
                         }
                         // restart button pressed

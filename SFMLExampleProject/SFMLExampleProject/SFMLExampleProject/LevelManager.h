@@ -11,11 +11,14 @@ private:
 	static LevelManager* g_LevelManagerRef; // the pointer to the manager instance
 	LevelManager();
 
-	const char* LevelList[3] =
+	const char* LevelList[6] =
 	{
 		"Levels/level1.txt",
 		"Levels/level2.txt",
 		"Levels/level3.txt",
+		"Levels/level4.txt",
+		"Levels/level5.txt",
+		"Levels/level6.txt"
 	};
 
 public:
