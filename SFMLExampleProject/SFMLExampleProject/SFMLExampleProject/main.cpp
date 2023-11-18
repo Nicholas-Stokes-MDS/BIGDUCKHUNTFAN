@@ -586,6 +586,7 @@ int main()
                                 if (g_LevelManager->GetCurrentLevel() <= 2)
                                 {
                                     LevelManager::GetInstance()->SetCurrentLevel(LevelManager::GetInstance()->GetCurrentLevel() + 1);
+                                    window.close();
                                     if (LevelManager::GetInstance()->GetCurrentLevel() == 1)
                                     {
                                         level.LoadLevel("Levels/level1.txt");
