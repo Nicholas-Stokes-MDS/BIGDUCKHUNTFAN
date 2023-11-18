@@ -632,25 +632,32 @@ int main()
                             // end turn code
                             if (g_iPlayer == 2)
                             {
-                                // change player and call end turn functions
+                                for (int j = 0; j < pPlayer2->m_Troops.size(); j++)
+                                {
+                                    pPlayer2->m_Troops[j]->m_bTroopMoved = false;
+                                }
                                 pPlayer2->BuffTroops();
                                 pPlayer1->BuffTroops();
                                 pPlayer2->AttackEnemies(pPlayer1);
                                 pPlayer1->AttackEnemies(pPlayer2);
                                 pPlayer1->ResetBuffs();
                                 pPlayer2->ResetBuffs();
-                                g_iPlayer = 1;
+                                g_iPlayer--;
                             }
                             else
                             {
                                 // change player and call end turn functions
+                                for (int j = 0; j < pPlayer1->m_Troops.size(); j++)
+                                {
+                                    pPlayer1->m_Troops[j]->m_bTroopMoved = false;
+                                }
                                 pPlayer1->BuffTroops();
                                 pPlayer2->BuffTroops();
-                                pPlayer1->AttackEnemies(pPlayer1);
-                                pPlayer2->AttackEnemies(pPlayer2);
+                                pPlayer1->AttackEnemies(pPlayer2);
+                                pPlayer2->AttackEnemies(pPlayer1);
                                 pPlayer1->ResetBuffs();
                                 pPlayer2->ResetBuffs();
-                                g_iPlayer = 2;
+                                g_iPlayer++;
                             }
                         }
                         // next level button
@@ -1039,7 +1046,6 @@ int main()
                         {
                             pMovingTroop->SetRange((pMovingTroop->GetRange()) - 1);
                         }
-
                     }
                 }
             }
@@ -1078,13 +1084,17 @@ int main()
             //draw player 1 troops
             for (int i = 0; i < pPlayer1->m_Troops.size(); i++)
             {
+                pPlayer1->m_Troops[i]->DisplayHP();
                 window.draw(pPlayer1->m_Troops[i]->GetSprite());
+                window.draw(pPlayer1->m_Troops[i]->GetHpText());
             }
 
             //draw player 2 troops
             for (int i = 0; i < pPlayer2->m_Troops.size(); i++)
             {
+                pPlayer2->m_Troops[i]->DisplayHP();
                 window.draw(pPlayer2->m_Troops[i]->GetSprite());
+                window.draw(pPlayer2->m_Troops[i]->GetHpText());
             }
 
             if (g_iPlayer == 1)
