@@ -1,80 +1,89 @@
-﻿  Archer.cpp
-  Board.cpp
-C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Board.cpp(29,41): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+﻿  Board.cpp
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Board.cpp(32,42): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Board.cpp(29,33): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Board.cpp(32,34): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Board.cpp(46,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Board.cpp(55,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Board.cpp(80,14): warning C4244: 'initializing': conversion from 'T' to 'float', possible loss of data
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Board.cpp(51,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Board.cpp(64,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Board.cpp(77,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Board.cpp(148,17): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Board.cpp(149,17): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Board.cpp(159,17): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Board.cpp(160,17): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Board.cpp(179,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Board.cpp(192,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Board.cpp(223,14): warning C4244: 'initializing': conversion from 'T' to 'float', possible loss of data
           with
           [
               T=int
           ]
-C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Board.cpp(81,14): warning C4244: 'initializing': conversion from 'T' to 'float', possible loss of data
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Board.cpp(224,14): warning C4244: 'initializing': conversion from 'T' to 'float', possible loss of data
           with
           [
               T=int
           ]
-C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Board.cpp(92,41): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Board.cpp(246,41): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Board.cpp(92,33): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Board.cpp(246,33): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Board.cpp(106,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Board.cpp(109,21): warning C4018: '<': signed/unsigned mismatch
-  Boat.cpp
-  Giant.cpp
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Board.cpp(260,41): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Board.cpp(260,33): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Board.cpp(324,41): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Board.cpp(324,33): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
   Level.cpp
-C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Level.cpp(35,22): warning C4018: '<': signed/unsigned mismatch
-C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Level.cpp(60,49): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Level.cpp(36,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Level.cpp(61,49): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Level.cpp(60,41): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Level.cpp(61,41): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Level.cpp(67,49): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Level.cpp(68,49): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Level.cpp(67,41): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Level.cpp(68,41): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Level.cpp(78,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Level.cpp(86,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Level.cpp(79,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Level.cpp(88,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Level.cpp(99,20): warning C4018: '<': signed/unsigned mismatch
   LevelManager.cpp
-  main.cpp
-C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\main.cpp(82,35): warning C4018: '<': signed/unsigned mismatch
-C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\main.cpp(410,39): warning C4018: '<': signed/unsigned mismatch
-C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\main.cpp(441,47): warning C4018: '<': signed/unsigned mismatch
-C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\main.cpp(454,39): warning C4018: '<': signed/unsigned mismatch
-C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\main.cpp(485,47): warning C4018: '<': signed/unsigned mismatch
-C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\main.cpp(652,27): warning C4018: '<': signed/unsigned mismatch
-C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\main.cpp(658,27): warning C4018: '<': signed/unsigned mismatch
-C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\main.cpp(679,27): warning C4018: '<': signed/unsigned mismatch
-C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\main.cpp(689,27): warning C4018: '<': signed/unsigned mismatch
-  Object.cpp
-  Scout.cpp
-  Shield.cpp
-  Soldier.cpp
   Terrain.cpp
   Troop.cpp
 C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Troop.cpp(20,31): warning C4018: '<': signed/unsigned mismatch
@@ -82,19 +91,39 @@ C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExamplePr
 C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Troop.cpp(56,42): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
 C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Troop.cpp(66,47): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
 C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Troop.cpp(76,42): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Troop.cpp(149,21): warning C4244: 'initializing': conversion from 'T' to 'float', possible loss of data
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Troop.cpp(153,21): warning C4244: 'initializing': conversion from 'T' to 'float', possible loss of data
           with
           [
               T=int
           ]
-C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Troop.cpp(150,21): warning C4244: 'initializing': conversion from 'T' to 'float', possible loss of data
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Troop.cpp(154,21): warning C4244: 'initializing': conversion from 'T' to 'float', possible loss of data
           with
           [
               T=int
           ]
   UIElement.cpp
+  main.cpp
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\main.cpp(45,39): warning C4018: '<': signed/unsigned mismatch
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\main.cpp(58,39): warning C4018: '<': signed/unsigned mismatch
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\main.cpp(120,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\main.cpp(205,35): warning C4018: '<': signed/unsigned mismatch
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\main.cpp(559,47): warning C4018: '<': signed/unsigned mismatch
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\main.cpp(568,47): warning C4018: '<': signed/unsigned mismatch
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\main.cpp(613,47): warning C4018: '<': signed/unsigned mismatch
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\main.cpp(724,43): warning C4018: '<': signed/unsigned mismatch
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\main.cpp(758,51): warning C4018: '<': signed/unsigned mismatch
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\main.cpp(777,47): warning C4018: '<': signed/unsigned mismatch
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\main.cpp(811,55): warning C4018: '<': signed/unsigned mismatch
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\main.cpp(830,51): warning C4018: '<': signed/unsigned mismatch
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\main.cpp(1079,31): warning C4018: '<': signed/unsigned mismatch
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\main.cpp(1085,31): warning C4018: '<': signed/unsigned mismatch
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\main.cpp(1147,31): warning C4018: '<': signed/unsigned mismatch
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\main.cpp(1157,31): warning C4018: '<': signed/unsigned mismatch
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\main.cpp(1168,31): warning C4018: '<': signed/unsigned mismatch
   Generating code
-  Previous IPDB not found, fall back to full compilation.
-  All 539 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\Board.cpp(218): warning C4715: 'Board::ComputerMove': not all control paths return a value
+  337 of 559 functions (60.3%) were compiled, the rest were copied from previous compilation.
+    29 functions were new in current compilation
+    45 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   SFMLExampleProject.vcxproj -> C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\Release\SFMLExampleProject.exe
