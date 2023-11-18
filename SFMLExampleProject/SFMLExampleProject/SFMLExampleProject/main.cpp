@@ -905,10 +905,14 @@ int main()
                     g_bPlayer1Won = true;
                     g_iPlayer = 1;
 
-                    if (pPlayer2->m_bIsComputer)
+                    if (LevelManager::GetInstance()->GetCurrentLevel() == 6)
                     {
-                        g_bPlayerWin = true;
-                        WinLose.create(sf::VideoMode(400, 400), "Win window");
+                        if (pPlayer2->m_bIsComputer)
+                        {
+                            g_bPlayerWin = true;
+                            WinLose.create(sf::VideoMode(400, 400), "Win window");
+                            LevelManager::GetInstance()->SetCurrentLevel(1);
+                        }
                     }
                 }
             }

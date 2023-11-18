@@ -13,14 +13,14 @@ C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExamplePr
 C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\main.cpp(807,47): warning C4018: '<': signed/unsigned mismatch
 C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\main.cpp(841,55): warning C4018: '<': signed/unsigned mismatch
 C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\main.cpp(860,51): warning C4018: '<': signed/unsigned mismatch
-C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\main.cpp(1148,31): warning C4018: '<': signed/unsigned mismatch
-C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\main.cpp(1156,31): warning C4018: '<': signed/unsigned mismatch
-C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\main.cpp(1240,31): warning C4018: '<': signed/unsigned mismatch
-C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\main.cpp(1250,31): warning C4018: '<': signed/unsigned mismatch
-C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\main.cpp(1261,31): warning C4018: '<': signed/unsigned mismatch
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\main.cpp(1152,31): warning C4018: '<': signed/unsigned mismatch
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\main.cpp(1160,31): warning C4018: '<': signed/unsigned mismatch
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\main.cpp(1244,31): warning C4018: '<': signed/unsigned mismatch
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\main.cpp(1254,31): warning C4018: '<': signed/unsigned mismatch
+C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\SFMLExampleProject\main.cpp(1265,31): warning C4018: '<': signed/unsigned mismatch
   Generating code
   1 of 567 functions ( 0.2%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
+    46 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   SFMLExampleProject.vcxproj -> C:\Users\User\BIGDUCKHUNTFAN\SFMLExampleProject\SFMLExampleProject\Release\SFMLExampleProject.exe
