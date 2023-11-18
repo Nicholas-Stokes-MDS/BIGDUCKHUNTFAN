@@ -26,6 +26,10 @@ protected:
 	int m_iAttackRange = 0;
 	std::string m_sName = "";
 
+	// for hp
+	sf::Font font;
+	sf::Text hp;
+
 	// array for searching the text file
 	char m_cCharArray[5][15];
 
@@ -64,12 +68,15 @@ public:
 	int GetAttackRange() { return m_iAttackRange; };
 	std::string GetName() { return m_sName; };
 	sf::Vector2f GetPosition() { return m_TroopPosition; };
+	sf::Text GetHpText() { return hp; };
 
 	// setters
 	void SetHealth(int _iNewHealth); //{ m_iHealth = _iNewHealth; };
 	void SetDamage(int _iNewDamage) { m_iDamage = _iNewDamage; };
 	void SetRange(int _iNewRange) { m_iRange = _iNewRange; };
 	void SetAttackRange(int _iNewAttackRange) { m_iAttackRange = _iNewAttackRange; };
+
+	void DisplayHP();
 
 	//Troop(int _iHealth, int _iAttackPower, int _iRange, int _iAttackRange, std::string _sType)
 	//	: m_iHealth(_iHealth), m_iDamage(_iAttackPower), m_iRange(_iRange), m_iAttackRange(_iRange), m_sType(_sType) {}

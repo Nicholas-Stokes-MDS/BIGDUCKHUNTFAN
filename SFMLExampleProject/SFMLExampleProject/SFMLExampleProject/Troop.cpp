@@ -2,6 +2,14 @@
 
 Troop::Troop(std::string _sFilePath)
 {
+    if (!font.loadFromFile("BRLNSR.TTF"))
+    {
+        // error
+    }
+    hp.setFont(font);
+    hp.setCharacterSize(20);
+    hp.setFillColor(sf::Color::Black);
+
     bool bSpaceReached = false;
     std::string sLoadString = "";
 
@@ -181,4 +189,12 @@ void Troop::SetHealth(int _iNewHealth)
     m_iHealth = _iNewHealth;
 }
 
+void Troop::DisplayHP()
+{
+    hp.setString(std::to_string(m_iHealth));
+    // Set the origin of the text to its center
+    hp.setOrigin(hp.getGlobalBounds().getSize() / 2.f + hp.getLocalBounds().getPosition());
 
+    // Set the position of the text to above the rectangle
+    hp.setPosition(m_TroopSprite.getPosition().x + (32 / 2.f), m_TroopSprite.getPosition().y);
+}
