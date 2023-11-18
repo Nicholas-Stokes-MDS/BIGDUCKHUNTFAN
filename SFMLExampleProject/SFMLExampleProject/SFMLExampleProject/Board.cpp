@@ -156,8 +156,8 @@ bool Board::ComputerMove(Board* _EnemyTroops, bool _bForPlacment)
 			if (!(*it)->m_bTroopMoved)
 			{
 				// check a random square in range
-				float fXPos = rand() % ((*it)->GetRange() + 1);
-				float fYPos = rand() % ((*it)->GetRange() + 1);
+				float fXPos = rand() % ((*it)->GetRange() * 2 + 1);
+				float fYPos = rand() % ((*it)->GetRange() * 2 + 1);
 
 				// move by a random amount within range from top left of range
 				SelectRect.setPosition(((*it)->GetPosition().x - ((*it)->GetRange() * 32)) + (fXPos * 32), ((*it)->GetPosition().y - ((*it)->GetRange() * 32)) + (fYPos * 32));

@@ -588,6 +588,12 @@ int main()
                         if (iTotalTroops <= 0)
                         {
                             pPlayer2->ComputerMove(pPlayer1, true);
+
+                            for (int j = 0; j < pPlayer2->m_Troops.size(); j++)
+                            {
+                                pPlayer2->m_Troops[j]->m_bTroopMoved = false;
+                                pPlayer1->m_Troops[j]->m_bTroopMoved = false;
+                            }
                         }
                     }
                 }
@@ -638,6 +644,7 @@ int main()
                                     }
                                     level.PrintTerrainType();
                                 }
+                                // repeat once for each troop
                                 for (int i = 0; i < 6; i++)
                                 {
                                     if (LevelManager::GetInstance()->GetCurrentLevel() == 1)
@@ -718,6 +725,7 @@ int main()
                                 for (int j = 0; j < pPlayer1->m_Troops.size(); j++)
                                 {
                                     pPlayer1->m_Troops[j]->m_bTroopMoved = false;
+                                    pPlayer2->m_Troops[j]->m_bTroopMoved = false;
                                 }
                                 pPlayer1->BuffTroops();
                                 pPlayer2->BuffTroops();
@@ -771,6 +779,7 @@ int main()
                                     for (int j = 0; j < pPlayer2->m_Troops.size(); j++)
                                     {
                                         pPlayer2->m_Troops[j]->m_bTroopMoved = false;
+                                        pPlayer1->m_Troops[j]->m_bTroopMoved = false;
                                     }
                                     pPlayer2->BuffTroops();
                                     pPlayer1->BuffTroops();
@@ -953,7 +962,8 @@ int main()
             }
 
             //clearing
-            window.clear();
+            // make background grey
+            window.clear(sf::Color(155, 155, 155, 255));
 
             //drawing **order matters**
             window.draw(terrain->Draw());
