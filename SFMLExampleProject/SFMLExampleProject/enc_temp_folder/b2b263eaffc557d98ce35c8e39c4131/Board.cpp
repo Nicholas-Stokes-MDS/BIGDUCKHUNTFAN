@@ -254,12 +254,13 @@ bool Board::InMovementRange(Troop& _TroopA, Troop& _TroopB)
 	return false;
 }
 
-bool Board::InAttackRange(Troop& _TroopA, Troop& _TroopB)
+bool Board::InAttackRange(Troop& _TroopA, Troop& _TroopB, sf::RenderWindow& window)
 {
 	int iRange = 64 * _TroopA.GetAttackRange() + 32;
 	RangeRect.setSize(sf::Vector2f(iRange, iRange));
 	// put rectangle around centre of troop
 	RangeRect.setPosition(sf::Vector2f(_TroopA.GetPosition().x - iRange / 2 + 16, _TroopA.GetPosition().y - iRange / 2 + 16));
+	window.draw(RangeRect);
 
 	if (_TroopB.GetSprite().getGlobalBounds().intersects(RangeRect.getGlobalBounds()))
 	{
@@ -268,7 +269,7 @@ bool Board::InAttackRange(Troop& _TroopA, Troop& _TroopB)
 	return false;
 }
 
-void Board::AttackEnemies(Board* _EnemyBoard)
+void Board::AttackEnemies(Board* _EnemyBoard, sf::RenderWindow& window)
 {
 	//// sort through all enemy troops
 	//for (int j = 0; j < _EnemyBoard->m_Troops.size(); j++)
@@ -298,7 +299,7 @@ void Board::AttackEnemies(Board* _EnemyBoard)
 		// deal damage to every enemy in range
 		for (auto& playerTroop : m_Troops) 
 		{
-			if (InAttackRange(*playerTroop, **it)) 
+			if (InAttackRange(*playerTroop, **it, window)) 
 			{
 				// m_bIsBuffed adds 1 damage if true as a bool
 				(*it)->SetHealth((*it)->GetHealth() - (playerTroop->GetDamage() + playerTroop->m_bIsBuffed));

@@ -10,7 +10,15 @@ Troop stats can be found in the "troops" file.
 
 Credits:
 Daniel West:
-- All option B criteria
+- Troop loading through data oriented programing (file loading with easily modifiable stats)
+- Ability to place troops
+- Ability to move troops
+- Troop Attacking
+- Troop buffing each other in range
+- Making sure troops do not walk on each other or on incorrect terrain
+- Automatic Enemy AI Placement and movement for single player
+- All Player 1 and 2 code
+- Replay button
 - Button Functionality
 - Sound effects
 - Bug fixes
@@ -24,4 +32,4 @@ Nick:
 - Singleton class
 - Data orientated programming for gameType (single player or two player) and each level (tile lay out) so that progress in the game would be saved
   when the player exits and joins the game again
-- Level design for the 6 levels and the troops available in each level
+- Level design and troop balancing
