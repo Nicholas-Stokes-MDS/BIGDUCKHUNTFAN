@@ -45,6 +45,7 @@ void UIElement::Draw(sf::RenderWindow* _Window)
 	_Window->draw(m_ElementText);
 }
 
+// updates the text based on input for cases the text needs to be updated like troop number count
 void UIElement::Update(std::string _ID)
 {
 	m_ElementID = _ID;

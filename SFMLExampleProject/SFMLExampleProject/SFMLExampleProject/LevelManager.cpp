@@ -1,3 +1,15 @@
+// Bachelor of Software Engineering
+// Media Design School
+// Auckland
+// New Zealand
+//
+// (c) Media Design School
+//
+// File Name : LevelManager.cpp
+// Description : cpp file for LevelManager.h
+// Author : Nick Stokes
+// Mail : Nicholas.Stokes@mds.ac.nz
+
 #include "LevelManager.h"
 LevelManager* LevelManager::g_LevelManagerRef = NULL;
 

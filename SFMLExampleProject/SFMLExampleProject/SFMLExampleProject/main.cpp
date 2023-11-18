@@ -1,3 +1,14 @@
+// Bachelor of Software Engineering
+// Media Design School
+// Auckland
+// New Zealand
+//
+// (c) Media Design School
+//
+// File Name : main.cpp
+// Description : Responsible for running the game using instances of classes
+// Author : Nick Stokes and Daniel Wests
+// Mail : Nicholas.Stokes@mds.ac.nz and Daniel.Wests@mds.ac.nz
 #include "Object.h"
 #include "Troop.h"
 #include "LevelManager.h"
@@ -451,7 +462,6 @@ int main()
         {
             level.LoadLevel("Levels/level6.txt");
         }
-        level.PrintTerrainType();
 
 
         pPlayer1->SetLevel(level);
@@ -474,19 +484,16 @@ int main()
                     if (event.key.code == sf::Keyboard::Num1)
                     {
                         LevelManager::GetInstance()->LoadLevel(1, &level);
-                        level.PrintTerrainType();
                     }
 
                     else if (event.key.code == sf::Keyboard::Num2)
                     {
                         LevelManager::GetInstance()->LoadLevel(2, &level);
-                        level.PrintTerrainType();
                     }
 
                     else if (event.key.code == sf::Keyboard::Num3)
                     {
                         LevelManager::GetInstance()->LoadLevel(3, &level);
-                        level.PrintTerrainType();
                     }
 
                     else if (event.key.code == sf::Keyboard::D)

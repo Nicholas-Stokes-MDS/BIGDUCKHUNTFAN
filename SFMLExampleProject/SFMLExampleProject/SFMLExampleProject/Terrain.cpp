@@ -5,12 +5,13 @@
 //
 // (c) Media Design School
 //
-// File Name : Character.cpp
-// Description : cpp file for Character.h
+// File Name : Terrain.cpp
+// Description : cpp file for Terrain.h
 // Author : Nick Stokes
 // Mail : Nicholas.Stokes@mds.ac.nz
 #include "Terrain.h"
-// default constuctor setting sprite and position
+
+
 Terrain::Terrain()
 {
 

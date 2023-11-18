@@ -1,3 +1,16 @@
+// Bachelor of Software Engineering
+// Media Design School
+// Auckland
+// New Zealand
+//
+// (c) Media Design School
+//
+// File Name : LevelManager.h
+// Description : Singleton class responsible for handling global variables that uses data orientated programming using text files
+//				 and can load levels using the Level class
+// Author : Nick Stokes
+// Mail : Nicholas.Stokes@mds.ac.nz
+
 #pragma once
 #include <iostream>
 #include "Level.h"
@@ -10,7 +23,7 @@ private:
 	int currentLevelNum;
 	int gameType;
 	int resolution;
-	// global variabls
+	// global variables
 
 	static LevelManager* g_LevelManagerRef; // the pointer to the manager instance
 	LevelManager();

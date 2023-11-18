@@ -6,7 +6,7 @@
 // (c) Media Design School
 //
 // File Name : UIElement.h
-// Description : Class responsible for UI for the debug screen and the visuals for the win and lose screen
+// Description : Class responsible for all UI
 // Author : Nick Stokes
 // Mail : Nicholas.Stokes@mds.ac.nz
 #pragma once

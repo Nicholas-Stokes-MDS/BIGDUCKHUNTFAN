@@ -28,14 +28,16 @@ Daniel West:
 - Commenting
 
 Nick:
-- UI, buttons and/or creation of windows for start menu, the main game, settings menu and troop selection menu
+- UI, buttons and/or creation of windows for start menu, the main game, settings menu, troop selection menu, debug menu and win lose screen
+- Debug menu only appearing when pressing D and win lose screen only appearing once you have won
+- Functionality for some buttons
 - Make sure certain buttons are updated (like how many troops you have left in placing troop menu)
 - Level tile system
 - Level loading and drawing
 - Singleton class
 - Data orientated programming for gameType (single player or two player) and each level (tile lay out) so that progress in the game would be saved
   when the player exits and joins the game again
-- Level design and troop balancing
+- Level design for the 6 levels and the troops available in each level
 
 Music: Fluffing a Duck - Kevin MacLeod https://www.youtube.com/watch?v=6hBDh3dRvLc&ab_channel=KevinMacleod-Topic (copyright free)
 SFX:

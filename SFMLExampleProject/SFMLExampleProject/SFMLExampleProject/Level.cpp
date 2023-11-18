@@ -47,7 +47,7 @@ void Level::LoadLevel(std::string _sFilePath)
 	CreateLevel();
 }
 
-// creates level by creating character instances based on the level array based on the supplied text file
+// creates level by creating terrain instances based on the level array based on the supplied text file
 void Level::CreateLevel()
 {
 	for (int x = 0; x < levelHeight; x++)
@@ -79,10 +79,10 @@ void Level::Draw(sf::RenderWindow* _Window)
 	for (int j = 0; j < m_LevelTiles.size(); j++)
 	{
 		_Window->draw(m_LevelTiles[j]->Draw());
-		//std::cout << m_LevelTiles[j]->GetTerrainType();
 	}
 }
 
+// unloads the level
 void Level::UnloadLevel()
 {
 	for (int i = 0; i < m_LevelTiles.size(); i++)
@@ -90,20 +90,4 @@ void Level::UnloadLevel()
 		delete m_LevelTiles[i];
 	}
 	m_LevelTiles.resize(0);
-}
-
-void Level::PrintTerrainType()
-{
-	std::cout << std::endl;
-	int lineBreaker = 0;
-	for (int j = 0; j < m_LevelTiles.size(); j++)
-	{
-		std::cout << m_LevelTiles[j]->GetTerrainType();
-		lineBreaker += 1;
-		if (lineBreaker == 15)
-		{
-			std::cout << std::endl;
-			lineBreaker = 0;
-		}
-	}
 }

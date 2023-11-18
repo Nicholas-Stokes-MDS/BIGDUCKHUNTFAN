@@ -5,7 +5,7 @@
 //
 // (c) Media Design School
 //
-// File Name : Character.h
+// File Name : Terrain.h
 // Description : Class responsible for processing collisions and setting character type and sprite
 // Author : Nick Stokes
 // Mail : Nicholas.Stokes@mds.ac.nz

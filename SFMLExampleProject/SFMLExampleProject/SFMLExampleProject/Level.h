@@ -17,25 +17,27 @@ class Level
 public:
 	int iCurrentLevel = 1;
 
+	// level width and height
 	static const int levelWidth = 15;
 	static const int levelHeight = 20;
 
-	// functional
-	std::vector<Terrain*> m_LevelTiles; // level
+	std::vector<Terrain*> m_LevelTiles; 
 	
-
-	// load file
+	// level array loaded from level text files used to create instances of terrain
 	char cLevelArray[levelWidth][levelHeight];
 
 	Level();
 	~Level();
 
+	// level creation, loading and unloading
 	void LoadLevel(std::string _sFilePath);
 	void CreateLevel();
-	void Draw(sf::RenderWindow* _Window);
-
 	void UnloadLevel();
 
-	void PrintTerrainType();
+	// drawing
+	void Draw(sf::RenderWindow* _Window);
+
+
+
 };
 
