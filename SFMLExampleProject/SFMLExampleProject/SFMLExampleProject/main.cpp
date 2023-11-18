@@ -546,9 +546,12 @@ int main()
                             }
                         }
                     }
-                    if (iTotalTroops <= 0)
+                    if (pPlayer2->m_bIsComputer)
                     {
-                        pPlayer2->ComputerMove(pPlayer1, true);
+                        if (iTotalTroops <= 0)
+                        {
+                            pPlayer2->ComputerMove(pPlayer1, true);
+                        }
                     }
                 }
 
