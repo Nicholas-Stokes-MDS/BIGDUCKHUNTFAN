@@ -120,6 +120,7 @@ int main()
     srand(time(0));
 
     bool g_bGameRunning = true;
+    bool g_bDebug = false;
 
     while (g_bGameRunning)
     {
@@ -263,6 +264,8 @@ int main()
 
         sf::RenderWindow Debug(sf::VideoMode(400, 400), "Debug window");
         Debug.setVerticalSyncEnabled(true);
+
+        Debug.close();
 
         LevelManager* g_LevelManager = LevelManager::GetInstance();
         LevelManager::GetInstance()->GetCurrentLevel();
@@ -426,8 +429,7 @@ int main()
 
                     else if (event.key.code == sf::Keyboard::D)
                     {
-                        //sf::RenderWindow Debug(sf::VideoMode(400, 400), "Debug");
-                        //Debug.setVerticalSyncEnabled(true);
+                        Debug.create(sf::VideoMode(400, 400), "Debug window");
                     }
 
                     else if (event.key.code == sf::Keyboard::Num8)
