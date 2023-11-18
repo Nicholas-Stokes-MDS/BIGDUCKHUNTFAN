@@ -22,12 +22,13 @@ private:
 	};
 
 public:
-	int g_iLevel1Troops[6] = { 1, 1, 1, 1, 1, 1 };
-	int g_iLevel2Troops[6] = { 2, 0, 1, 1, 3, 0 };
-	int g_iLevel3Troops[6] = { 3, 3, 1, 0, 0, 1 };
-	int g_iLevel4Troops[6] = { 1, 2, 3, 4, 5, 6 };
-	int g_iLevel5Troops[6] = { 6, 5, 4, 3, 2, 1 };
-	int g_iLevel6Troops[6] = { 1, 3, 5, 3, 1, 0 };
+	// The order is Archer, Boat, Giant, Scout, Shield, Soldier
+	int g_iLevel1Troops[6] = { 0, 0, 0, 0, 0, 4 };
+	int g_iLevel2Troops[6] = { 3, 0, 0, 0, 3, 0 };
+	int g_iLevel3Troops[6] = { 3, 0, 0, 2, 3, 4 };
+	int g_iLevel4Troops[6] = { 0, 1, 0, 2, 0, 4 };
+	int g_iLevel5Troops[6] = { 2, 0, 2, 3, 0, 0 };
+	int g_iLevel6Troops[6] = { 4, 2, 2, 3, 4, 6 };
 
 	LevelManager(const LevelManager& _Manager) = delete; // when try to copy, deletes it only should be one (stops copy constructor from working)
 
