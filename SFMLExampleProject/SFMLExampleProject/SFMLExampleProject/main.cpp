@@ -284,7 +284,7 @@ int main()
         UIElements.push_back(lineWidthReduceElement);
         UIElement saveElement(sf::Vector2f(250, 30), sf::Vector2f(100, 50), std::string("Giant (") + std::to_string(g_iTroopCounts[2]) + std::string(")"), UIElementFont, sf::Color::Black);
         UIElements.push_back(saveElement);
-        UIElement loadElement(sf::Vector2f(250, 100), sf::Vector2f(100, 50), std::string("idk ("), UIElementFont, sf::Color::Black);
+        UIElement loadElement(sf::Vector2f(250, 100), sf::Vector2f(100, 50), std::string("deselect"), UIElementFont, sf::Color::Black);
         UIElements.push_back(loadElement);
 
         std::vector<UIElement> UIElements2;
@@ -598,11 +598,12 @@ int main()
                             }
                         }
                         // restart button pressed
-                        if (PlayerTurn[6].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(window))))
+                        if (PlayerTurn[7].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(window))))
                         {
                             g_iPlayer = 0;
                             LevelManager::GetInstance()->SetGameType(0);
                             LevelManager::GetInstance()->SetCurrentLevel(1);
+                            window.close();
                         }
 
                     }
