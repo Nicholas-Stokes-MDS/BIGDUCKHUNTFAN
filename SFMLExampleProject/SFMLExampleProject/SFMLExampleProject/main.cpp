@@ -275,18 +275,18 @@ int main()
         // creation of buttons
         UIElement UISoldier(sf::Vector2f(50, 30), sf::Vector2f(100, 50), std::string("Soldier (") + std::to_string(g_iTroopCounts[5]) + std::string(")"), UIElementFont, sf::Color::Black);
         UIElements.push_back(UISoldier);
-        UIElement circleElement(sf::Vector2f(50, 100), sf::Vector2f(100, 50), std::string("Archer (") + std::to_string(g_iTroopCounts[0]) + std::string(")"), UIElementFont, sf::Color::Black);
-        UIElements.push_back(circleElement);
-        UIElement lineElement(sf::Vector2f(50, 170), sf::Vector2f(100, 50), std::string("Shield (") + std::to_string(g_iTroopCounts[4]) + std::string(")"), UIElementFont, sf::Color::Black);
-        UIElements.push_back(lineElement);
-        UIElement lineWidthIncreaseElement(sf::Vector2f(50, 240), sf::Vector2f(100, 50), std::string("Scout (") + std::to_string(g_iTroopCounts[3]) + std::string(")"), UIElementFont, sf::Color::Black);
-        UIElements.push_back(lineWidthIncreaseElement);
-        UIElement lineWidthReduceElement(sf::Vector2f(50, 310), sf::Vector2f(100, 50), std::string("Boat (") + std::to_string(g_iTroopCounts[1]) + std::string(")"), UIElementFont, sf::Color::Black);
-        UIElements.push_back(lineWidthReduceElement);
-        UIElement saveElement(sf::Vector2f(250, 30), sf::Vector2f(100, 50), std::string("Giant (") + std::to_string(g_iTroopCounts[2]) + std::string(")"), UIElementFont, sf::Color::Black);
-        UIElements.push_back(saveElement);
-        UIElement loadElement(sf::Vector2f(250, 100), sf::Vector2f(100, 50), std::string("deselect"), UIElementFont, sf::Color::Black);
-        UIElements.push_back(loadElement);
+        UIElement UIArcher(sf::Vector2f(50, 100), sf::Vector2f(100, 50), std::string("Archer (") + std::to_string(g_iTroopCounts[0]) + std::string(")"), UIElementFont, sf::Color::Black);
+        UIElements.push_back(UIArcher);
+        UIElement UIShield(sf::Vector2f(50, 170), sf::Vector2f(100, 50), std::string("Shield (") + std::to_string(g_iTroopCounts[4]) + std::string(")"), UIElementFont, sf::Color::Black);
+        UIElements.push_back(UIShield);
+        UIElement UIScout(sf::Vector2f(50, 240), sf::Vector2f(100, 50), std::string("Scout (") + std::to_string(g_iTroopCounts[3]) + std::string(")"), UIElementFont, sf::Color::Black);
+        UIElements.push_back(UIScout);
+        UIElement UIBoat(sf::Vector2f(50, 310), sf::Vector2f(100, 50), std::string("Boat (") + std::to_string(g_iTroopCounts[1]) + std::string(")"), UIElementFont, sf::Color::Black);
+        UIElements.push_back(UIBoat);
+        UIElement UIGiant(sf::Vector2f(250, 30), sf::Vector2f(100, 50), std::string("Giant (") + std::to_string(g_iTroopCounts[2]) + std::string(")"), UIElementFont, sf::Color::Black);
+        UIElements.push_back(UIGiant);
+        UIElement UIdeselect(sf::Vector2f(250, 100), sf::Vector2f(100, 50), std::string("deselect"), UIElementFont, sf::Color::Black);
+        UIElements.push_back(UIdeselect);
 
         std::vector<UIElement> UIElements2;
         // creation of buttons
@@ -572,10 +572,22 @@ int main()
                         {
                             if (g_bPlayer1Won || g_bPlayer2Won)
                             {
-                                // next levl code
+                                // next level code
                                 if (g_LevelManager->GetCurrentLevel() <= 2)
                                 {
-                                    LevelManager::GetInstance()->LoadLevel(g_LevelManager->GetCurrentLevel() + 1, &level);
+                                    LevelManager::GetInstance()->SetCurrentLevel(LevelManager::GetInstance()->GetCurrentLevel() + 1);
+                                    if (LevelManager::GetInstance()->GetCurrentLevel() == 1)
+                                    {
+                                        level.LoadLevel("Levels/level1.txt");
+                                    }
+                                    else if (LevelManager::GetInstance()->GetCurrentLevel() == 2)
+                                    {
+                                        level.LoadLevel("Levels/level2.txt");
+                                    }
+                                    else if (LevelManager::GetInstance()->GetCurrentLevel() == 3)
+                                    {
+                                        level.LoadLevel("Levels/level3.txt");
+                                    }
                                     level.PrintTerrainType();
                                 }
                                 for (int i = 0; i < 6; i++)
@@ -596,6 +608,14 @@ int main()
 
                                 g_bLevelFinished = true;
                                 g_bTroopsPlaced = false;
+                                bool bMovingTroop = false;
+
+                                bool g_bLevelFinished = false;
+                                bool g_bPlayer1Won = false;
+                                bool g_bPlayer2Won = false;
+
+                                bool g_bTroopsPlaced = false;
+                                int g_iTroopsPlaced = 0;
                             }
                         }
                         // restart button pressed
@@ -966,9 +986,9 @@ int main()
             UIElements[0].Update(std::string("Soldier (") + std::to_string(g_iTroopCounts[5]) + std::string(")"));
             UIElements[1].Update(std::string("Archer (") + std::to_string(g_iTroopCounts[0]) + std::string(")"));
             UIElements[2].Update(std::string("Shield (") + std::to_string(g_iTroopCounts[4]) + std::string(")"));
-            UIElements[3].Update(std::string("Soldier (") + std::to_string(g_iTroopCounts[5]) + std::string(")"));
-            UIElements[4].Update(std::string("Soldier (") + std::to_string(g_iTroopCounts[5]) + std::string(")"));
-            UIElements[5].Update(std::string("Soldier (") + std::to_string(g_iTroopCounts[5]) + std::string(")"));
+            UIElements[3].Update(std::string("Scout (") + std::to_string(g_iTroopCounts[3]) + std::string(")"));
+            UIElements[4].Update(std::string("Boat (") + std::to_string(g_iTroopCounts[1]) + std::string(")"));
+            UIElements[5].Update(std::string("Giant (") + std::to_string(g_iTroopCounts[2]) + std::string(")"));
             
             // draw UI elements of options window
             for (int i = 0; i < UIElements.size(); i++)
