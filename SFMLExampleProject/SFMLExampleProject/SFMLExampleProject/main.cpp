@@ -162,7 +162,8 @@ int main()
         MenuElements.push_back(Instruction6);
         UIElement Instruction7(sf::Vector2f(50, 470), sf::Vector2f(700, 50), std::string("5.Strategically move your troops to defeat all the opponent troops."), UIElementFont, sf::Color::Black);
         MenuElements.push_back(Instruction7);
-
+        
+        LevelManager::GetInstance()->SetGameType(0);
         while (LevelManager::GetInstance()->GetGameType() == 0)
         {
             while (window.isOpen() && LevelManager::GetInstance()->GetGameType() == 0)
@@ -272,8 +273,8 @@ int main()
         // vector for buttons
         std::vector<UIElement> UIElements;
         // creation of buttons
-        UIElement rectElement(sf::Vector2f(50, 30), sf::Vector2f(100, 50), std::string("Soldier (") + std::to_string(g_iTroopCounts[5]) + std::string(")"), UIElementFont, sf::Color::Black);
-        UIElements.push_back(rectElement);
+        UIElement UISoldier(sf::Vector2f(50, 30), sf::Vector2f(100, 50), std::string("Soldier (") + std::to_string(g_iTroopCounts[5]) + std::string(")"), UIElementFont, sf::Color::Black);
+        UIElements.push_back(UISoldier);
         UIElement circleElement(sf::Vector2f(50, 100), sf::Vector2f(100, 50), std::string("Archer (") + std::to_string(g_iTroopCounts[0]) + std::string(")"), UIElementFont, sf::Color::Black);
         UIElements.push_back(circleElement);
         UIElement lineElement(sf::Vector2f(50, 170), sf::Vector2f(100, 50), std::string("Shield (") + std::to_string(g_iTroopCounts[4]) + std::string(")"), UIElementFont, sf::Color::Black);
@@ -961,6 +962,13 @@ int main()
 
             // Options window render loop
             OptionsWindow.clear();
+            UIElements[0].Update(std::string("Soldier (") + std::to_string(g_iTroopCounts[5]) + std::string(")"));
+            UIElements[1].Update(std::string("Archer (") + std::to_string(g_iTroopCounts[0]) + std::string(")"));
+            UIElements[2].Update(std::string("Shield (") + std::to_string(g_iTroopCounts[4]) + std::string(")"));
+            UIElements[3].Update(std::string("Soldier (") + std::to_string(g_iTroopCounts[5]) + std::string(")"));
+            UIElements[4].Update(std::string("Soldier (") + std::to_string(g_iTroopCounts[5]) + std::string(")"));
+            UIElements[5].Update(std::string("Soldier (") + std::to_string(g_iTroopCounts[5]) + std::string(")"));
+            
             // draw UI elements of options window
             for (int i = 0; i < UIElements.size(); i++)
             {
