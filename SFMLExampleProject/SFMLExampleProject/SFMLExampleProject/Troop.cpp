@@ -162,16 +162,6 @@ void Troop::PlaceTroop(sf::Event _event, sf::RenderWindow* _WindowRef)
     }
 }
 
-void Troop::PlaceComputerTroop()
-{
-    float fXPos = rand() % 20;
-    float fYPos = rand() % 15;
-
-    SetPosition(sf::Vector2f(fXPos * 32, fYPos * 32));
-
-    m_bTroopMoved = true;
-}
-
 void Troop::SetPosition(sf::Vector2f _Pos)
 {
     m_TroopSprite.setPosition(_Pos);

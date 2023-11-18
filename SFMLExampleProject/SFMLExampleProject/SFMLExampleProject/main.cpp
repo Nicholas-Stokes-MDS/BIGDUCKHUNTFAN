@@ -27,88 +27,90 @@ int PlaceTroop(Board* _Player, std::string _TroopPath, sf::Event _event, sf::Ren
     if (_Player->m_bIsComputer)
     {
         Troop* pTroop = new Troop(_TroopPath);
-        pTroop->PlaceComputerTroop();
         _Player->AddTroop(pTroop);
         return 1;
     }
-
-    // if mouse button pressed create a troop instance
-    if (_event.type == sf::Event::MouseButtonPressed)
+    else
     {
-        if (_event.mouseButton.button == sf::Mouse::Left)
+        // if mouse button pressed create a troop instance
+        if (_event.type == sf::Event::MouseButtonPressed)
         {
-            Troop* pTroop = new Troop(_TroopPath);
-
-            // only move if on suitable terrain
-            if (pTroop->GetName() == "Boat")
+            if (_event.mouseButton.button == sf::Mouse::Left)
             {
-                for (int i = 0; i < _level.m_LevelTiles.size(); i++)
+                Troop* pTroop = new Troop(_TroopPath);
+
+                // only move if on suitable terrain
+                if (pTroop->GetName() == "Boat")
                 {
-                    if (_level.m_LevelTiles[i]->m_TerrainType == Water)
+                    for (int i = 0; i < _level.m_LevelTiles.size(); i++)
                     {
-                        if (_Player->GetSelectRect().getGlobalBounds().intersects(_level.m_LevelTiles[i]->m_CharacterSprite.getGlobalBounds()))
+                        if (_level.m_LevelTiles[i]->m_TerrainType == Water)
                         {
-                            bAvailableSpace = true;
+                            if (_Player->GetSelectRect().getGlobalBounds().intersects(_level.m_LevelTiles[i]->m_CharacterSprite.getGlobalBounds()))
+                            {
+                                bAvailableSpace = true;
+                            }
                         }
                     }
                 }
-            }
-            else
-            {
-                for (int i = 0; i < _level.m_LevelTiles.size(); i++)
+                else
                 {
-                    if (_level.m_LevelTiles[i]->m_TerrainType == Wall)
+                    for (int i = 0; i < _level.m_LevelTiles.size(); i++)
                     {
-                        if (_Player->GetSelectRect().getGlobalBounds().intersects(_level.m_LevelTiles[i]->m_CharacterSprite.getGlobalBounds()))
+                        if (_level.m_LevelTiles[i]->m_TerrainType == Wall)
                         {
-                            bAvailableSpace = true;
-                            std::cout << "wall" << std::endl;
+                            if (_Player->GetSelectRect().getGlobalBounds().intersects(_level.m_LevelTiles[i]->m_CharacterSprite.getGlobalBounds()))
+                            {
+                                bAvailableSpace = true;
+                                std::cout << "wall" << std::endl;
+                            }
                         }
                     }
                 }
-            }
 
-            // make sure area is not own troop member ! has to be after the tile checks !
-            for (auto it = _Player->m_Troops.begin(); it != _Player->m_Troops.end(); /* no increment here */)
-            {
-                for (auto& playerTroop : _Player->m_Troops)
+                // make sure area is not own troop member ! has to be after the tile checks !
+                for (auto it = _Player->m_Troops.begin(); it != _Player->m_Troops.end(); /* no increment here */)
                 {
-                    if (_Player->GetSelectRect().getGlobalBounds().intersects((*it)->GetSprite().getGlobalBounds()))
+                    for (auto& playerTroop : _Player->m_Troops)
                     {
-                        bAvailableSpace = false;
+                        if (_Player->GetSelectRect().getGlobalBounds().intersects((*it)->GetSprite().getGlobalBounds()))
+                        {
+                            bAvailableSpace = false;
+                        }
                     }
+                    it++;
                 }
-                it++;
-            }
 
-            // make sure area is not enemy troop member ! has to be after the tile checks !
-            for (auto it = _EnemyPlayer->m_Troops.begin(); it != _EnemyPlayer->m_Troops.end(); /* no increment here */)
-            {
-                for (auto& playerTroop : _Player->m_Troops)
+                // make sure area is not enemy troop member ! has to be after the tile checks !
+                for (auto it = _EnemyPlayer->m_Troops.begin(); it != _EnemyPlayer->m_Troops.end(); /* no increment here */)
                 {
-                    if (_Player->GetSelectRect().getGlobalBounds().intersects((*it)->GetSprite().getGlobalBounds()))
+                    for (auto& playerTroop : _Player->m_Troops)
                     {
-                        bAvailableSpace = false;
+                        if (_Player->GetSelectRect().getGlobalBounds().intersects((*it)->GetSprite().getGlobalBounds()))
+                        {
+                            bAvailableSpace = false;
+                        }
                     }
+                    it++;
                 }
-                it++;
-            }
 
-            // actually place troop
-            if (bAvailableSpace)
-            {
-                pTroop->PlaceTroop(_event, _WindowRef);
-                _Player->AddTroop(pTroop);
-                // return 1 to count the troops placed
-                return 1;
-            }
-            else
-            {
-                // change the rectangle to red
-                _Player->SetMouseColour(sf::Color(255, 0, 0, 128));
+                // actually place troop
+                if (bAvailableSpace)
+                {
+                    pTroop->PlaceTroop(_event, _WindowRef);
+                    _Player->AddTroop(pTroop);
+                    // return 1 to count the troops placed
+                    return 1;
+                }
+                else
+                {
+                    // change the rectangle to red
+                    _Player->SetMouseColour(sf::Color(255, 0, 0, 128));
+                }
             }
         }
     }
+
     return 0;
 }
 
@@ -358,6 +360,7 @@ int main()
                 {
                 case sf::Event::Closed:
                     window.close();
+                    g_bGameRunning = false;
                     break;
                 case sf::Event::KeyPressed:
                     if (event.key.code == sf::Keyboard::Num1)
@@ -542,6 +545,10 @@ int main()
                                 }
                             }
                         }
+                    }
+                    if (iTotalTroops <= 0)
+                    {
+                        pPlayer2->ComputerMove(pPlayer1, true);
                     }
                 }
 
@@ -736,7 +743,7 @@ int main()
                         else
                         {
                             // move troops if computer and change player
-                            if (pPlayer2->ComputerMove(pPlayer1))
+                            if (pPlayer2->ComputerMove(pPlayer1, false))
                             {
                                 for (int j = 0; j < pPlayer2->m_Troops.size(); j++)
                                 {
