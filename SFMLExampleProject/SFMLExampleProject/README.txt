@@ -1,6 +1,8 @@
 How to play:
 use the buttons on the troop panel to place your troops. once everybody has placed their troops, click on a troop to move them. Once one player has moved all of their troops or the end turn button has been pressed, troops will all take turns dealing damage to each other. If a troop is adjacent to another troop, those troops will give each other plus one damage (non stackable). Strategically move your troops to defeat all the opponent troops. 
 
+Press 'D' to open debug menu
+
 clarifications:
 - If player one has just moved, they will attack first and vice versa.
 - Players trade attacks after every turn. This means once player one moves all their troops, both players attack each other and then player two can move all their troops and so on. 
@@ -34,3 +36,7 @@ Nick:
 - Data orientated programming for gameType (single player or two player) and each level (tile lay out) so that progress in the game would be saved
   when the player exits and joins the game again
 - Level design and troop balancing
+
+Music: Fluffing a Duck - Kevin MacLeod https://www.youtube.com/watch?v=6hBDh3dRvLc&ab_channel=KevinMacleod-Topic (copyright free)
+SFX:
+Sound Effect from <a href="https://pixabay.com/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=6826">Pixabay</a>
