@@ -159,7 +159,7 @@ int main()
     UIElement Instruction7(sf::Vector2f(50, 470), sf::Vector2f(700, 50), std::string("5.Strategically move your troops to defeat all the opponent troops."), UIElementFont, sf::Color::Black);
     MenuElements.push_back(Instruction7);
 
-    //LevelManager::GetInstance()->SetGameType(0);
+    LevelManager::GetInstance()->SetGameType(0);
 
     while (LevelManager::GetInstance()->GetGameType() == 0)
     {
@@ -592,9 +592,10 @@ int main()
                     }
                     if (PlayerTurn[6].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(window))))
                     {
+                        
                         LevelManager::GetInstance()->SetGameType(0);
                         LevelManager::GetInstance()->SetCurrentLevel(1);
-                        main();
+                        
 
                     }
 
