@@ -261,6 +261,9 @@ int main()
         sf::RenderWindow Settings(sf::VideoMode(400, 400), "Settings");
         Settings.setVerticalSyncEnabled(true);
 
+        sf::RenderWindow Debug(sf::VideoMode(400, 400), "Debug window");
+        Debug.setVerticalSyncEnabled(true);
+
         LevelManager* g_LevelManager = LevelManager::GetInstance();
         LevelManager::GetInstance()->GetCurrentLevel();
 
@@ -338,8 +341,23 @@ int main()
         UIElement Restart(sf::Vector2f(330, 540), sf::Vector2f(150, 50), std::string("Restart"), UIElementFont, sf::Color::Black);
         PlayerTurn.push_back(Restart);
 
-        //LevelNumber(std::string("End Turn"))
-
+        std::vector<UIElement> DebugElement;
+        UIElement LevelIncrease(sf::Vector2f(20, 30), sf::Vector2f(150, 50), std::string("Level+"), UIElementFont, sf::Color::Black);
+        DebugElement.push_back(LevelIncrease);
+        UIElement LevelDecrease(sf::Vector2f(20, 100), sf::Vector2f(150, 50), std::string("Level-"), UIElementFont, sf::Color::Black);
+        DebugElement.push_back(LevelDecrease);
+        UIElement TroopHealthIncrease(sf::Vector2f(20, 170), sf::Vector2f(150, 50), std::string("Troop Health+"), UIElementFont, sf::Color::Black);
+        DebugElement.push_back(TroopHealthIncrease);
+        UIElement TroopHealthDecrease(sf::Vector2f(20, 240), sf::Vector2f(150, 50), std::string("Troop Health-"), UIElementFont, sf::Color::Black);
+        DebugElement.push_back(TroopHealthDecrease);
+        UIElement TroopDamageIncrease(sf::Vector2f(20, 310), sf::Vector2f(150, 50), std::string("Troop Damage+"), UIElementFont, sf::Color::Black);
+        DebugElement.push_back(TroopDamageIncrease);
+        UIElement TroopDamageDecrease(sf::Vector2f(220, 30), sf::Vector2f(150, 50), std::string("Troop Damage-"), UIElementFont, sf::Color::Black);
+        DebugElement.push_back(TroopDamageDecrease);
+        UIElement TroopRangeIncrease(sf::Vector2f(220, 100), sf::Vector2f(150, 50), std::string("Troop Range+"), UIElementFont, sf::Color::Black);
+        DebugElement.push_back(TroopRangeIncrease);
+        UIElement TroopRangeDecrease(sf::Vector2f(220, 170), sf::Vector2f(150, 50), std::string("Troop Range-"), UIElementFont, sf::Color::Black);
+        DebugElement.push_back(TroopRangeDecrease);
 
 
         //UIElement PlayerTurn[3](sf::Vector2f(0, 480), sf::Vector2f(150, 50), std::string("Level: ") + std::to_string(LevelManager::GetInstance()->GetCurrentLevel()), UIElementFont, sf::Color::Black);
@@ -406,9 +424,10 @@ int main()
                         level.PrintTerrainType();
                     }
 
-                    else if (event.key.code == sf::Keyboard::Num7)
+                    else if (event.key.code == sf::Keyboard::D)
                     {
-
+                        //sf::RenderWindow Debug(sf::VideoMode(400, 400), "Debug");
+                        //Debug.setVerticalSyncEnabled(true);
                     }
 
                     else if (event.key.code == sf::Keyboard::Num8)
@@ -962,6 +981,63 @@ int main()
             }
             // -- settings event loop end -- //
 
+            // -- debug event loop -- //
+            sf::Event DebugEvent;
+            while (Debug.pollEvent(DebugEvent))
+            {
+                // lets user close the window
+                if (DebugEvent.type == sf::Event::Closed)
+                {
+                    Debug.close();
+                }
+
+                if (DebugEvent.type == sf::Event::MouseButtonPressed)
+                {
+                    if (DebugEvent.mouseButton.button == sf::Mouse::Left)
+                    {
+                        //clicking buttons in Options window and calling the appropriate class method
+                        // Volume Plus
+                        if (DebugElement[0].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(Settings))))
+                        {
+
+                        }
+                        // Volume - 
+                        if (DebugElement[1].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(Settings))))
+                        {
+
+                        }
+                        // VSync Enable
+                        if (DebugElement[2].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(Settings))))
+                        {
+                            Settings.setVerticalSyncEnabled(true);
+                        }
+                        // Vsync Disable
+                        if (DebugElement[3].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(Settings))))
+                        {
+                            Settings.setVerticalSyncEnabled(false);
+                        }
+                        // 800, 600 resolution
+                        if (DebugElement[4].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(Settings))))
+                        {
+                            window.create(sf::VideoMode(800, 600), "Game!");
+                        }
+                        // 1366 768 resolution
+                        if (DebugElement[5].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(Settings))))
+                        {
+                            window.create(sf::VideoMode(1366, 768), "Game!");
+                        }
+                        // 1920 1080 resolution
+                        if (DebugElement[6].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(Settings))))
+                        {
+                            window.create(sf::VideoMode(1920, 1080), "Game!");
+                        }
+
+                    }
+                }
+            }
+            // -- debug event loop end -- //
+
+
             if (g_iPlayer == 1)
             {
                 pPlayer1->ShowMouseSquare(&window);
@@ -1077,7 +1153,16 @@ int main()
             Settings.display();
             // Settings window render loop
 
-
+            
+            // Debug window render loop
+            Debug.clear();
+            // draw UI elements of debug window
+            for (int i = 0; i < DebugElement.size(); i++)
+            {
+                DebugElement[i].Draw(&Debug);
+            }
+            Debug.display();
+            // Debug window render loop
         }
     }
 
