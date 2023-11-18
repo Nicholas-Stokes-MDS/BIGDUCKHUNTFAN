@@ -827,15 +827,15 @@ int main()
                     //player 1 win
                     pPlayer1->ClearTroops();
                     pPlayer2->ClearTroops();
-                    g_iPlayer = 1;
-                    g_bPlayer1Won = true;
+                    g_iPlayer = 2;
+                    g_bPlayer2Won = true;
                 }
                 else if (pPlayer2->m_Troops.size() <= 0)
                 {
                     // player 2 win
                     pPlayer1->ClearTroops();
                     pPlayer2->ClearTroops();
-                    g_bPlayer2Won = true;
+                    g_bPlayer1Won = true;
                     g_iPlayer = 1;
                 }
             }
