@@ -694,10 +694,19 @@ int main()
                     }
                     else
                     {
-                        // for each troop move once 
-                        for (auto& computerTroop : pPlayer2->m_Troops)
+                        if (pPlayer2->ComputerMove(pPlayer1))
                         {
-
+                            for (int j = 0; j < pPlayer2->m_Troops.size(); j++)
+                            {
+                                pPlayer2->m_Troops[j]->m_bTroopMoved = false;
+                            }
+                            pPlayer2->BuffTroops();
+                            pPlayer1->BuffTroops();
+                            pPlayer2->AttackEnemies(pPlayer1);
+                            pPlayer1->AttackEnemies(pPlayer2);
+                            pPlayer1->ResetBuffs();
+                            pPlayer2->ResetBuffs();
+                            g_iPlayer--;
                         }
                     }
                 }

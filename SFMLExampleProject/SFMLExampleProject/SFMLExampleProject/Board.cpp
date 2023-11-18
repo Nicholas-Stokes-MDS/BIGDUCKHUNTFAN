@@ -126,9 +126,80 @@ void Board::AddTroop(Troop* _Troop)
 	m_Troops.push_back(_Troop);
 }
 
-void Board::ComputerPlace()
+bool Board::ComputerMove(Board* _EnemyTroops)
 {
+	int iTroopsMoved = 0;
+	// for all troops in board
+	// check a random square in range 
+	// if valid square move there
+	// if not valid square do not move there
+	// skip turn if invalid in all squares??
+	//
+	for (auto it = m_Troops.begin(); it != m_Troops.end();)
+	{
+		bool bSpotAvailable = true;
+		bool bCorrectTerrain = false;
+		if (!(*it)->m_bTroopMoved)
+		{
+			// check a random square in range
+			float fXPos = rand() % ((*it)->GetRange() + 1);
+			float fYPos = rand() % ((*it)->GetRange() + 1);
+			
+			// move by a random amount within range from top left of range
+			SelectRect.setPosition(((*it)->GetPosition().x - ((*it)->GetRange() * 32)) + (fXPos * 32), ((*it)->GetPosition().y - ((*it)->GetRange() * 32)) + (fYPos * 32));
+		}
+		
+		// check no enemies are where the randomly selected spot is
+		for (auto& enemyTroop : _EnemyTroops->m_Troops)
+		{
+			if (SelectRect.getGlobalBounds().intersects(enemyTroop->GetSprite().getGlobalBounds()))
+			{
+				bSpotAvailable = false;
+			}
+		}
 
+		// check that there is a tile there
+		if ((*it)->GetName() == "Boat")
+		{
+			for (int i = 0; i < m_Level.m_LevelTiles.size(); i++)
+			{
+				if (m_Level.m_LevelTiles[i]->m_TerrainType == Water)
+				{
+					if (SelectRect.getGlobalBounds().intersects(m_Level.m_LevelTiles[i]->m_CharacterSprite.getGlobalBounds()))
+					{
+						bCorrectTerrain = true;
+					}
+				}
+			}
+		}
+		else
+		{
+			for (int i = 0; i < m_Level.m_LevelTiles.size(); i++)
+			{
+				if (m_Level.m_LevelTiles[i]->m_TerrainType == Wall)
+				{
+					if (SelectRect.getGlobalBounds().intersects(m_Level.m_LevelTiles[i]->m_CharacterSprite.getGlobalBounds()))
+					{
+						bCorrectTerrain = true;
+					}
+				}
+			}
+		}
+
+		// if spot is available set troop position to test position
+		if (bSpotAvailable && bCorrectTerrain)
+		{
+			(*it)->SetPosition(SelectRect.getPosition());
+			(*it)->m_bTroopMoved = true;
+			it++;
+			iTroopsMoved++;
+		}
+	}
+
+	if (iTroopsMoved = m_Troops.size())
+	{
+		return true;
+	}
 }
 
 void Board::ShowMouseSquare(sf::RenderWindow* _WindowRef)
@@ -152,6 +223,20 @@ void Board::ColourTroops(sf::RenderWindow& window)
 		rectangle.setPosition(troop->GetPosition().x, troop->GetPosition().y);
 		window.draw(rectangle);
 	}
+}
+
+bool Board::InMovementRange(Troop& _TroopA, Troop& _TroopB)
+{
+	int iRange = 64 * _TroopA.GetRange() + 32;
+	RangeRect.setSize(sf::Vector2f(iRange, iRange));
+	// put rectangle around centre of troop
+	RangeRect.setPosition(sf::Vector2f(_TroopA.GetPosition().x - iRange / 2 + 16, _TroopA.GetPosition().y - iRange / 2 + 16));
+
+	if (_TroopB.GetSprite().getGlobalBounds().intersects(RangeRect.getGlobalBounds()))
+	{
+		return true;
+	}
+	return false;
 }
 
 bool Board::InAttackRange(Troop& _TroopA, Troop& _TroopB)

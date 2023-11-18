@@ -29,8 +29,8 @@ public:
 	void MoveTroop(Troop& _Troop, sf::Event _event, sf::RenderWindow* _WindowRef, Board* _EnemyTroops);
 	void AddTroop(Troop* _Troop);
 
-	// automatically place all troops
-	void ComputerPlace();
+	// automatically move troops
+	bool ComputerMove(Board* _EnemyTroops);
 
 	// creates a square with low opacity that snaps to whichever tile the mouse is inside
 	void ShowMouseSquare(sf::RenderWindow* _WindowRef);
@@ -38,6 +38,7 @@ public:
 	// colour enemy troops to make it obvious who is who
 	void ColourTroops(sf::RenderWindow& window);
 
+	bool InMovementRange(Troop& _TroopA, Troop& _TroopB);
 	bool InAttackRange(Troop& _TroopA, Troop& _TroopB);
 	void AttackEnemies(Board* _EnemyBoard);
 
@@ -46,7 +47,6 @@ public:
 	void BuffTroops();
 	void ResetBuffs();
 
-	void DeleteTroop(std::vector<Troop*> _Troops);
 	void ClearTroops();
 
 	// getters
