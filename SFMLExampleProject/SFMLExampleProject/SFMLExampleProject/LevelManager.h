@@ -8,6 +8,7 @@ class LevelManager
 private:
 	int currentLevelNum;
 	int gameType;
+	int resolution;
 	static LevelManager* g_LevelManagerRef; // the pointer to the manager instance
 	LevelManager();
 
@@ -54,5 +55,7 @@ public:
 	int GetCurrentLevel();
 	void SetGameType(int _gameType);
 	int GetGameType();
+	void SetResolution(int _resolution);
+	int GetResolution();
 };
 

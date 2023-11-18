@@ -166,6 +166,19 @@ int main()
         UIElement Instruction7(sf::Vector2f(50, 470), sf::Vector2f(700, 50), std::string("5.Strategically move your troops to defeat all the opponent troops."), UIElementFont, sf::Color::Black);
         MenuElements.push_back(Instruction7);
         
+        if (LevelManager::GetInstance()->GetResolution() == 1)
+        {
+            window.create(sf::VideoMode(800, 600), "Game!");
+        }
+        if (LevelManager::GetInstance()->GetResolution() == 2)
+        {
+            window.create(sf::VideoMode(1366, 768), "Game!");
+        }
+        if (LevelManager::GetInstance()->GetResolution() == 3)
+        {
+            window.create(sf::VideoMode(1920, 1080), "Game!");
+        }
+
         LevelManager::GetInstance()->SetGameType(0);
         while (LevelManager::GetInstance()->GetGameType() == 0)
         {
@@ -389,8 +402,11 @@ int main()
         {
             level.LoadLevel("Levels/level6.txt");
         }
-
         level.PrintTerrainType();
+
+
+
+        std::cout << "resolution: " << LevelManager::GetInstance()->GetResolution() << std::endl;
 
         pPlayer1->SetLevel(level);
         pPlayer2->SetLevel(level);
@@ -966,16 +982,20 @@ int main()
                         if (UIElements[4].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(Settings))))
                         {
                             window.create(sf::VideoMode(800, 600), "Game!");
+                            LevelManager::GetInstance()->SetResolution(1);
                         }
                         // 1366 768 resolution
                         if (UIElements[5].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(Settings))))
                         {
                             window.create(sf::VideoMode(1366, 768), "Game!");
+                            LevelManager::GetInstance()->SetResolution(2);
                         }
                         // 1920 1080 resolution
                         if (UIElements[6].m_ElementVisual.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(Settings))))
                         {
                             window.create(sf::VideoMode(1920, 1080), "Game!");
+                            LevelManager::GetInstance()->SetResolution(3);
+
                         }
 
                     }
@@ -995,7 +1015,7 @@ int main()
 
                 if (DebugEvent.type == sf::Event::MouseButtonPressed)
                 {
-                    if (DebugEvent.mouseButton.button == sf::Mouse::Left)
+                    if (DebugEvent.mouseButton.button == sf::Mouse::Left)   
                     {
                         //clicking buttons in Options window and calling the appropriate class method
                         // LevelIncrease

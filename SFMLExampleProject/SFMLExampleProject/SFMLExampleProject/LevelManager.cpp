@@ -27,6 +27,18 @@ LevelManager::LevelManager()
         // If the file does not exist
         this->currentLevelNum = 0;
     }
+
+    std::ifstream infile3("Levels/resolution.txt");
+    if (infile3.is_open())
+    {
+        infile3 >> this->resolution;
+        infile3.close();
+    }
+    else
+    {
+        // If the file does not exist
+        this->resolution = 1;
+    }
 }
 
 void LevelManager::LoadLevel(int _LevelNum, Level* _LevelRef)
@@ -76,6 +88,22 @@ void LevelManager::SetGameType(int _gameType)
 int LevelManager::GetGameType()
 {
     return this->gameType;
+}
+
+void LevelManager::SetResolution(int _resolution)
+{
+    this->resolution = _resolution;
+    std::ofstream outfile("Levels/resolution.txt");
+    if (outfile.is_open())
+    {
+        outfile << this->resolution;
+        outfile.close();
+    }
+}
+
+int LevelManager::GetResolution()
+{
+    return this->resolution;
 }
 
 
