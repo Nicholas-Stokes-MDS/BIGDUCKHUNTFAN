@@ -30,7 +30,7 @@ public:
 	void AddTroop(Troop* _Troop);
 
 	// automatically move troops
-	bool ComputerMove(Board* _EnemyTroops);
+	bool ComputerMove(Board* _EnemyTroops, bool _bForPlacement);
 
 	// creates a square with low opacity that snaps to whichever tile the mouse is inside
 	void ShowMouseSquare(sf::RenderWindow* _WindowRef);

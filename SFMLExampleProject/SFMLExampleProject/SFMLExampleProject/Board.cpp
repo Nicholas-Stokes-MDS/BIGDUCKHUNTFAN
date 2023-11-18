@@ -126,7 +126,7 @@ void Board::AddTroop(Troop* _Troop)
 	m_Troops.push_back(_Troop);
 }
 
-bool Board::ComputerMove(Board* _EnemyTroops)
+bool Board::ComputerMove(Board* _EnemyTroops, bool _bForPlacment)
 {
 	int iTroopsMoved = 0;
 	// for all troops in board
@@ -135,18 +135,33 @@ bool Board::ComputerMove(Board* _EnemyTroops)
 	// if not valid square do not move there
 	// skip turn if invalid in all squares??
 	//
+	// no iterator so it repeats until a spot is found
 	for (auto it = m_Troops.begin(); it != m_Troops.end();)
 	{
 		bool bSpotAvailable = true;
 		bool bCorrectTerrain = false;
-		if (!(*it)->m_bTroopMoved)
+
+		if (_bForPlacment)
 		{
-			// check a random square in range
-			float fXPos = rand() % ((*it)->GetRange() + 1);
-			float fYPos = rand() % ((*it)->GetRange() + 1);
-			
-			// move by a random amount within range from top left of range
-			SelectRect.setPosition(((*it)->GetPosition().x - ((*it)->GetRange() * 32)) + (fXPos * 32), ((*it)->GetPosition().y - ((*it)->GetRange() * 32)) + (fYPos * 32));
+			if (!(*it)->m_bTroopMoved)
+			{
+				float fXPos = rand() % 20;
+				float fYPos = rand() % 15;
+
+				SelectRect.setPosition(fXPos * 32, fYPos * 32);
+			}
+		}
+		else
+		{
+			if (!(*it)->m_bTroopMoved)
+			{
+				// check a random square in range
+				float fXPos = rand() % ((*it)->GetRange() + 1);
+				float fYPos = rand() % ((*it)->GetRange() + 1);
+
+				// move by a random amount within range from top left of range
+				SelectRect.setPosition(((*it)->GetPosition().x - ((*it)->GetRange() * 32)) + (fXPos * 32), ((*it)->GetPosition().y - ((*it)->GetRange() * 32)) + (fYPos * 32));
+			}
 		}
 		
 		// check no enemies are where the randomly selected spot is
